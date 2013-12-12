@@ -1,0 +1,21 @@
+//
+// Prefix header for all source files of the 'UPDIS' target in the 'UPDIS' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_4_0
+#warning "This project uses features only available in iOS SDK 4.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import "NimbusCore.h"
+    #import "NimbusWebController.h"
+    #import <QuartzCore/QuartzCore.h>
+    #import "Three20/Three20+Additions.h"
+    #import "Debug.h"
+    #import "ReLoginAssisant.h"
+    #import "Constant.h"
+#endif
