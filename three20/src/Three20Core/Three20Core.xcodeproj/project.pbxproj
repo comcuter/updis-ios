@@ -577,6 +577,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E55A4B31183CA80002768DE /* Library.xcconfig */;
 			buildSettings = {
+				"ARCHS[sdk=iphoneos*]" = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -589,6 +590,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E55A4B31183CA80002768DE /* Library.xcconfig */;
 			buildSettings = {
+				"ARCHS[sdk=iphoneos*]" = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				SDKROOT = iphoneos;
