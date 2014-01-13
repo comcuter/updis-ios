@@ -832,6 +832,8 @@
 		1C1AC393188430C9009C6E3C /* NoUse */ = {
 			isa = PBXGroup;
 			children = (
+				B0C904DB1726D0CA006E956F /* TabPageView.h */,
+				B0C904DC1726D0CA006E956F /* TabPageView.m */,
 				B0FCE5521726B0F2004F030B /* MTabBarItem.h */,
 				B0FCE5531726B0F3004F030B /* MTabBarItem.m */,
 				B0D57AD51781BC5100ABCBB8 /* MSubViewController.h */,
@@ -1545,8 +1547,6 @@
 				B0FCE56B1726B515004F030B /* MyInformationViewController.m */,
 				B0FCE56D1726B523004F030B /* PersonnelMessageViewController.h */,
 				B0FCE56E1726B523004F030B /* PersonnelMessageViewController.m */,
-				B0C904DB1726D0CA006E956F /* TabPageView.h */,
-				B0C904DC1726D0CA006E956F /* TabPageView.m */,
 				B008D6E81782EE6D008BFDF1 /* CommonDetailViewController.h */,
 				B008D6E91782EE6D008BFDF1 /* CommonDetailViewController.m */,
 				B0BFFBF3178C28BD00676A56 /* CommentListViewController.h */,
