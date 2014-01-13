@@ -116,7 +116,6 @@
 	return isReachable && noConnectionRequired;
 }
 
-
 + (NSString *)md5:(NSString *)str
 {
     const char *cStr = [str UTF8String];
@@ -158,8 +157,6 @@
     return s;
 }
 
-#pragma mark -
-#pragma mark fetch data from server
 +(BOOL)fetchDataFromServer:(NSString *)operFlag parameter:(NSDictionary *)parameter
 {
     BOOL succeed = NO;

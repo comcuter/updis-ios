@@ -214,7 +214,6 @@
 		B0C3820316E874170094BEED /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0C3820216E874170094BEED /* CoreGraphics.framework */; };
 		B0C3820B16E874170094BEED /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C3820A16E874170094BEED /* main.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B0C3820F16E874170094BEED /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C3820E16E874170094BEED /* AppDelegate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		B0C3821816E874170094BEED /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C3821716E874170094BEED /* ViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B0C904D31726CCE9006E956F /* CommonListView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C904D21726CCE9006E956F /* CommonListView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B0C904DD1726D0CA006E956F /* TabPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C904DC1726D0CA006E956F /* TabPageView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B0C904ED1726D4D0006E956F /* tag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0C904EA1726D4D0006E956F /* tag@2x.png */; };
@@ -742,8 +741,6 @@
 		B0C3820C16E874170094BEED /* UPDIS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UPDIS-Prefix.pch"; sourceTree = "<group>"; };
 		B0C3820D16E874170094BEED /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B0C3820E16E874170094BEED /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B0C3821616E874170094BEED /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		B0C3821716E874170094BEED /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		B0C904D11726CCE9006E956F /* CommonListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonListView.h; sourceTree = "<group>"; };
 		B0C904D21726CCE9006E956F /* CommonListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonListView.m; sourceTree = "<group>"; };
 		B0C904DB1726D0CA006E956F /* TabPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabPageView.h; sourceTree = "<group>"; };
@@ -930,6 +927,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1C1AC393188430C9009C6E3C /* NoUse */ = {
+			isa = PBXGroup;
+			children = (
+				B0FCE5521726B0F2004F030B /* MTabBarItem.h */,
+				B0FCE5531726B0F3004F030B /* MTabBarItem.m */,
+				B0D57AD51781BC5100ABCBB8 /* MSubViewController.h */,
+				B0D57AD61781BC5100ABCBB8 /* MSubViewController.m */,
+			);
+			name = NoUse;
+			sourceTree = "<group>";
+		};
 		843F2574183A56A400DA6F98 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1202,10 +1210,6 @@
 		B0C3820416E874170094BEED /* UPDIS */ = {
 			isa = PBXGroup;
 			children = (
-				B0FCE5521726B0F2004F030B /* MTabBarItem.h */,
-				B0FCE5531726B0F3004F030B /* MTabBarItem.m */,
-				B0D57AD51781BC5100ABCBB8 /* MSubViewController.h */,
-				B0D57AD61781BC5100ABCBB8 /* MSubViewController.m */,
 				B008D70A1783C9FB008BFDF1 /* MSubListViewController.h */,
 				B008D70B1783C9FB008BFDF1 /* MSubListViewController.m */,
 				B008D6F01782F342008BFDF1 /* MHTabBarController.h */,
@@ -1218,8 +1222,6 @@
 				B0FCE2EF1726A9B3004F030B /* NimBus */,
 				B0C3820D16E874170094BEED /* AppDelegate.h */,
 				B0C3820E16E874170094BEED /* AppDelegate.m */,
-				B0C3821616E874170094BEED /* ViewController.h */,
-				B0C3821716E874170094BEED /* ViewController.m */,
 				B0C3820516E874170094BEED /* Supporting Files */,
 			);
 			path = UPDIS;
@@ -1730,6 +1732,7 @@
 		B0FCE5431726AE05004F030B /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				1C1AC393188430C9009C6E3C /* NoUse */,
 				B0D57AFA1781C9A800ABCBB8 /* Model */,
 				B0D57ADB1781BF0E00ABCBB8 /* TableView */,
 				B021A4E717814C9B009FCBAC /* LoginViewController.h */,
@@ -2149,7 +2152,6 @@
 			files = (
 				B0C3820B16E874170094BEED /* main.m in Sources */,
 				B0C3820F16E874170094BEED /* AppDelegate.m in Sources */,
-				B0C3821816E874170094BEED /* ViewController.m in Sources */,
 				B0FCE44D1726AA57004F030B /* NTStyleSheet.m in Sources */,
 				B0FCE51A1726AA57004F030B /* ASIAuthenticationDialog.m in Sources */,
 				B0FCE51B1726AA57004F030B /* ASIDataCompressor.m in Sources */,
