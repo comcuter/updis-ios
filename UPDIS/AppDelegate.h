@@ -12,11 +12,10 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-
 @property (strong, nonatomic) UIWindow *window;
-+(AppDelegate *)sharedAppDelegate;
 @property (retain) NSOperationQueue *operationQueue;
 
--(void)change2RootView;
--(void)change2LoginView;
++ (AppDelegate *)sharedAppDelegate;
+- (void)change2RootView;
+- (void)change2LoginView;
 @end
