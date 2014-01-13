@@ -260,7 +260,7 @@
 		B0EA5E911796D48E00647DD9 /* btn10@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0EA5E8F1796D48E00647DD9 /* btn10@2x.png */; };
 		B0EA5E951796E03400647DD9 /* SendMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EA5E931796E03400647DD9 /* SendMessageViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B0EA5E961796E03400647DD9 /* SendMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0EA5E941796E03400647DD9 /* SendMessageViewController.xib */; };
-		B0EA5EB117979E0900647DD9 /* XCDFormInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EA5EB017979E0800647DD9 /* XCDFormInputAccessoryView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B0EA5EB117979E0900647DD9 /* XCDFormInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EA5EB017979E0800647DD9 /* XCDFormInputAccessoryView.m */; };
 		B0F02ED517C2241D00D9AA68 /* category_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = B0F02ED317C2241D00D9AA68 /* category_arrow.png */; };
 		B0F02ED617C2241D00D9AA68 /* category_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0F02ED417C2241D00D9AA68 /* category_arrow@2x.png */; };
 		B0FCE2E21726A977004F030B /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0FCE2E11726A977004F030B /* CoreFoundation.framework */; };
@@ -300,7 +300,6 @@
 		B0FCE5311726AA57004F030B /* README in Resources */ = {isa = PBXBuildFile; fileRef = B0FCE4401726AA57004F030B /* README */; };
 		B0FCE5321726AA57004F030B /* UIControl+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = B0FCE4421726AA57004F030B /* UIControl+Blocks.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B0FCE5331726AA57004F030B /* DataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = B0FCE4451726AA57004F030B /* DataBase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		B0FCE5341726AA57004F030B /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B0FCE4481726AA57004F030B /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B0FCE5351726AA57004F030B /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B0FCE44B1726AA57004F030B /* MBProgressHUD.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B0FCE5361726AA57004F030B /* PlausibleDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0FCE44C1726AA57004F030B /* PlausibleDatabase.framework */; };
 		B0FCE53F1726AACC004F030B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0FCE53E1726AACC004F030B /* MobileCoreServices.framework */; };
@@ -875,8 +874,6 @@
 		B0FCE4421726AA57004F030B /* UIControl+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+Blocks.m"; sourceTree = "<group>"; };
 		B0FCE4441726AA57004F030B /* DataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataBase.h; sourceTree = "<group>"; };
 		B0FCE4451726AA57004F030B /* DataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataBase.m; sourceTree = "<group>"; };
-		B0FCE4471726AA57004F030B /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
-		B0FCE4481726AA57004F030B /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		B0FCE44A1726AA57004F030B /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		B0FCE44B1726AA57004F030B /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		B0FCE44C1726AA57004F030B /* PlausibleDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlausibleDatabase.framework; sourceTree = "<group>"; };
@@ -1590,7 +1587,6 @@
 				B0FCE4221726AA57004F030B /* BasicFunction */,
 				B0FCE42D1726AA57004F030B /* CMTabBarSource */,
 				B0FCE4431726AA57004F030B /* DBHelper */,
-				B0FCE4461726AA57004F030B /* JSONKit */,
 				B0FCE4491726AA57004F030B /* MBProgressHUD */,
 				B0FCE44C1726AA57004F030B /* PlausibleDatabase.framework */,
 			);
@@ -1720,15 +1716,6 @@
 				B0FCE4451726AA57004F030B /* DataBase.m */,
 			);
 			path = DBHelper;
-			sourceTree = "<group>";
-		};
-		B0FCE4461726AA57004F030B /* JSONKit */ = {
-			isa = PBXGroup;
-			children = (
-				B0FCE4471726AA57004F030B /* JSONKit.h */,
-				B0FCE4481726AA57004F030B /* JSONKit.m */,
-			);
-			path = JSONKit;
 			sourceTree = "<group>";
 		};
 		B0FCE4491726AA57004F030B /* MBProgressHUD */ = {
@@ -2183,7 +2170,6 @@
 				B0FCE52A1726AA57004F030B /* UIViewController+CMTabBarController.m in Sources */,
 				B0FCE5321726AA57004F030B /* UIControl+Blocks.m in Sources */,
 				B0FCE5331726AA57004F030B /* DataBase.m in Sources */,
-				B0FCE5341726AA57004F030B /* JSONKit.m in Sources */,
 				B0FCE5351726AA57004F030B /* MBProgressHUD.m in Sources */,
 				B0FCE5421726ABB6004F030B /* NetworkAssistant.m in Sources */,
 				B0FCE5491726AE4D004F030B /* RootViewController.m in Sources */,
