@@ -10,36 +10,19 @@
 #import "CommonListViewController.h"
 #import "TPKeyboardAvoidingScrollView.h"
 
-typedef enum
-{
+typedef enum {
 	QueryTypePerson,     //人员查询
 	QueryTypeContacts,    //通讯录
-}QueryType;
+} QueryType;
 
-@interface PersonQueryViewController : TTViewController<UITextFieldDelegate,CommonListViewControllerDelegate>{
-    
-}
+@interface PersonQueryViewController : TTViewController<UITextFieldDelegate,CommonListViewControllerDelegate>
 
+@property (nonatomic ,retain) IBOutlet UITextField *txtUserName;
+@property (nonatomic ,retain) IBOutlet UIButton *btnShowDept;
+@property (nonatomic ,retain) IBOutlet UIButton *btnShowSubject;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-             withType:(QueryType)queryType;
+@property (nonatomic ,retain) IBOutlet UIButton *btnQuery;
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withType:(QueryType)queryType;
 
-@property (nonatomic ,assign) QueryType queryType;
-@property (nonatomic ,retain) TTImageView  *titleImageView;
-
-@property (nonatomic ,retain) IBOutlet TTImageView       *nameBg;
-@property (nonatomic ,retain) IBOutlet TTImageView       *deptBg;
-@property (nonatomic ,retain) IBOutlet TTImageView       *subjectBg;
-@property (nonatomic ,retain) IBOutlet UIScrollView         *scrollPanel;
-
-@property (nonatomic ,retain) IBOutlet UITextField       *txtUserName;
-@property (nonatomic ,retain) IBOutlet UIButton     *btnQuery;
-@property (nonatomic ,retain) IBOutlet UIButton     *btnShowDept;
-@property (nonatomic ,retain) IBOutlet UIButton     *btnShowSubject;
-@property (nonatomic ,assign) CGFloat           previousTextViewContentHeight;
-
-
--(IBAction)query:(id)sender;
--(void)showDicList:(id)sender;
 @end

@@ -15,79 +15,74 @@
 
 @interface PersonQueryViewController ()
 
+@property (nonatomic ,assign) QueryType queryType;
+@property (nonatomic ,retain) TTImageView  *titleImageView;
+
+@property (nonatomic ,retain) IBOutlet TTImageView *nameBg;
+@property (nonatomic ,retain) IBOutlet TTImageView *deptBg;
+@property (nonatomic ,retain) IBOutlet TTImageView *subjectBg;
+@property (nonatomic ,retain) IBOutlet UIScrollView *scrollPanel;
+
+-(void)showDicList:(id)sender;
+
 @end
 
 @implementation PersonQueryViewController
+
+-(void)dealloc
+{
+    TT_RELEASE_SAFELY(_titleImageView);
+    TT_RELEASE_SAFELY(_nameBg);
+    TT_RELEASE_SAFELY(_deptBg);
+    TT_RELEASE_SAFELY(_subjectBg);
+    TT_RELEASE_SAFELY(_btnQuery);
+    TT_RELEASE_SAFELY(_btnShowDept);
+    TT_RELEASE_SAFELY(_btnShowSubject);
+    TT_RELEASE_SAFELY(_txtUserName);
+    TT_RELEASE_SAFELY(_scrollPanel);
+    [super dealloc];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withType:(QueryType)queryType
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
         [self setQueryType:queryType];
-
-
     }
     return self;
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
--(void)loadView{
-    [super loadView];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:TTIMAGE(@"bundle://bg2.png")]];
-    if(!self.titleImageView){
+    if (!self.titleImageView) {
         TTImageView *temp = [[TTImageView alloc] initWithFrame:CGRectMake(93, 25, 135, 35)];
         self.titleImageView = temp;
         TT_RELEASE_SAFELY(temp);
     }
     [self.scrollPanel addSubview:self.titleImageView];
 
-    // Do any additional setup after loading the view from its nib.
-    if (self.queryType==QueryTypePerson) {
+    if (self.queryType == QueryTypePerson) {
         [self.titleImageView setUrlPath:@"bundle://titles_1.png"];
         [self.subjectBg setHidden:NO];
-    }
-    else{
+    } else {
         [self.titleImageView setUrlPath:@"bundle://titles_2.png"];
         [self.subjectBg setHidden:YES];
         [self.btnQuery setTop:170];
     }
 
-
     [[self nameBg] setUrlPath:@"bundle://input3.png"];
     [[self deptBg] setUrlPath:@"bundle://input4.png"];
     [[self subjectBg] setUrlPath:@"bundle://input4.png"];
 
-
-
     if ([[[UIDevice currentDevice] systemVersion] floatValue] > 6.0) {
-
         [self.btnShowDept addTarget:self action:@selector(showDicList:) forControlEvents:UIControlEventTouchUpInside];
         [self.btnShowSubject addTarget:self action:@selector(showDicList:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    else{
-        UITapGestureRecognizer *click1 = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                              action:@selector(btnClick:)];
-
-
-        UITapGestureRecognizer *click2 = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                                 action:@selector(btnClick:)];
-        //    swipe.direction = UISwipeGestureRecognizerDirectionDown;
+    } else {
+        UITapGestureRecognizer *click1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(btnClick:)];
+        UITapGestureRecognizer *click2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(btnClick:)];
         
         click1.numberOfTouchesRequired = 1;
         click2.numberOfTouchesRequired = 1;
@@ -101,41 +96,27 @@
 
     [self.btnShowDept setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [self.btnShowSubject setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-    
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                                action:@selector(handleSwipe:)];
-//    swipe.direction = UISwipeGestureRecognizerDirectionDown;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
     tap.numberOfTouchesRequired = 1;
     [self.scrollPanel addGestureRecognizer:tap];
     TT_RELEASE_SAFELY(tap);
-    
 }
 
-- (void)didReceiveMemoryWarning
+- (void)btnClick:(UIGestureRecognizer *)sender
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
-- (void)btnClick:(UIGestureRecognizer *)sender{
-    
     [self.txtUserName resignFirstResponder];
-
-     TTImageView *imageViews = (TTImageView*) sender.view;
+    TTImageView *imageViews = (TTImageView*)sender.view;
     
     int tag = [imageViews tag];
 	CQMFloatingController *floatingController = [CQMFloatingController sharedFloatingController];
     CommonListViewController *commonListViewController = nil;
     if (tag==10) {
-        //单位列表
         commonListViewController = [[CommonListViewController alloc] initWithListType:ListTypeDicDept];
-    }
-    else{
+    } else {
         commonListViewController = [[CommonListViewController alloc] initWithListType:ListTypeDicSubject];
     }
 
-    CGSize frameSize =CGSizeMake(320 - 66, self.view.height -30);
+    CGSize frameSize = CGSizeMake(320 - 66, self.view.height -30);
     [floatingController setPortraitFrameSize:frameSize];
 
     [floatingController showInView:[super view]
@@ -144,119 +125,64 @@
 
     [commonListViewController setDelegate:self];
     TT_RELEASE_SAFELY(commonListViewController);
-
 }
--(void)showDicList:(id)sender{
 
+-(void)showDicList:(id)sender
+{
     [self.txtUserName resignFirstResponder];
     int tag = [sender tag];
 	CQMFloatingController *floatingController = [CQMFloatingController sharedFloatingController];
     CommonListViewController *commonListViewController = nil;
     if (tag==10) {
-        //单位列表
         commonListViewController = [[CommonListViewController alloc] initWithListType:ListTypeDicDept];
-    }
-    else{
+    } else {
         commonListViewController = [[CommonListViewController alloc] initWithListType:ListTypeDicSubject];
     }
 
-    CGSize frameSize =CGSizeMake(320 - 66, self.view.height -30);
+    CGSize frameSize = CGSizeMake(320 - 66, self.view.height -30);
     [floatingController setPortraitFrameSize:frameSize];
 
-    [floatingController showInView:[super view]
-         withContentViewController:commonListViewController
-                          animated:YES];
-
+    [floatingController showInView:[super view] withContentViewController:commonListViewController animated:YES];
     [commonListViewController setDelegate:self];
     TT_RELEASE_SAFELY(commonListViewController);
 }
 
-#pragma mark -
-#pragma mark CommonListDataSourceDelegate
--(void)itemClick:(TTTableTextItem *)item listType:(ListType)listType{
+-(void)itemClick:(TTTableTextItem *)item listType:(ListType)listType
+{
     if (listType==ListTypeDicDept) {
         [self.btnShowDept setTitle:item.text forState:UIControlStateNormal];
-        [self.btnShowDept setTitle:item.text forState:UIControlStateHighlighted];
-        [self.btnShowDept setTitle:item.text forState:UIControlStateSelected];
     }
+    
     if (listType==ListTypeDicSubject) {
         [self.btnShowSubject setTitle:item.text forState:UIControlStateNormal];
-        [self.btnShowSubject setTitle:item.text forState:UIControlStateHighlighted];
-        [self.btnShowSubject setTitle:item.text forState:UIControlStateSelected];
     }
 
 	CQMFloatingController *floatingController = [CQMFloatingController sharedFloatingController];
     [floatingController dismissAnimated:YES];
 }
 
-
--(IBAction)query:(id)sender{
-}
-
--(void)dealloc{
-    TT_RELEASE_SAFELY(_titleImageView);
-    TT_RELEASE_SAFELY(_nameBg);
-    TT_RELEASE_SAFELY(_deptBg);
-    TT_RELEASE_SAFELY(_subjectBg);
-    TT_RELEASE_SAFELY(_btnQuery);
-    TT_RELEASE_SAFELY(_btnShowDept);
-    TT_RELEASE_SAFELY(_btnShowSubject);
-    TT_RELEASE_SAFELY(_txtUserName);
-    TT_RELEASE_SAFELY(_scrollPanel);
-    [super dealloc];
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-
-    [super viewWillAppear:animated];
-    [self scrollToBottomAnimated:NO];
-
-//	[[NSNotificationCenter defaultCenter] addObserver:self
-//											 selector:@selector(handleWillShowKeyboard:)
-//												 name:UIKeyboardWillShowNotification
-//                                               object:nil];
-//
-//	[[NSNotificationCenter defaultCenter] addObserver:self
-//											 selector:@selector(handleWillHideKeyboard:)
-//												 name:UIKeyboardWillHideNotification
-//                                               object:nil];
-}
-
-- (void)viewWillDisappear:(BOOL)animated{
+- (void)viewWillDisappear:(BOOL)animated
+{
     [super viewWillDisappear:animated];
 
 	CQMFloatingController *floatingController = [CQMFloatingController sharedFloatingController];
-
     [floatingController dismissAnimated:YES];
     
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-
     [self.txtUserName resignFirstResponder];
 }
 
-- (void)handleSwipe:(UIGestureRecognizer *)guestureRecognizer{
+- (void)handleSwipe:(UIGestureRecognizer *)guestureRecognizer
+{
     [self.txtUserName resignFirstResponder];
-}
-
-- (void)scrollToBottomAnimated:(BOOL)animated{
- 
 }
 
 #pragma mark - Text view delegate
-- (void)textFieldDidBeginEditing:(UITextField *)textField
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-}
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return NO;
 }
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-    
-}
 
-#pragma mark - Keyboard notifications
 - (void)handleWillShowKeyboard:(NSNotification *)notification
 {
     [self keyboardWillShowHide:notification];
@@ -269,9 +195,8 @@
     self.scrollPanel.scrollIndicatorInsets = contentInsets;
 }
 
-
-
-- (void)keyboardWillShowHide:(NSNotification *)notification{
+- (void)keyboardWillShowHide:(NSNotification *)notification
+{
 
     NSDictionary* info = [notification userInfo];
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
@@ -279,8 +204,6 @@
     self.scrollPanel.contentInset = contentInsets;
     self.scrollPanel.scrollIndicatorInsets = contentInsets;
 
-    // If active text field is hidden by keyboard, scroll it so it's visible
-    // Your application might not need or want this behavior.
     CGRect aRect = self.view.frame;
     aRect.size.height -= kbSize.height;
     if (!CGRectContainsPoint(aRect, self.txtUserName.frame.origin) ) {
