@@ -14,10 +14,9 @@
 - (void)relogin:(BOOL)success;
 @end
 
-@interface ReLoginAssisant : NSObject<TTURLRequestDelegate,NetworkAssistantDelegate>
+@interface ReLoginAssisant : NSObject<NetworkAssistantDelegate>
 
 @property (nonatomic ,assign) id<ReLoginAssisantDelegate> delegate;
-
 
 + (id)sharedManager;
 - (void)reloginUser;

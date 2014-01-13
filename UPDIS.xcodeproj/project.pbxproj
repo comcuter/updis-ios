@@ -283,9 +283,7 @@
 		B0FCE5211726AA57004F030B /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = B0FCE41E1726AA57004F030B /* ASINetworkQueue.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B0FCE5221726AA57004F030B /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = B0FCE4211726AA57004F030B /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B0FCE5231726AA57004F030B /* BaseFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = B0FCE4241726AA57004F030B /* BaseFunction.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		B0FCE5241726AA57004F030B /* CategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B0FCE4261726AA57004F030B /* CategoryModel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B0FCE5251726AA57004F030B /* Keychain.m in Sources */ = {isa = PBXBuildFile; fileRef = B0FCE42A1726AA57004F030B /* Keychain.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		B0FCE5261726AA57004F030B /* ResourceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B0FCE42C1726AA57004F030B /* ResourceModel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B0FCE5271726AA57004F030B /* CMTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B0FCE42F1726AA57004F030B /* CMTabBar.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B0FCE5281726AA57004F030B /* CMTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0FCE4311726AA57004F030B /* CMTabBarController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B0FCE5291726AA57004F030B /* CMTabBarUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = B0FCE4331726AA57004F030B /* CMTabBarUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -844,14 +842,10 @@
 		B0FCE4211726AA57004F030B /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		B0FCE4231726AA57004F030B /* BaseFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseFunction.h; sourceTree = "<group>"; };
 		B0FCE4241726AA57004F030B /* BaseFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseFunction.m; sourceTree = "<group>"; };
-		B0FCE4251726AA57004F030B /* CategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryModel.h; sourceTree = "<group>"; };
-		B0FCE4261726AA57004F030B /* CategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryModel.m; sourceTree = "<group>"; };
 		B0FCE4271726AA57004F030B /* Constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
 		B0FCE4281726AA57004F030B /* Debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Debug.h; sourceTree = "<group>"; };
 		B0FCE4291726AA57004F030B /* Keychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Keychain.h; sourceTree = "<group>"; };
 		B0FCE42A1726AA57004F030B /* Keychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Keychain.m; sourceTree = "<group>"; };
-		B0FCE42B1726AA57004F030B /* ResourceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceModel.h; sourceTree = "<group>"; };
-		B0FCE42C1726AA57004F030B /* ResourceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceModel.m; sourceTree = "<group>"; };
 		B0FCE42E1726AA57004F030B /* CMTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMTabBar.h; sourceTree = "<group>"; };
 		B0FCE42F1726AA57004F030B /* CMTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMTabBar.m; sourceTree = "<group>"; };
 		B0FCE4301726AA57004F030B /* CMTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMTabBarController.h; sourceTree = "<group>"; };
@@ -936,6 +930,16 @@
 				B0D57AD61781BC5100ABCBB8 /* MSubViewController.m */,
 			);
 			name = NoUse;
+			sourceTree = "<group>";
+		};
+		1C1AC39418843506009C6E3C /* MHTabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				B008D6F01782F342008BFDF1 /* MHTabBarController.h */,
+				B008D6F11782F343008BFDF1 /* MHTabBarController.m */,
+			);
+			name = MHTabBarController;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		843F2574183A56A400DA6F98 /* Products */ = {
@@ -1212,8 +1216,6 @@
 			children = (
 				B008D70A1783C9FB008BFDF1 /* MSubListViewController.h */,
 				B008D70B1783C9FB008BFDF1 /* MSubListViewController.m */,
-				B008D6F01782F342008BFDF1 /* MHTabBarController.h */,
-				B008D6F11782F343008BFDF1 /* MHTabBarController.m */,
 				B0FCE5431726AE05004F030B /* ViewController */,
 				B0FCE3351726AA57004F030B /* NTStyleSheet.h */,
 				B0FCE3361726AA57004F030B /* NTStyleSheet.m */,
@@ -1582,6 +1584,7 @@
 		B0FCE40A1726AA57004F030B /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				1C1AC39418843506009C6E3C /* MHTabBarController */,
 				B0455D181795894C00B99CF5 /* lib */,
 				B020C560178E791000F17E41 /* PopListView */,
 				B0E53EE4178ABB6F001B6659 /* MessagesTableViewController */,
@@ -1627,30 +1630,26 @@
 		B0FCE4221726AA57004F030B /* BasicFunction */ = {
 			isa = PBXGroup;
 			children = (
-				B003F87917E6FDF600D2A5F5 /* MURLJSONResponse.h */,
-				B003F87A17E6FDF600D2A5F5 /* MURLJSONResponse.m */,
+				B0FCE4271726AA57004F030B /* Constant.h */,
+				B0FCE4231726AA57004F030B /* BaseFunction.h */,
+				B0FCE4241726AA57004F030B /* BaseFunction.m */,
 				B0627480179EA6F800A84D49 /* ReLoginAssisant.h */,
 				B0627481179EA6F800A84D49 /* ReLoginAssisant.m */,
+				B0FCE5401726ABB6004F030B /* NetworkAssistant.h */,
+				B0FCE5411726ABB6004F030B /* NetworkAssistant.m */,
 				B03AD12917C35E2F00D03DC0 /* UpdateApp.h */,
 				B03AD12A17C35E2F00D03DC0 /* UpdateApp.m */,
+				B003F87917E6FDF600D2A5F5 /* MURLJSONResponse.h */,
+				B003F87A17E6FDF600D2A5F5 /* MURLJSONResponse.m */,
 				B0EA5EAF17979E0800647DD9 /* XCDFormInputAccessoryView.h */,
 				B0EA5EB017979E0800647DD9 /* XCDFormInputAccessoryView.m */,
 				B0455D13179584FC00B99CF5 /* TPKeyboardAvoidingScrollView.h */,
 				B0455D14179584FC00B99CF5 /* TPKeyboardAvoidingScrollView.m */,
-				B0FCE4231726AA57004F030B /* BaseFunction.h */,
-				B0FCE4241726AA57004F030B /* BaseFunction.m */,
 				B021A4F21781AE38009FCBAC /* CoreAnimationEffect.h */,
 				B021A4F31781AE38009FCBAC /* CoreAnimationEffect.m */,
-				B0FCE4251726AA57004F030B /* CategoryModel.h */,
-				B0FCE4261726AA57004F030B /* CategoryModel.m */,
-				B0FCE4271726AA57004F030B /* Constant.h */,
 				B0FCE4281726AA57004F030B /* Debug.h */,
 				B0FCE4291726AA57004F030B /* Keychain.h */,
 				B0FCE42A1726AA57004F030B /* Keychain.m */,
-				B0FCE42B1726AA57004F030B /* ResourceModel.h */,
-				B0FCE42C1726AA57004F030B /* ResourceModel.m */,
-				B0FCE5401726ABB6004F030B /* NetworkAssistant.h */,
-				B0FCE5411726ABB6004F030B /* NetworkAssistant.m */,
 			);
 			path = BasicFunction;
 			sourceTree = "<group>";
@@ -2163,9 +2162,7 @@
 				B0FCE5211726AA57004F030B /* ASINetworkQueue.m in Sources */,
 				B0FCE5221726AA57004F030B /* Reachability.m in Sources */,
 				B0FCE5231726AA57004F030B /* BaseFunction.m in Sources */,
-				B0FCE5241726AA57004F030B /* CategoryModel.m in Sources */,
 				B0FCE5251726AA57004F030B /* Keychain.m in Sources */,
-				B0FCE5261726AA57004F030B /* ResourceModel.m in Sources */,
 				B0FCE5271726AA57004F030B /* CMTabBar.m in Sources */,
 				B0FCE5281726AA57004F030B /* CMTabBarController.m in Sources */,
 				B0FCE5291726AA57004F030B /* CMTabBarUtils.m in Sources */,
