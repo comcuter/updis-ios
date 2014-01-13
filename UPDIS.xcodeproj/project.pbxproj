@@ -76,7 +76,6 @@
 		B017A1E61781BBBD00E6C3CB /* bgtit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B017A1E21781BBBD00E6C3CB /* bgtit@2x.png */; };
 		B017A1E71781BBBD00E6C3CB /* logo3.png in Resources */ = {isa = PBXBuildFile; fileRef = B017A1E31781BBBD00E6C3CB /* logo3.png */; };
 		B017A1E81781BBBD00E6C3CB /* logo3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B017A1E41781BBBD00E6C3CB /* logo3@2x.png */; };
-		B01C248B17AF9FB800664CA3 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B01C248A17AF9FB800664CA3 /* TestViewController.m */; };
 		B01F13D0178ED66900BC7D23 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B01F13CF178ED66900BC7D23 /* UserModel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B01F13DF178F926000BC7D23 /* PersonQueryParentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B01F13DE178F925F00BC7D23 /* PersonQueryParentViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B020C546178E44B300F17E41 /* input2.png in Resources */ = {isa = PBXBuildFile; fileRef = B020C538178E44B300F17E41 /* input2.png */; };
@@ -571,8 +570,6 @@
 		B017A1E21781BBBD00E6C3CB /* bgtit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgtit@2x.png"; sourceTree = "<group>"; };
 		B017A1E31781BBBD00E6C3CB /* logo3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo3.png; sourceTree = "<group>"; };
 		B017A1E41781BBBD00E6C3CB /* logo3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo3@2x.png"; sourceTree = "<group>"; };
-		B01C248917AF9FB800664CA3 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
-		B01C248A17AF9FB800664CA3 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		B01F13CE178ED66900BC7D23 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		B01F13CF178ED66900BC7D23 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		B01F13DD178F925E00BC7D23 /* PersonQueryParentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonQueryParentViewController.h; sourceTree = "<group>"; };
@@ -1783,8 +1780,6 @@
 				B0EA5E921796E03400647DD9 /* SendMessageViewController.h */,
 				B0EA5E931796E03400647DD9 /* SendMessageViewController.m */,
 				B0EA5E941796E03400647DD9 /* SendMessageViewController.xib */,
-				B01C248917AF9FB800664CA3 /* TestViewController.h */,
-				B01C248A17AF9FB800664CA3 /* TestViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -2244,7 +2239,6 @@
 				B0EA5E951796E03400647DD9 /* SendMessageViewController.m in Sources */,
 				B0EA5EB117979E0900647DD9 /* XCDFormInputAccessoryView.m in Sources */,
 				B0627482179EA6F800A84D49 /* ReLoginAssisant.m in Sources */,
-				B01C248B17AF9FB800664CA3 /* TestViewController.m in Sources */,
 				B008ECC917B8B2D100007B06 /* UserItem.m in Sources */,
 				B008ECCC17B8B2E300007B06 /* UserItemCell.m in Sources */,
 				B008ECE917BA26A900007B06 /* CommonLoadingItem.m in Sources */,
@@ -2409,8 +2403,8 @@
 		B0C3821F16E874170094BEED /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: EnPing Zhang  (P54556VJBX)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: EnPing Zhang  (P54556VJBX)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: HAI LI (4D899C3Z74)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: HAI LI (4D899C3Z74)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/UPDIS/Utility\"",
@@ -2434,8 +2428,8 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "33A9F694-C7E3-448E-BCDB-A912B49B9A1D";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "33A9F694-C7E3-448E-BCDB-A912B49B9A1D";
+				PROVISIONING_PROFILE = "F11C9E0A-74F5-47DF-979B-230BDFDD428D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F11C9E0A-74F5-47DF-979B-230BDFDD428D";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
