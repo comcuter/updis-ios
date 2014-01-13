@@ -14,7 +14,6 @@
 #import <CommonCrypto/CommonDigest.h>
 #import <SystemConfiguration/CaptiveNetwork.h>
 #import "Reachability.h"
-#import "JSONKit.h"
 #import "DataBase.h"
 
 #include <sys/socket.h>
@@ -26,8 +25,8 @@
 
 @implementation BaseFunction
 
-
-+ (NSString *)getMacAddress2{
++ (NSString *)getMacAddress2
+{
     return [APService openUDID];
 }
 
@@ -116,9 +115,9 @@
 
 	return isReachable && noConnectionRequired;
 }
-#pragma mark -
-#pragma mark 加密方法 MD5 加密
-+(NSString *) md5:(NSString *)str
+
+
++ (NSString *)md5:(NSString *)str
 {
     const char *cStr = [str UTF8String];
     unsigned char result[16];
@@ -128,7 +127,8 @@
              result[8], result[9], result[10], result[11],
              result[12], result[13], result[14], result[15]] lowercaseString];
 }
-+(NSString*)fileMD5:(NSString*)path
+
++ (NSString*)fileMD5:(NSString*)path
 {
     NSFileHandle *handle = [NSFileHandle fileHandleForReadingAtPath:path];
     if( handle== nil ) return @"ERROR GETTING FILE MD5"; // file didnt exist
@@ -157,18 +157,13 @@
                    digest[14], digest[15]];
     return s;
 }
-+(int)gcd:(int)a b:(int)b{
-    if(b==0)
-        return a;
-    return [self gcd:b b:a%b];
-}
-
 
 #pragma mark -
 #pragma mark fetch data from server
-+(BOOL)fetchDataFromServer:(NSString *)operFlag parameter:(NSDictionary *)parameter{
++(BOOL)fetchDataFromServer:(NSString *)operFlag parameter:(NSDictionary *)parameter
+{
     BOOL succeed = NO;
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",MAIN_DOMAIN,operFlag]];    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", MAIN_DOMAIN, operFlag]];    
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     debug_NSLog(@"url:%@",url);
     [request setUseCookiePersistence:YES];
@@ -178,199 +173,92 @@
             [request setPostValue:[parameter objectForKey:key] forKey:key];
         }
     }
-
-
     [request startSynchronous];
+    
     NSData *responseData = nil;
     NSError *error = [request error];
     if (!error) {
         responseData = [request responseData];
     }
     if (!error) {
-        NSString *dataStr =[[[NSString alloc]initWithData:responseData
-                                                 encoding:NSUTF8StringEncoding] autorelease];
+        NSString *dataStr =[[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease];
         if (!dataStr) {
             dataStr = [responseData description];
         }
+        
         if (dataStr) {
             debug_NSLog(@"%@",dataStr);
             @try {
                 succeed = YES;
                 id result;
-                if ([[[UIDevice currentDevice] systemVersion] floatValue] > 4.9) {
-                    NSError *e = nil;
-                    result = [NSJSONSerialization JSONObjectWithData:[dataStr dataUsingEncoding:NSUTF8StringEncoding]
-                                                             options:NSJSONReadingMutableContainers
-                                                               error:&e];
-
-                }
-                else{
-                    result = [dataStr objectFromJSONString];
-                }
+                NSError *e = nil;
+                result = [NSJSONSerialization JSONObjectWithData:[dataStr dataUsingEncoding:NSUTF8StringEncoding]
+                                                         options:NSJSONReadingMutableContainers
+                                                           error:&e];
                 if ([operFlag isEqualToString:USER_LOGIN]) {
                     if (result) {
                         for(NSHTTPCookie *cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]) {
                             TTDPRINT(@"Cookie name: %@, domain: %@, value: %@", cookie.name, cookie.domain, cookie.value);
-                            //Could optionally check the cookie domain here to only save specific cookies
                             TTDPRINT(@"Saving cookie: %@", cookie.name);
-
                             [[NSUserDefaults standardUserDefaults] setObject:cookie.value forKey:@"cookies"];
                         }
 
                         debug_NSLog(@"result:%@",result);
-                        [dataStr writeToFile:USER_LOGIN_CACHE_FILE
-                                  atomically:YES
-                                    encoding:NSUTF8StringEncoding
-                                       error:nil];
+                        [dataStr writeToFile:USER_LOGIN_CACHE_FILE atomically:YES encoding:NSUTF8StringEncoding error:nil];
                     }
                 }
+                
                 if ([operFlag isEqualToString:USER_REGPHONE]) {
                     if (result) {
                         debug_NSLog(@"result:%@",result);
-                        [dataStr writeToFile:USER_REG_PHONE_CACHE_FILE
-                                  atomically:YES
-                                    encoding:NSUTF8StringEncoding
-                                       error:nil];
+                        [dataStr writeToFile:USER_REG_PHONE_CACHE_FILE atomically:YES encoding:NSUTF8StringEncoding error:nil];
                     }
                 }
             }
             @catch (NSException *exception) {
                 debug_NSLog(@"%@",[exception debugDescription]);
             }
-            @finally {
-
-            }
-
         }
-    }
-    else
-    {
+    } else {
         debug_NSLog(@"error:%@",[error domain]);
     }
     return succeed;
 }
 
-+(id)getDataFromServer:(NSString *)operFlag parameter:(NSDictionary *)parameter{
-    BOOL succeed = NO;
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",MAIN_DOMAIN,operFlag]];
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-    debug_NSLog(@"url:%@",url);
-    [request setUseCookiePersistence:YES];
-    [request setTimeOutSeconds:FETCH_TIME_OUT];
-    if (parameter) {
-        for (NSString * key in parameter) {
-            [request setPostValue:[parameter objectForKey:key] forKey:key];
-        }
-    }
-    [request startSynchronous];
-    NSData *responseData = nil;
-    NSError *error = [request error];
-    if (!error) {
-        responseData = [request responseData];
-    }
-    if (!error) {
-        NSString *dataStr =[[[NSString alloc]initWithData:responseData
-                                                 encoding:NSUTF8StringEncoding] autorelease];
-        if (!dataStr) {
-            dataStr = [responseData description];
-        }
-        if (dataStr) {
-            @try {
-                succeed = YES;
-                id result;
-                if ([[[UIDevice currentDevice] systemVersion] floatValue] > 4.9) {
-                    NSError *e = nil;
-                    result = [NSJSONSerialization JSONObjectWithData:[dataStr dataUsingEncoding:NSUTF8StringEncoding]
-                                                             options:NSJSONReadingMutableContainers
-                                                               error:&e];
-
-                }
-                else{
-                    result = [dataStr objectFromJSONString];
-                }
-                if ([operFlag isEqualToString:USER_LOGIN]) {
-
-
-                    if (result) {
-                        debug_NSLog(@"result:%@",result);
-                        [dataStr writeToFile:USER_LOGIN_CACHE_FILE
-                                  atomically:YES
-                                    encoding:NSUTF8StringEncoding
-                                       error:nil];
-
-                        if ([result isKindOfClass:[NSDictionary class]]) {
-                            NSDictionary *dic = [NSDictionary dictionaryWithDictionary:result];
-                            BOOL write = [dic writeToFile:USER_LOGIN_CACHE_FILE atomically:YES];
-                            if (write) {
-
-                            }
-                        }
-                    }
-                }
-                if ([operFlag isEqualToString:USER_REGPHONE]) {
-
-                }
-            }
-            @catch (NSException *exception) {
-                debug_NSLog(@"%@",[exception debugDescription]);
-            }
-            @finally {
-
-            }
-
-        }
-    }
-    else
-    {
-        debug_NSLog(@"error:%@",[error domain]);
-    }
-    return nil;
-}
-
-
-+(BOOL)checkIsNull:(id)object{
++ (BOOL)checkIsNull:(id)object{
     BOOL sFlag = NO;
     @try {
-        if (![object isKindOfClass:[NSNull class]]&&object&&![object isEqualToString:@"<null>"]&&![[NSString stringWithFormat:@"%@",object] isEqualToString:@"<null>"]&&![[NSString stringWithFormat:@"%@",object] isEqualToString:@"null"]) {
+        if (![object isKindOfClass:[NSNull class]] &&
+            object&&
+            ![object isEqualToString:@"<null>"]&&
+            ![[NSString stringWithFormat:@"%@",object] isEqualToString:@"<null>"]&&
+            ![[NSString stringWithFormat:@"%@",object] isEqualToString:@"null"]) {
             sFlag = YES;
         }
     }
     @catch (NSException *exception) {
-        debug_NSLog(@"EX:%@",[exception debugDescription]);
+        debug_NSLog(@"%@",[exception debugDescription]);
         sFlag = NO;
-    }
-    @finally {
-        
     }
     return sFlag;
 }
 
-
-+ (NSString *)flattenHTML:(NSString *)html {
-
++ (NSString *)flattenHTML:(NSString *)html
+{
     NSScanner *theScanner;
     NSString *text = nil;
-
     theScanner = [NSScanner scannerWithString:html];
 
     while ([theScanner isAtEnd] == NO) {
-
         // find start of tag
         [theScanner scanUpToString:@"<" intoString:NULL] ;
-
         // find end of tag
         [theScanner scanUpToString:@">" intoString:&text] ;
-
         // replace the found tag with a space
         //(you can filter multi-spaces out later if you wish)
-        html = [html stringByReplacingOccurrencesOfString:
-                [ NSString stringWithFormat:@"%@>", text]
-                                               withString:@" "];
-        
-    } // while //
-    
+        html = [html stringByReplacingOccurrencesOfString: [ NSString stringWithFormat:@"%@>", text] withString:@" "];
+    }
     return html;
-    
 }
 
 @end

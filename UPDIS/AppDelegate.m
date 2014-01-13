@@ -37,7 +37,6 @@
 {
 
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-
     
     NSOperationQueue * theQueue = [[NSOperationQueue alloc] init];
     self.operationQueue = theQueue;

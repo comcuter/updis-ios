@@ -16,20 +16,18 @@
 #pragma mark 从服务端抓取数据
 #pragma mark -
 #pragma mark 从服务端抓取数据
--(void)fetchDataFromServer:(NSString*)operFlag withRootViewController:(UIViewController *)rootView{
-
-
- 
+-(void)fetchDataFromServer:(NSString*)operFlag withRootViewController:(UIViewController *)rootView
+{
     if (mHud) {
         [mHud removeFromSuperview];
         TT_RELEASE_SAFELY(mHud);
     }
+    
     if (!_silent) {
         if (rootView) {
             mHud = [[MBProgressHUD alloc] initWithView:rootView.view];
             [rootView.view addSubview:mHud];
-        }
-        else{
+        } else {
             UIWindow *window = [[UIApplication sharedApplication] keyWindow];
             mHud = [[MBProgressHUD alloc] initWithWindow:window];
             [window addSubview:mHud];
@@ -37,11 +35,9 @@
         [mHud setAnimationType:MBProgressHUDAnimationFade];
         mHud.labelText = self.loadingStr?self.loadingStr:@"正在加载数据...";
         [mHud show:YES];
-
     }
 
     _operFlag = operFlag;
-
     NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self
                                                                             selector:@selector(fetchData:)
                                                                               object:operFlag];
@@ -49,7 +45,8 @@
     [operation release];
 }
 
--(void)fetchData:(NSString *)operFlag{
+-(void)fetchData:(NSString *)operFlag
+{
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     self.succeed = [BaseFunction fetchDataFromServer:operFlag parameter:self.parameter];
     [self performSelectorOnMainThread:@selector(fetchDataOver) withObject:nil waitUntilDone:NO];
@@ -68,10 +65,10 @@
     @finally {
         [mHud hide:YES];
     }
-
 }
 
--(void)dealloc{
+-(void)dealloc
+{
     TT_RELEASE_SAFELY(_parameter);
     TT_RELEASE_SAFELY(_operFlag);
     TT_RELEASE_SAFELY(_loadingStr);
@@ -80,7 +77,8 @@
 
 #pragma mark -
 #pragma mark MBProgressHUDDelegate methods
-- (void)hudWasHidden:(MBProgressHUD *)hud {
+- (void)hudWasHidden:(MBProgressHUD *)hud
+{
     [mHud removeFromSuperview];
     TT_RELEASE_SAFELY(mHud);
 }
