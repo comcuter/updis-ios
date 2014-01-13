@@ -6,7 +6,6 @@
 //  Copyright (c) 2013年 tianv. All rights reserved.
 //
 
-#import "MSubViewController.h"
 #import "MHTabBarController.h"
 
 @interface PersonnelMessageViewController : MHTabBarController<MHTabBarControllerDelegate>
