@@ -832,6 +832,8 @@
 		1C1AC393188430C9009C6E3C /* NoUse */ = {
 			isa = PBXGroup;
 			children = (
+				B0455D2B1796729400B99CF5 /* PostMessageViewController.h */,
+				B0455D2C1796729500B99CF5 /* PostMessageViewController.m */,
 				B0C904DB1726D0CA006E956F /* TabPageView.h */,
 				B0C904DC1726D0CA006E956F /* TabPageView.m */,
 				B0FCE5521726B0F2004F030B /* MTabBarItem.h */,
@@ -873,6 +875,18 @@
 				B094DE5D178D8D5F0012D59F /* PersonQueryViewController.xib */,
 			);
 			name = PersonQuery;
+			sourceTree = "<group>";
+		};
+		1C1AC3CE18846F2C009C6E3C /* MyMessage */ = {
+			isa = PBXGroup;
+			children = (
+				B0FCE56A1726B515004F030B /* MyInformationViewController.h */,
+				B0FCE56B1726B515004F030B /* MyInformationViewController.m */,
+				B0EA5E921796E03400647DD9 /* SendMessageViewController.h */,
+				B0EA5E931796E03400647DD9 /* SendMessageViewController.m */,
+				B0EA5E941796E03400647DD9 /* SendMessageViewController.xib */,
+			);
+			name = MyMessage;
 			sourceTree = "<group>";
 		};
 		843F2574183A56A400DA6F98 /* Products */ = {
@@ -1549,6 +1563,7 @@
 				B0D57AFA1781C9A800ABCBB8 /* Model */,
 				B0D57ADB1781BF0E00ABCBB8 /* TableView */,
 				1C1AC3C6188453C8009C6E3C /* PersonQuery */,
+				1C1AC3CE18846F2C009C6E3C /* MyMessage */,
 				B021A4E717814C9B009FCBAC /* LoginViewController.h */,
 				B021A4E817814C9B009FCBAC /* LoginViewController.m */,
 				B021A4E917814C9B009FCBAC /* LoginViewController.xib */,
@@ -1562,13 +1577,6 @@
 				B0BFFBF4178C28BE00676A56 /* CommentListViewController.m */,
 				B04497AE1785A21700D816E6 /* PostCommentView.h */,
 				B04497AF1785A21800D816E6 /* PostCommentView.m */,
-				B0FCE56A1726B515004F030B /* MyInformationViewController.h */,
-				B0FCE56B1726B515004F030B /* MyInformationViewController.m */,
-				B0455D2B1796729400B99CF5 /* PostMessageViewController.h */,
-				B0455D2C1796729500B99CF5 /* PostMessageViewController.m */,
-				B0EA5E921796E03400647DD9 /* SendMessageViewController.h */,
-				B0EA5E931796E03400647DD9 /* SendMessageViewController.m */,
-				B0EA5E941796E03400647DD9 /* SendMessageViewController.xib */,
 				B0FCE5671726B507004F030B /* SettingViewController.h */,
 				B0FCE5681726B507004F030B /* SettingViewController.m */,
 				B0E2F1FD1793E1B100CFB876 /* WebContentViewController.h */,

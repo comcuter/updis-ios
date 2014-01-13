@@ -14,20 +14,10 @@
 
 @implementation PostMessageViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (id)initWithPageType:(PageType)pageType
 {
     self = [super init];
     if (self) {
-        // Custom initialization
         [self setPageType:pageType];
         self.tableViewStyle = UITableViewStylePlain;
         self.autoresizesForKeyboard = YES;
@@ -68,7 +58,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
     if (!self.txtTitle) {
         UITextField* textField = [[UITextField alloc] init];
         self.txtTitle = textField;
@@ -97,12 +86,6 @@
                        self.txtDept,self.txtTitle,self.txtContent,
                        nil];
 
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end
