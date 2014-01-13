@@ -20,8 +20,8 @@
 @property (nonatomic ,assign) QueryType queryType;
 
 @property (nonatomic ,retain) PersonQueryViewController *personQueryViewController;
-@property (nonatomic ,retain) CommonListViewController  *personListViewController;
-@property (nonatomic ,retain) WebContentViewController  *webContentViewController;
+@property (nonatomic ,retain) CommonListViewController *personListViewController;
+@property (nonatomic ,retain) WebContentViewController *webContentViewController;
 
 - (id)initWithType:(QueryType)queryType;
 -(void)clickCurrentTab;
