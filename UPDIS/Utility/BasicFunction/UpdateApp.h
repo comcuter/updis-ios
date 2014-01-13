@@ -13,8 +13,8 @@
 @interface UpdateApp : NSObject<MBProgressHUDDelegate>{
     MBProgressHUD *mHud;
 }
-@property (nonatomic ,assign) BOOL isFocus;
-@property (nonatomic ,copy) NSString *downUrl;
+@property (nonatomic, assign) BOOL isFocus;
+@property (nonatomic, copy) NSString *downUrl;
 
 + (id)sharedManager;
 -(void)update:(BOOL)focus;

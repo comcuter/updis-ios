@@ -9,7 +9,6 @@
 
 #import "Three20Network/TTURLResponse.h"
 
-
 extern NSString* const kMJSONErrorDomain;
 extern NSInteger const kMJSONErrorCodeInvalidJSON;
 
@@ -17,6 +16,6 @@ extern NSInteger const kMJSONErrorCodeInvalidJSON;
     id _rootObject;
 }
 
-@property (nonatomic, retain, readonly) id    rootObject;
+@property (nonatomic, retain, readonly) id rootObject;
 
 @end
