@@ -1252,22 +1252,12 @@
 			isa = PBXGroup;
 			children = (
 				B044971C1785965F00D816E6 /* html */,
-				B0FCE3381726AA57004F030B /* db */,
 				B0FCE3391726AA57004F030B /* icon */,
-				B0FCE33A1726AA57004F030B /* images */,
 				B0FCE4071726AA57004F030B /* splash */,
-				B0FCE4081726AA57004F030B /* temp */,
-				B0FCE4091726AA57004F030B /* templet */,
+				B0FCE33A1726AA57004F030B /* images */,
 				B0455D161795886E00B99CF5 /* PushConfig.plist */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		B0FCE3381726AA57004F030B /* db */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = db;
 			sourceTree = "<group>";
 		};
 		B0FCE3391726AA57004F030B /* icon */ = {
@@ -1388,20 +1378,6 @@
 				B0B2FC3617812250006C6AFC /* Default@2x.png */,
 			);
 			path = splash;
-			sourceTree = "<group>";
-		};
-		B0FCE4081726AA57004F030B /* temp */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = temp;
-			sourceTree = "<group>";
-		};
-		B0FCE4091726AA57004F030B /* templet */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = templet;
 			sourceTree = "<group>";
 		};
 		B0FCE40A1726AA57004F030B /* Utility */ = {
