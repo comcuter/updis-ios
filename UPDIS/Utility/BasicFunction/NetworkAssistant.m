@@ -12,11 +12,7 @@
 
 @implementation NetworkAssistant
 
-#pragma mark -
-#pragma mark 从服务端抓取数据
-#pragma mark -
-#pragma mark 从服务端抓取数据
--(void)fetchDataFromServer:(NSString*)operFlag withRootViewController:(UIViewController *)rootView
+- (void)fetchDataFromServer:(NSString*)operFlag withRootViewController:(UIViewController *)rootView
 {
     if (mHud) {
         [mHud removeFromSuperview];
@@ -45,7 +41,7 @@
     [operation release];
 }
 
--(void)fetchData:(NSString *)operFlag
+- (void)fetchData:(NSString *)operFlag
 {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     self.succeed = [BaseFunction fetchDataFromServer:operFlag parameter:self.parameter];
@@ -53,7 +49,8 @@
     [pool release];
 }
 
--(void)fetchDataOver{
+- (void)fetchDataOver
+{
     @try {
         if (self.delegate&&[self.delegate respondsToSelector:@selector(fetchDataOver:operFlag:)]) {
             [self.delegate fetchDataOver:self.succeed operFlag:self.operFlag];
@@ -67,7 +64,7 @@
     }
 }
 
--(void)dealloc
+- (void)dealloc
 {
     TT_RELEASE_SAFELY(_parameter);
     TT_RELEASE_SAFELY(_operFlag);
@@ -75,8 +72,6 @@
     [super dealloc];
 }
 
-#pragma mark -
-#pragma mark MBProgressHUDDelegate methods
 - (void)hudWasHidden:(MBProgressHUD *)hud
 {
     [mHud removeFromSuperview];
