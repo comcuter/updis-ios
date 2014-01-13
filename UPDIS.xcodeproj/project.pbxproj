@@ -942,6 +942,15 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		1C1AC39518843A21009C6E3C /* NoUse */ = {
+			isa = PBXGroup;
+			children = (
+				B0FCE42D1726AA57004F030B /* CMTabBarSource */,
+				B0FCE4431726AA57004F030B /* DBHelper */,
+			);
+			name = NoUse;
+			sourceTree = "<group>";
+		};
 		843F2574183A56A400DA6F98 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1139,7 +1148,7 @@
 			path = js;
 			sourceTree = "<group>";
 		};
-		B0455D181795894C00B99CF5 /* lib */ = {
+		B0455D181795894C00B99CF5 /* Push */ = {
 			isa = PBXGroup;
 			children = (
 				B0455D2217958DBB00B99CF5 /* sound.caf */,
@@ -1147,6 +1156,7 @@
 				B0455D1A1795894C00B99CF5 /* libPushSDK-Simulator.a */,
 				B0455D1B1795894C00B99CF5 /* libPushSDK.a */,
 			);
+			name = Push;
 			path = lib;
 			sourceTree = "<group>";
 		};
@@ -1585,14 +1595,13 @@
 			isa = PBXGroup;
 			children = (
 				1C1AC39418843506009C6E3C /* MHTabBarController */,
-				B0455D181795894C00B99CF5 /* lib */,
 				B020C560178E791000F17E41 /* PopListView */,
 				B0E53EE4178ABB6F001B6659 /* MessagesTableViewController */,
 				B0FCE40B1726AA57004F030B /* ASIHTTPRequest */,
 				B0FCE4221726AA57004F030B /* BasicFunction */,
-				B0FCE42D1726AA57004F030B /* CMTabBarSource */,
-				B0FCE4431726AA57004F030B /* DBHelper */,
 				B0FCE4491726AA57004F030B /* MBProgressHUD */,
+				B0455D181795894C00B99CF5 /* Push */,
+				1C1AC39518843A21009C6E3C /* NoUse */,
 				B0FCE44C1726AA57004F030B /* PlausibleDatabase.framework */,
 			);
 			path = Utility;
