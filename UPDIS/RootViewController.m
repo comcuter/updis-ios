@@ -25,9 +25,6 @@
     return self;
 }
 
--(void)dealloc{
-    [super dealloc];
-}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -40,13 +37,6 @@
                       @"tt://setting",
                       nil]];
     [[UpdateApp sharedManager] update:NO];
-}
-
-- (void)showDetail:(NSNotification *)aNotification
-{
-    NSString *contentId = [aNotification object];
-    NSString *url = [NSString stringWithFormat:@"tt://commonDetail/%@",contentId];
-    TTOpenURL(url);
 }
 
 @end
