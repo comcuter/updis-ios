@@ -18,129 +18,6 @@
 
 @implementation WebContentViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (id)initWithFileName:(NSString *)fileName pageData:(NSDictionary *)pageData
-{
-    self = [super init];
-    if (self) {
-        // Custom initialization
-        [self setFileName:fileName];
-        [self setPageData:pageData];
-    }
-    return self;
-}
-
-- (id)initWithFileName:(NSString *)fileName
-{
-    self = [super init];
-    if (self) {
-        // Custom initialization
-        [self setFileName:fileName];
-    }
-    return self;
-}
-
-
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    [self loadPageData];
-}
-
--(void)loadPageData{
-    [self showHUD:@"正在获取数据" isLoading:YES];
-    NSString* url = [NSString stringWithFormat:INTERFACE_FETCH_USER_DETAIL,MAIN_DOMAIN,[[self.pageData objectForKey:@"userId"] integerValue]];
-    if ([self.fileName isEqualToString:@"about.html"]) {
-        url = [NSString stringWithFormat:INTERFACE_FETCH_ABOUT,MAIN_DOMAIN];
-    }
-    if ([self.fileName isEqualToString:@"version.html"]) {
-        url = [NSString stringWithFormat:INTERFACE_FETCH_VERSION,MAIN_DOMAIN,2];
-    }
-    
-    TTURLRequest* request = [TTURLRequest
-                             requestWithURL: url
-                             delegate: self];
-    request.cacheExpirationAge = TT_CACHE_EXPIRATION_AGE_NEVER;
-    [request setCachePolicy:TTURLRequestCachePolicyDefault];
-    NSString *cookie = [NSString stringWithFormat:@"JSESSIONID=%@; Path=/rest/; HttpOnly",[[NSUserDefaults standardUserDefaults] valueForKey:@"cookies"]];
-    [request setValue:cookie
-   forHTTPHeaderField:@"Cookie"];
-
-    TTDPRINT(@"cookie:%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"cookies"]);
-    MURLJSONResponse* response = [[MURLJSONResponse alloc] init];
-    request.response = response;
-    TT_RELEASE_SAFELY(response);
-
-    [request send];
-}
--(void)showHUD:(NSString *)text isLoading:(BOOL) isLoading{
-    if (!mHud) {
-        mHud = [[MBProgressHUD alloc] initWithView:self.view];
-        [mHud setDelegate:self];
-        [self.view addSubview:mHud];
-    }
-
-    [mHud setAnimationType:MBProgressHUDAnimationFade];
-    mHud.labelText = text;
-    if (!isLoading) {
-        mHud.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]] autorelease];
-        mHud.mode = MBProgressHUDModeCustomView;
-        [mHud showWhileExecuting:@selector(testTask) onTarget:self withObject:nil animated:YES];
-    }
-    else{
-        [mHud show:YES];
-    }
-}
--(void)testTask{
-    sleep(1.5);
-}
--(void)loadView{
-    [super loadView];
-    if (!self.webView) {
-        UIWebView *temp = [[UIWebView alloc] initWithFrame:self.view.frame];
-        self.webView = temp;
-        TT_RELEASE_SAFELY(temp);
-        [self.webView setDelegate:self];
-
-        [self.webView setBackgroundColor:[UIColor clearColor]];
-//        [(UIScrollView *)[[self.webView subviews] objectAtIndex:0] setBounces:NO];
-        [self.view addSubview:self.webView];
-
-        CGFloat paddingY = 30;
-        if ([self.fileName isEqualToString:@"about.html"]||[self.fileName isEqualToString:@"version.html"]) {
-            paddingY = 0;
-
-            UIImage *leftNavImage = TTIMAGE(@"bundle://ico_arr.png");
-            UIImage *leftNavImageH = TTIMAGE(@"bundle://ico_arr.png");
-
-            UIButton *leftNavButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            leftNavButton.bounds = CGRectMake(0, 0, leftNavImage.size.width, leftNavImage.size.height);
-            [leftNavButton setImage:leftNavImage forState:UIControlStateNormal];
-            [leftNavButton setImage:leftNavImageH forState:UIControlStateHighlighted];
-            [leftNavButton addTarget:self action:@selector(leftNavClick:) forControlEvents:UIControlEventTouchUpInside];
-            UIBarButtonItem *leftNavBarButton = [[UIBarButtonItem alloc] initWithCustomView:leftNavButton];
-            [self.navigationItem setLeftBarButtonItem:leftNavBarButton];
-            TT_RELEASE_SAFELY(leftNavBarButton);
-
-
-            TTImageView *itemTitle = [[TTImageView alloc] init];
-            [itemTitle setUrlPath:@"bundle://logo3.png"];
-            [self.navigationItem setTitleView:itemTitle];
-            TT_RELEASE_SAFELY(itemTitle);
-        }
-
-        [self.view setHeight:self.view.height-paddingY-49];
-        [self.webView setHeight:self.webView.height-paddingY-49];
-    }
-}
-
 -(void)dealloc
 {
     TT_RELEASE_SAFELY(_fileName);
@@ -152,29 +29,105 @@
     [super dealloc];
 }
 
--(void)leftNavClick:(id)sender{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-- (void)didReceiveMemoryWarning
+- (id)initWithFileName:(NSString *)fileName pageData:(NSDictionary *)pageData
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-#pragma mark -
-#pragma mark MBProgressHUDDelegate methods
-- (void)hudWasHidden:(MBProgressHUD *)hud {
-    [mHud removeFromSuperview];
-    [mHud setDelegate:nil];
-    TT_RELEASE_SAFELY(mHud);
+    self = [super init];
+    if (self) {
+        [self setFileName:fileName];
+        [self setPageData:pageData];
+    }
+    return self;
 }
 
-#pragma mark -
-#pragma mark UIWebViewDelegate
+- (id)initWithFileName:(NSString *)fileName
+{
+    self = [super init];
+    if (self) {
+        [self setFileName:fileName];
+    }
+    return self;
+}
+
+- (void)loadView
+{
+    [super loadView];
+    if (!self.webView) {
+        UIWebView *temp = [[UIWebView alloc] initWithFrame:self.view.frame];
+        self.webView = temp;
+        TT_RELEASE_SAFELY(temp);
+        [self.webView setDelegate:self];
+        
+        [self.webView setBackgroundColor:[UIColor clearColor]];
+        [self.view addSubview:self.webView];
+        
+        CGFloat paddingY = 30;
+        if ([self.fileName isEqualToString:@"about.html"] ||
+            [self.fileName isEqualToString:@"version.html"]) {
+            paddingY = 0;
+            
+            UIImage *leftNavImage = TTIMAGE(@"bundle://ico_arr.png");
+            UIImage *leftNavImageH = TTIMAGE(@"bundle://ico_arr.png");
+            
+            UIButton *leftNavButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            leftNavButton.bounds = CGRectMake(0, 0, leftNavImage.size.width, leftNavImage.size.height);
+            [leftNavButton setImage:leftNavImage forState:UIControlStateNormal];
+            [leftNavButton setImage:leftNavImageH forState:UIControlStateHighlighted];
+            [leftNavButton addTarget:self action:@selector(leftNavClick:) forControlEvents:UIControlEventTouchUpInside];
+            UIBarButtonItem *leftNavBarButton = [[UIBarButtonItem alloc] initWithCustomView:leftNavButton];
+            [self.navigationItem setLeftBarButtonItem:leftNavBarButton];
+            TT_RELEASE_SAFELY(leftNavBarButton);
+            
+            TTImageView *itemTitle = [[TTImageView alloc] init];
+            [itemTitle setUrlPath:@"bundle://logo3.png"];
+            [self.navigationItem setTitleView:itemTitle];
+            TT_RELEASE_SAFELY(itemTitle);
+        }
+        
+        [self.view setHeight:self.view.height- paddingY - 49];
+        [self.webView setHeight:self.webView.height- paddingY - 49];
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self loadPageData];
+}
+
+- (void)loadPageData
+{
+    [self showHUD:@"正在获取数据" isLoading:YES];
+    NSString* url = [NSString stringWithFormat:INTERFACE_FETCH_USER_DETAIL, MAIN_DOMAIN, [[self.pageData objectForKey:@"userId"] integerValue]];
+    if ([self.fileName isEqualToString:@"about.html"]) {
+        url = [NSString stringWithFormat:INTERFACE_FETCH_ABOUT, MAIN_DOMAIN];
+    }
+    if ([self.fileName isEqualToString:@"version.html"]) {
+        url = [NSString stringWithFormat:INTERFACE_FETCH_VERSION, MAIN_DOMAIN, 2];
+    }
+    
+    TTURLRequest* request = [TTURLRequest requestWithURL: url delegate: self];
+    request.cacheExpirationAge = TT_CACHE_EXPIRATION_AGE_NEVER;
+    [request setCachePolicy:TTURLRequestCachePolicyDefault];
+    NSString *cookie = [NSString stringWithFormat:@"JSESSIONID=%@; Path=/rest/; HttpOnly",[[NSUserDefaults standardUserDefaults] valueForKey:@"cookies"]];
+    [request setValue:cookie forHTTPHeaderField:@"Cookie"];
+    TTDPRINT(@"cookie:%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"cookies"]);
+    MURLJSONResponse* response = [[MURLJSONResponse alloc] init];
+    request.response = response;
+    TT_RELEASE_SAFELY(response);
+
+    [request send];
+}
+
+-(void)leftNavClick:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     NSString *requestString = [[request URL] absoluteString];
     debug_NSLog(@"requestString:%@", requestString);
-	NSArray *components = [requestString componentsSeparatedByString:@"::"]; //提交数组
+	NSArray *components = [requestString componentsSeparatedByString:@"::"];
 	if ([components count] > 1 &&
         [[(NSString *)[components objectAtIndex:0] lowercaseString] isEqualToString:@"gotoapp"] &&
         [[(NSString *)[components objectAtIndex:1] lowercaseString] isEqualToString:@"back"]) {
@@ -191,97 +144,55 @@
     [mHud hide:YES];
 }
 
--(void)loadWebViewDataByString:(NSString *)data{
+- (void)loadWebViewDataByString:(NSString *)data
+{
 
-    NSString *path = [[[NSBundle mainBundle] bundlePath]
-                      stringByAppendingPathComponent:self.fileName];
-
+    NSString *path = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:self.fileName];
     NSString *templateStr = [[NSString alloc]initWithContentsOfFile:path
                                                            encoding:NSUTF8StringEncoding
                                                               error:nil];
 
     templateStr = [templateStr stringByReplacingOccurrencesOfString:@"$about"
                                                          withString:data];
-
     templateStr = [templateStr stringByReplacingOccurrencesOfString:@"$version"
                                                          withString:data];
-
     [self.webView loadHTMLString:templateStr baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
 }
--(void)loadWebViewData:(UserModel *)userModel{
-    //read local html file
-    
-    NSString *path = [[[NSBundle mainBundle] bundlePath]
-                      stringByAppendingPathComponent:self.fileName];
 
+- (void)loadWebViewData:(UserModel *)userModel
+{
+    NSString *path = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:self.fileName];
     NSString *templateStr = [[NSString alloc]initWithContentsOfFile:path
                                                            encoding:NSUTF8StringEncoding
                                                               error:nil];
-
-
     
-
-    templateStr = [templateStr stringByReplacingOccurrencesOfString:@"$name"
-                                                         withString:userModel.name];
+    templateStr = [templateStr stringByReplacingOccurrencesOfString:@"$name" withString:userModel.name];
+    templateStr = [templateStr stringByReplacingOccurrencesOfString:@"$dept" withString:userModel.dept];
+    templateStr = [templateStr stringByReplacingOccurrencesOfString:@"$birthday" withString:userModel.birthday];
+    templateStr = [templateStr stringByReplacingOccurrencesOfString:@"$gender" withString:userModel.gender];
+    templateStr = [templateStr stringByReplacingOccurrencesOfString:@"$specialty" withString:userModel.specialty];
+    templateStr = [templateStr stringByReplacingOccurrencesOfString:@"$educational" withString:userModel.educational];
+    templateStr = [templateStr stringByReplacingOccurrencesOfString:@"$degree" withString:userModel.degree];
+    templateStr = [templateStr stringByReplacingOccurrencesOfString:@"$graduationdate" withString:userModel.graduationDate];
+    templateStr = [templateStr stringByReplacingOccurrencesOfString:@"$entrydate" withString:userModel.entryDate];
+    templateStr = [templateStr stringByReplacingOccurrencesOfString:@"$rank" withString:userModel.rank];
+    templateStr = [templateStr stringByReplacingOccurrencesOfString:@"$titles" withString:userModel.titles];
+    templateStr = [templateStr stringByReplacingOccurrencesOfString:@"$resume" withString:userModel.resume];
+    templateStr = [templateStr stringByReplacingOccurrencesOfString:@"$mobilePhone" withString:userModel.mobilePhone];
+    templateStr = [templateStr stringByReplacingOccurrencesOfString:@"$officePhone" withString:userModel.officePhone];
+    templateStr = [templateStr stringByReplacingOccurrencesOfString:@"$homeNum" withString:userModel.homeNum];
+    templateStr = [templateStr stringByReplacingOccurrencesOfString:@"$mail" withString:userModel.mail];
     
-    templateStr = [templateStr stringByReplacingOccurrencesOfString:@"$dept"
-                                                         withString:userModel.dept];
-    
-    templateStr = [templateStr stringByReplacingOccurrencesOfString:@"$birthday"
-                                                         withString:userModel.birthday];
-    
-    templateStr = [templateStr stringByReplacingOccurrencesOfString:@"$gender"
-                                                         withString:userModel.gender];
-    
-    templateStr = [templateStr stringByReplacingOccurrencesOfString:@"$specialty"
-                                                         withString:userModel.specialty];
-    
-    templateStr = [templateStr stringByReplacingOccurrencesOfString:@"$educational"
-                                                         withString:userModel.educational];
-    
-    templateStr = [templateStr stringByReplacingOccurrencesOfString:@"$degree"
-                                                         withString:userModel.degree];
-    
-    templateStr = [templateStr stringByReplacingOccurrencesOfString:@"$graduationdate"
-                                                         withString:userModel.graduationDate];
-    
-    templateStr = [templateStr stringByReplacingOccurrencesOfString:@"$entrydate"
-                                                         withString:userModel.entryDate];
-
-    templateStr = [templateStr stringByReplacingOccurrencesOfString:@"$rank"
-                                                         withString:userModel.rank];
-    
-    templateStr = [templateStr stringByReplacingOccurrencesOfString:@"$titles"
-                                                         withString:userModel.titles];
-    
-    templateStr = [templateStr stringByReplacingOccurrencesOfString:@"$resume"
-                                                         withString:userModel.resume];
-
-
     //data:image/jpg;base64,
     NSData *imageData = UIImagePNGRepresentation(TTIMAGE(userModel.iconUrl));
-
     NSString *pictureDataString = [imageData base64Encoding];
-
     templateStr = [templateStr stringByReplacingOccurrencesOfString:@"$iconurl"
                                                          withString:[@"data:image/png;base64," stringByAppendingString:pictureDataString]];
-
-
-    templateStr = [templateStr stringByReplacingOccurrencesOfString:@"$mobilePhone"
-                                                         withString:userModel.mobilePhone];
-    templateStr = [templateStr stringByReplacingOccurrencesOfString:@"$officePhone"
-                                                         withString:userModel.officePhone];
-    templateStr = [templateStr stringByReplacingOccurrencesOfString:@"$homeNum"
-                                                         withString:userModel.homeNum];
-    templateStr = [templateStr stringByReplacingOccurrencesOfString:@"$mail"
-                                                         withString:userModel.mail];
-
-
     [self.webView loadHTMLString:templateStr baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)requestDidFinishLoad:(TTURLRequest*)request {
+- (void)requestDidFinishLoad:(TTURLRequest*)request
+{
     MURLJSONResponse* response = request.response;
     TTDASSERT([response.rootObject isKindOfClass:[NSDictionary class]]);
 
@@ -296,6 +207,7 @@
         [self loadWebViewDataByString:[feed objectForKey:@"aboutContent"]];
         return;
     }
+    
     if ([self.fileName isEqualToString:@"version.html"]) {
         [self loadWebViewDataByString:[feed objectForKey:@"releaseVersion"]];
         return;
@@ -307,109 +219,140 @@
     userModel.name = [entry objectForKey:@"name"];
     if ([BaseFunction checkIsNull:[entry objectForKey:@"dept"]]) {
         userModel.dept = [entry objectForKey:@"dept"];
-    }
-    else{
+    } else {
         userModel.dept = @"";
     }
+    
     if ([BaseFunction checkIsNull:[entry objectForKey:@"birthday"]]) {
         userModel.birthday = [entry objectForKey:@"birthday"];
-    }
-    else{
+    } else {
         userModel.birthday = @"";
     }
+    
     if ([BaseFunction checkIsNull:[entry objectForKey:@"gender"]]) {
         userModel.gender = [entry objectForKey:@"gender"];
-    }
-    else{
+    } else {
         userModel.gender = @"";
     }
+    
     if ([BaseFunction checkIsNull:[entry objectForKey:@"specialty"]]) {
         userModel.specialty = [entry objectForKey:@"specialty"];
-    }
-    else{
+    } else {
         userModel.specialty = @"";
     }
+    
     if ([BaseFunction checkIsNull:[entry objectForKey:@"dept"]]) {
         userModel.dept = [entry objectForKey:@"dept"];
-    }
-    else{
+    } else {
         userModel.dept = @"";
     }
+    
     if ([BaseFunction checkIsNull:[entry objectForKey:@"educational"]]) {
         userModel.educational = [entry objectForKey:@"educational"];
-    }
-    else{
+    } else {
         userModel.educational = @"";
     }
+    
     if ([BaseFunction checkIsNull:[entry objectForKey:@"degree"]]) {
         userModel.degree = [entry objectForKey:@"degree"];
-    }
-    else{
+    } else {
         userModel.degree = @"";
     }
+    
     if ([BaseFunction checkIsNull:[entry objectForKey:@"graduationDate"]]) {
         userModel.graduationDate = [entry objectForKey:@"graduationDate"];
-    }
-    else{
+    } else {
         userModel.graduationDate = @"";
     }
+    
     if ([BaseFunction checkIsNull:[entry objectForKey:@"entryDate"]]) {
         userModel.entryDate = [entry objectForKey:@"entryDate"];
-    }
-    else{
+    } else {
         userModel.entryDate = @"";
     }
+    
     if ([BaseFunction checkIsNull:[entry objectForKey:@"rank"]]) {
         userModel.rank = [entry objectForKey:@"rank"];
-    }
-    else{
+    } else {
         userModel.rank = @"";
     }
+    
     if ([BaseFunction checkIsNull:[entry objectForKey:@"titles"]]) {
         userModel.titles = [entry objectForKey:@"titles"];
-    }
-    else{
+    } else {
         userModel.titles = @"";
     }
+    
     if ([BaseFunction checkIsNull:[entry objectForKey:@"resume"]]) {
         userModel.resume = [entry objectForKey:@"resume"];
-    }
-    else{
+    } else {
         userModel.resume = @"";
     }
+    
     if ([BaseFunction checkIsNull:[entry objectForKey:@"mobilePhone"]]) {
         userModel.mobilePhone = [entry objectForKey:@"mobilePhone"];
-    }
-    else{
+    } else {
         userModel.mobilePhone = @"";
     }
+    
     if ([BaseFunction checkIsNull:[entry objectForKey:@"officePhone"]]) {
         userModel.officePhone = [entry objectForKey:@"officePhone"];
-    }
-    else{
+    } else {
         userModel.officePhone = @"";
     }
+    
     if ([BaseFunction checkIsNull:[entry objectForKey:@"homeNum"]]) {
         userModel.homeNum = [entry objectForKey:@"homeNum"];
-    }
-    else{
+    } else {
         userModel.homeNum = @"";
     }
+    
     if ([BaseFunction checkIsNull:[entry objectForKey:@"mail"]]) {
         userModel.mail = [entry objectForKey:@"mail"];
-    }
-    else{
+    } else {
         userModel.mail = @"";
     }
 
     if ([BaseFunction checkIsNull:[entry objectForKey:@"iconUrl"]]) {
         userModel.iconUrl = [entry objectForKey:@"iconUrl"];
-    }
-    else{
+    } else {
         userModel.iconUrl = @"//default_user_icon.png";
     }
 
     [self loadWebViewData:[userModel autorelease]];
 }
+
+- (void)showHUD:(NSString *)text isLoading:(BOOL) isLoading
+{
+    if (!mHud) {
+        mHud = [[MBProgressHUD alloc] initWithView:self.view];
+        [mHud setDelegate:self];
+        [self.view addSubview:mHud];
+    }
+    
+    [mHud setAnimationType:MBProgressHUDAnimationFade];
+    mHud.labelText = text;
+    if (!isLoading) {
+        mHud.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]] autorelease];
+        mHud.mode = MBProgressHUDModeCustomView;
+        [mHud showWhileExecuting:@selector(testTask) onTarget:self withObject:nil animated:YES];
+    } else {
+        [mHud show:YES];
+    }
+}
+
+- (void)testTask
+{
+    sleep(1.5);
+}
+
+- (void)hudWasHidden:(MBProgressHUD *)hud
+{
+    [mHud removeFromSuperview];
+    [mHud setDelegate:nil];
+    TT_RELEASE_SAFELY(mHud);
+}
+
+
 
 @end
