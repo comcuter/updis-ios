@@ -832,6 +832,8 @@
 		1C1AC393188430C9009C6E3C /* NoUse */ = {
 			isa = PBXGroup;
 			children = (
+				B04497AE1785A21700D816E6 /* PostCommentView.h */,
+				B04497AF1785A21800D816E6 /* PostCommentView.m */,
 				B0455D2B1796729400B99CF5 /* PostMessageViewController.h */,
 				B0455D2C1796729500B99CF5 /* PostMessageViewController.m */,
 				B0C904DB1726D0CA006E956F /* TabPageView.h */,
@@ -1575,8 +1577,6 @@
 				B008D6E91782EE6D008BFDF1 /* CommonDetailViewController.m */,
 				B0BFFBF3178C28BD00676A56 /* CommentListViewController.h */,
 				B0BFFBF4178C28BE00676A56 /* CommentListViewController.m */,
-				B04497AE1785A21700D816E6 /* PostCommentView.h */,
-				B04497AF1785A21800D816E6 /* PostCommentView.m */,
 				B0FCE5671726B507004F030B /* SettingViewController.h */,
 				B0FCE5681726B507004F030B /* SettingViewController.m */,
 				B0E2F1FD1793E1B100CFB876 /* WebContentViewController.h */,

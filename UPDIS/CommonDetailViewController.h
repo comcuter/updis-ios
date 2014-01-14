@@ -10,11 +10,9 @@
 #import "MSubListViewController.h"
 #import "CommonDetailDataSource.h"
 #import "MBProgressHUD.h"
-#import "PostCommentView.h"
 #import "MessageInputView.h"
-#import "NetworkAssistant.h"
 
-@interface CommonDetailViewController : MSubListViewController<PostCommentViewDelegate,CommonDetailDataSourceDelegate,MBProgressHUDDelegate,UIWebViewDelegate,UITextViewDelegate,NetworkAssistantDelegate,TTURLRequestDelegate>{
+@interface CommonDetailViewController : MSubListViewController<CommonDetailDataSourceDelegate, MBProgressHUDDelegate, UIWebViewDelegate,UITextViewDelegate,TTURLRequestDelegate>{
     MBProgressHUD *mHud;
     BOOL showCommentView;
     BOOL zeroComment;
@@ -28,7 +26,6 @@
 @property (nonatomic ,retain) UIButton  *btnShowAll;
 @property (nonatomic ,retain) UIButton  *commentList;
 @property (nonatomic ,retain) UIButton  *btnWriteComment;
-//@property (nonatomic ,retain) PostCommentView *postCommentView;
 @property (nonatomic ,retain) MessageInputView *inputView;
 @property (nonatomic ,assign) CGFloat   previousTextViewContentHeight;
 @property (nonatomic ,retain) NetworkAssistant  *networkAssistant;

@@ -8,11 +8,9 @@
 
 #import "CommonDetailViewController.h"
 #import "CommonDetailDataSource.h"
-//#import "DetailStyle.h"
 #import "NTStyleSheet.h"
 #import "ASIHTTPRequest.h"
 #import "ASIDownloadCache.h"
-#import "PostCommentView.h"
 #import "CoreAnimationEffect.h"
 #import "NSString+MessagesView.h"
 #import "UIView+AnimationOptionsForCurve.h"
