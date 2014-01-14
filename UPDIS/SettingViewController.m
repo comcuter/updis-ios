@@ -15,59 +15,90 @@
 
 @interface SettingViewController ()
 
+@property (nonatomic ,retain) UISwitch *switchNotice;   //通知
+@property (nonatomic ,retain) UISwitch *switchBidding;  //招标信息
+@property (nonatomic ,retain) UISwitch *switchTalk;     //畅所欲言
+@property (nonatomic ,retain) UISwitch *switchAmateur;  //业余生活
+@property (nonatomic ,retain) UISwitch *switchProject;  //在谈项目
+
+@property (nonatomic ,retain) UISwitch *switchOpen;  //开启
+@property (nonatomic ,retain) UISwitch *switchNight;  //只在夜间
+@property (nonatomic ,retain) UISwitch *switchClose;  //关闭
+
 @end
 
 @implementation SettingViewController
 
-#pragma mark -
-#pragma mark MBProgressHUDDelegate methods
-- (void)hudWasHidden:(MBProgressHUD *)hud {
-    [mHud removeFromSuperview];
-    [mHud setDelegate:nil];
-    TT_RELEASE_SAFELY(mHud);
+-(void)dealloc
+{
+    TT_RELEASE_SAFELY(_switchNotice);
+    TT_RELEASE_SAFELY(_switchBidding);
+    TT_RELEASE_SAFELY(_switchAmateur);
+    TT_RELEASE_SAFELY(_switchTalk);
+    TT_RELEASE_SAFELY(_switchOpen);
+    TT_RELEASE_SAFELY(_switchNight);
+    TT_RELEASE_SAFELY(_switchClose);
+    [super dealloc];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
         UITabBarItem *item = [[UITabBarItem alloc] initWithTitle:@"设置"
                                                            image:TTIMAGE(@"bundle://icon_4.png")
                                                              tag:4];
         self.tabBarItem = item;
         [item release];
-
+        
         self.tableViewStyle = UITableViewStyleGrouped;
         self.autoresizesForKeyboard = YES;
         self.variableHeightRows = YES;
-
     }
     return self;
 }
 
--(void)viewWillAppear:(BOOL)animated{
+- (void)loadView
+{
+    [super loadView];
+    
+    [self.navigationController.navigationBar setBackgroundImage:TTIMAGE(@"bundle://bgtit.png")
+                                                  forBarMetrics:UIBarMetricsDefault];
+    
+    TTImageView *itemTitle = [[TTImageView alloc] init];
+    [itemTitle setUrlPath:@"bundle://logo3.png"];
+    [self.navigationItem setTitleView:itemTitle];
+    TT_RELEASE_SAFELY(itemTitle);
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self.tableView setBackgroundView:nil];
+    [self.view setBackgroundColor:RGBCOLOR(151, 173, 179)];
+    [self initPageData];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
-    if (self.tableView.top<0) {
+    if (self.tableView.top < 0) {
         //表格视图下键盘错误的问题
         [self.tableView setFrame:self.view.frame];
         [self createFooterView];
     }
 }
--(void)loadView{
-    [super loadView];
 
-
-    [self.navigationController.navigationBar setBackgroundImage:TTIMAGE(@"bundle://bgtit.png")
-                                                  forBarMetrics:UIBarMetricsDefault];
-
-    TTImageView *itemTitle = [[TTImageView alloc] init];
-    [itemTitle setUrlPath:@"bundle://logo3.png"];
-    [self.navigationItem setTitleView:itemTitle];
-    TT_RELEASE_SAFELY(itemTitle);
-
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"switch%d", 10]]) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:[NSString stringWithFormat:@"switch%d", 10]];
+    }
 }
--(UISwitch *)createSwitch:(NSInteger)tag{
+
+- (UISwitch *)createSwitch:(NSInteger)tag
+{
     UISwitch* switchy = [[UISwitch alloc] init];
     BOOL value =  [[NSUserDefaults standardUserDefaults] boolForKey:[NSString stringWithFormat:@"switch%d",tag]];
     if (![[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"switch%d",tag]]) {
@@ -90,7 +121,7 @@
     return [switchy autorelease];
 }
 
--(void)switchAction:(id)sender
+- (void)switchAction:(id)sender
 {
     UISwitch *switchButton = (UISwitch*)sender;
     BOOL isButtonOn = [switchButton isOn];
@@ -148,7 +179,7 @@
     [self savePushSetting:tag isOn:isButtonOn];
 }
 
--(void)initPageData{
+- (void)initPageData{
 
     if (!self.switchNotice) {
         self.switchNotice = [self createSwitch:10];
@@ -220,19 +251,8 @@
 
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"switch%d",10]]) {
-        //不存在
-//        [self savePushSetting:14 isOn:YES];
-        [[NSUserDefaults standardUserDefaults] setBool:YES
-                                                forKey:[NSString stringWithFormat:@"switch%d",10]];
-    }
-}
-
--(void)createFooterView{
-
-    
+-(void)createFooterView
+{
     UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.width, 50)];
     [footView setBackgroundColor:[UIColor clearColor]];
     UIButton *btnLogout = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -240,8 +260,6 @@
     UIImage *logoutImage = TTIMAGE(@"bundle://btn10.png");
     [btnLogout setSize:logoutImage.size];
     [btnLogout setBackgroundImage:logoutImage forState:UIControlStateNormal];
-    [btnLogout setBackgroundImage:logoutImage forState:UIControlStateHighlighted];
-    [btnLogout setBackgroundImage:logoutImage forState:UIControlStateSelected];
     [btnLogout addTarget:self action:@selector(userLogout:) forControlEvents:UIControlEventTouchUpInside];
     [btnLogout setCenter:footView.center];
     [footView addSubview:btnLogout];
@@ -250,7 +268,8 @@
     TT_RELEASE_SAFELY(footView);
 }
 
-- (void)userLogout:(id)sender{
+- (void)userLogout:(id)sender
+{
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"退出"
                                                     message:@"确认退出UPDIS iPhone版?"
                                                    delegate:self
@@ -260,15 +279,11 @@
     TT_RELEASE_SAFELY(alert);
 }
 
-
--(void)postUserLogout{
+- (void)postUserLogout
+{
     [self showHUD:@"正在退出" isLoading:YES];
     NSString* url = [NSString stringWithFormat:USER_LOGOUT,MAIN_DOMAIN];
-
-
-    TTURLRequest* request = [TTURLRequest
-                             requestWithURL: url
-                             delegate: self];
+    TTURLRequest* request = [TTURLRequest requestWithURL: url delegate: self];
     request.cacheExpirationAge = TT_DEFAULT_CACHE_EXPIRATION_AGE;
     [request setCachePolicy:TTURLRequestCachePolicyDefault];
     NSString *cookie = [NSString stringWithFormat:@"JSESSIONID=%@; Path=/rest/; HttpOnly",[[NSUserDefaults standardUserDefaults] valueForKey:@"cookies"]];
@@ -282,39 +297,18 @@
 
     [request send];
 }
--(void)showHUD:(NSString *)text isLoading:(BOOL) isLoading{
-    if (!mHud) {
-        mHud = [[MBProgressHUD alloc] initWithView:self.view];
-        [mHud setDelegate:self];
-        [self.view addSubview:mHud];
-    }
 
-    [mHud setAnimationType:MBProgressHUDAnimationFade];
-    mHud.labelText = text;
-    if (!isLoading) {
-        mHud.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]] autorelease];
-        mHud.mode = MBProgressHUDModeCustomView;
-        [mHud showWhileExecuting:@selector(testTask) onTarget:self withObject:nil animated:YES];
-    }
-    else{
-        [mHud show:YES];
-    }
-}
--(void)testTask{
-    sleep(1.5);
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
     if (buttonIndex==1) {
         [self postUserLogout];
     }
 }
 
-
-- (void)itemClick:(id)sender{
+- (void)itemClick:(id)sender
+{
     TTTableTextItem *item = (TTTableTextItem *)sender;
     if ([item.text isEqualToString:@"关于"]) {
-        //
         NSString *url = [NSString stringWithFormat:@"tt://webContent/about.html"];
         TTOpenURL(url);
     }
@@ -329,13 +323,7 @@
         [[UpdateApp sharedManager] update:YES];
     }
 }
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    [self.tableView setBackgroundView:nil];
-    [self.view setBackgroundColor:RGBCOLOR(151, 173, 179)];
-    [self initPageData];
-}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -430,7 +418,6 @@
     [request send];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)requestDidFinishLoad:(TTURLRequest*)request {
     if (!request.response||![request.response isKindOfClass:[MURLJSONResponse class]]) {
         debug_NSLog(@"requestDidFinishLoad response is nil");
@@ -453,16 +440,34 @@
     }
 }
 
+- (void)showHUD:(NSString *)text isLoading:(BOOL)isLoading
+{
+    if (!mHud) {
+        mHud = [[MBProgressHUD alloc] initWithView:self.view];
+        [mHud setDelegate:self];
+        [self.view addSubview:mHud];
+    }
+    
+    [mHud setAnimationType:MBProgressHUDAnimationFade];
+    mHud.labelText = text;
+    if (!isLoading) {
+        mHud.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]] autorelease];
+        mHud.mode = MBProgressHUDModeCustomView;
+        [mHud showWhileExecuting:@selector(testTask) onTarget:self withObject:nil animated:YES];
+    } else {
+        [mHud show:YES];
+    }
+}
+- (void)testTask
+{
+    sleep(1.5);
+}
 
--(void)dealloc{
-    TT_RELEASE_SAFELY(_switchNotice);
-    TT_RELEASE_SAFELY(_switchBidding);
-    TT_RELEASE_SAFELY(_switchAmateur);
-    TT_RELEASE_SAFELY(_switchTalk);
-    TT_RELEASE_SAFELY(_switchOpen);
-    TT_RELEASE_SAFELY(_switchNight);
-    TT_RELEASE_SAFELY(_switchClose);
-    [super dealloc];
+- (void)hudWasHidden:(MBProgressHUD *)hud
+{
+    [mHud removeFromSuperview];
+    [mHud setDelegate:nil];
+    TT_RELEASE_SAFELY(mHud);
 }
 
 @end
