@@ -10,7 +10,8 @@
 
 @implementation DetailStyle
 
--(CGFloat)tableBannerViewHeight{
+- (CGFloat)tableBannerViewHeight
+{
     return 27.0f;
 }
 @end

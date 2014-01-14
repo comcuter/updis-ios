@@ -14,29 +14,28 @@
 
 @implementation CommonDetailDataSourceModel
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
--(void)dealloc{
+-(void)dealloc
+{
     TT_RELEASE_SAFELY(_pageData);
     TT_RELEASE_SAFELY(_listData);
     TT_RELEASE_SAFELY(_contentId);
     [super dealloc];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithConentId:(NSString *)contentId loadList:(BOOL)loadList{
+- (id)initWithConentId:(NSString *)contentId loadList:(BOOL)loadList
+{
     if (self = [super init]) {
         [self setContentId:contentId];
         [self setLoadList:loadList];
         _pageData = [[MessageDataModel alloc] init];
-        [self setCurrentPage:1];
         _listData = [[NSMutableArray array] retain];
+        [self setCurrentPage:1];
     }
     return self;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more {
+- (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more
+{
     if (!self.isLoading) {
         if (self.loadList) {
             if (more) {
@@ -45,8 +44,7 @@
                     return;
                 }
                 _currentPage++;
-            }
-            else {
+            } else {
                 _currentPage = 1;
                 _finished = NO;
                 [_listData removeAllObjects];
@@ -55,14 +53,11 @@
         NSString *userId = [[NSUserDefaults standardUserDefaults] valueForKey:@"userid"];
         NSString *url = nil;
         if (self.loadList) {
-            url = [NSString stringWithFormat:INTERFACE_FETCH_COMMENT,MAIN_DOMAIN,self.contentId,self.currentPage];
+            url = [NSString stringWithFormat:INTERFACE_FETCH_COMMENT, MAIN_DOMAIN, self.contentId,self.currentPage];
+        } else {
+            url = [NSString stringWithFormat:INTERFACE_FETCH_DETAIL, MAIN_DOMAIN, self.contentId,userId];
         }
-        else{
-            url = [NSString stringWithFormat:INTERFACE_FETCH_DETAIL,MAIN_DOMAIN,self.contentId,userId];
-        }
-        TTURLRequest* request = [TTURLRequest
-                                 requestWithURL: url
-                                 delegate: self];
+        TTURLRequest* request = [TTURLRequest requestWithURL:url delegate:self];
         request.cachePolicy = TTURLRequestCachePolicyNone;
         request.cacheExpirationAge = TT_CACHE_EXPIRATION_AGE_NEVER;
         NSString *cookie = [NSString stringWithFormat:@"JSESSIONID=%@; Path=/rest/; HttpOnly",[[NSUserDefaults standardUserDefaults] valueForKey:@"cookies"]];
@@ -74,16 +69,8 @@
     }
 }
 
-#pragma mark -
-#pragma mark ReLoginAssisantDelegate
-- (void) relogin:(BOOL)success{
-    if (success) {
-        
-    }
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)requestDidFinishLoad:(TTURLRequest*)request {
+- (void)requestDidFinishLoad:(TTURLRequest*)request
+{
     MURLJSONResponse* response = request.response;
     TTDASSERT([response.rootObject isKindOfClass:[NSDictionary class]]);
 
@@ -94,6 +81,7 @@
         [super requestDidFinishLoad:request];
         return;
     }
+    
     if (self.loadList) {
         TTDASSERT([[feed objectForKey:@"comments"] isKindOfClass:[NSArray class]]);
         [self setTotalPage:[[feed objectForKey:@"total_page"] integerValue]];
@@ -113,8 +101,7 @@
         }
         _finished = YES;
         [_listData addObjectsFromArray: listData];
-    }
-    else{
+    } else {
         TTDASSERT([[feed objectForKey:@"data"] isKindOfClass:[NSDictionary class]]);
         NSDictionary *entry = [[feed objectForKey:@"data"] objectForKey:@"content"];
         _pageData.author = [entry objectForKey:@"author"];
@@ -123,11 +110,9 @@
 
         if ([BaseFunction checkIsNull:[entry objectForKey:@"content"]]) {
             _pageData.content = [entry objectForKey:@"content"];
-        }
-        else{
+        } else {
             _pageData.content = @"";
         }
-        
 //        _pageData.content = [entry objectForKey:@"content"];
         _pageData.contentId = [entry objectForKey:@"contentId"];
         _pageData.datetime = [entry objectForKey:@"datetime"];

@@ -28,7 +28,7 @@ typedef enum
 @property (nonatomic ,assign) NSInteger     totalPage;
 @property (nonatomic ,assign) NSInteger     currentPage;
 @property (nonatomic ,assign) ListType      listType;
-@property (nonatomic ,retain) NSDictionary  *pageData;
+//@property (nonatomic ,retain) NSDictionary  *pageData;
 @property (nonatomic ,retain) NSDictionary  *parm;
 @property (nonatomic ,retain) NSMutableArray*listData;
 

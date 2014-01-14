@@ -10,7 +10,7 @@
 #import "MessageDataModel.h"
 
 
-@interface CommonDetailDataSourceModel : TTURLRequestModel<ReLoginAssisantDelegate>
+@interface CommonDetailDataSourceModel : TTURLRequestModel
 
 @property (nonatomic ,retain) MessageDataModel  *pageData;
 @property (nonatomic ,retain) NSMutableArray*listData;

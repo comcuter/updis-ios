@@ -832,6 +832,8 @@
 		1C1AC393188430C9009C6E3C /* NoUse */ = {
 			isa = PBXGroup;
 			children = (
+				B03EC0781784608800B54519 /* DetailStyle.h */,
+				B03EC0791784608900B54519 /* DetailStyle.m */,
 				B04497AE1785A21700D816E6 /* PostCommentView.h */,
 				B04497AF1785A21800D816E6 /* PostCommentView.m */,
 				B0455D2B1796729400B99CF5 /* PostMessageViewController.h */,
@@ -976,8 +978,6 @@
 		B03EC06B178454EB00B54519 /* DetailCell */ = {
 			isa = PBXGroup;
 			children = (
-				B03EC0781784608800B54519 /* DetailStyle.h */,
-				B03EC0791784608900B54519 /* DetailStyle.m */,
 				B03EC06C1784555B00B54519 /* CommonDetailDataSourceModel.h */,
 				B03EC06D1784555B00B54519 /* CommonDetailDataSourceModel.m */,
 				B03EC06F1784556D00B54519 /* CommonDetailDataSource.h */,
@@ -1150,9 +1150,9 @@
 			children = (
 				B008D70A1783C9FB008BFDF1 /* MSubListViewController.h */,
 				B008D70B1783C9FB008BFDF1 /* MSubListViewController.m */,
-				B0FCE5431726AE05004F030B /* ViewController */,
 				B0FCE3351726AA57004F030B /* NTStyleSheet.h */,
 				B0FCE3361726AA57004F030B /* NTStyleSheet.m */,
+				B0FCE5431726AE05004F030B /* ViewController */,
 				B0FCE3371726AA57004F030B /* Resources */,
 				B0FCE40A1726AA57004F030B /* Utility */,
 				B0C3820D16E874170094BEED /* AppDelegate.h */,
@@ -1177,10 +1177,10 @@
 		B0D57ADB1781BF0E00ABCBB8 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
-				B03EC06B178454EB00B54519 /* DetailCell */,
-				B0D57ADC1781BF2A00ABCBB8 /* Cell */,
 				B0D57AD81781BF0600ABCBB8 /* CommonListViewController.h */,
 				B0D57AD91781BF0700ABCBB8 /* CommonListViewController.m */,
+				B03EC06B178454EB00B54519 /* DetailCell */,
+				B0D57ADC1781BF2A00ABCBB8 /* Cell */,
 			);
 			name = TableView;
 			sourceTree = "<group>";

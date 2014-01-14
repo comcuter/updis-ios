@@ -14,8 +14,16 @@
 
 @implementation CommonListDataSourceModel
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithListType:(ListType)listType {
+- (void) dealloc
+{
+    //    TT_RELEASE_SAFELY(_pageData);
+    TT_RELEASE_SAFELY(_listData);
+    TT_RELEASE_SAFELY(_parm);
+    [super dealloc];
+}
+
+- (id)initWithListType:(ListType)listType
+{
     if (self = [super init]) {
         [self setListType:listType];
         [self setCurrentPage:1];
@@ -24,21 +32,11 @@
     return self;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) dealloc {
-    TT_RELEASE_SAFELY(_pageData);
-    TT_RELEASE_SAFELY(_listData);
-    TT_RELEASE_SAFELY(_parm);
-    [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more {
+- (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more
+{
     if (!self.isLoading) {
         if (more) {
-            if (_currentPage==_totalPage) {
+            if (_currentPage == _totalPage) {
                 _finished = YES;
                 return;
             }
@@ -50,11 +48,10 @@
             [_listData removeAllObjects];
         }
         NSString *url = nil;
-        if (self.listType==ListTypeDicDept||self.listType==ListTypeDicSubject) {
-            url = [NSString stringWithFormat:INTERFACE_FETCH_DIC_DATA,MAIN_DOMAIN];
-        }
-        else{
-            if (self.listType==ListTypeQueryPersonList) {
+        if (self.listType == ListTypeDicDept || self.listType == ListTypeDicSubject) {
+            url = [NSString stringWithFormat:INTERFACE_FETCH_DIC_DATA, MAIN_DOMAIN];
+        } else {
+            if (self.listType == ListTypeQueryPersonList) {
                 url = [NSString stringWithFormat:INTERFACE_FETCH_USER_LIST,MAIN_DOMAIN,1,self.currentPage];
                 if (self.parm) {
                     if ([self.parm objectForKey:@"userName"]) {
@@ -67,20 +64,14 @@
                         url = [url stringByAppendingFormat:@"&specialtyName=%@",[[self.parm objectForKey:@"specialtyName"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
                     }
                 }
-
-            }
-            else{
-                url = [NSString stringWithFormat:INTERFACE_FETCH_DATA_LIST,MAIN_DOMAIN,self.listType,self.currentPage];
+            } else {
+                url = [NSString stringWithFormat:INTERFACE_FETCH_DATA_LIST, MAIN_DOMAIN, self.listType, self.currentPage];
             }
         }
-
-
         debug_NSLog(@"url:%@",url);
-        TTURLRequest* request = [TTURLRequest
-                                 requestWithURL: url
-                                 delegate: self];
+        TTURLRequest* request = [TTURLRequest requestWithURL:url delegate:self];
         request.cachePolicy = cachePolicy;
-        request.cacheExpirationAge = (60*2);//2分钟
+        request.cacheExpirationAge = 60 * 2;//2分钟
         NSString *cookie = [NSString stringWithFormat:@"JSESSIONID=%@; Path=/rest/; HttpOnly",[[NSUserDefaults standardUserDefaults] valueForKey:@"cookies"]];
         [request setValue:cookie forHTTPHeaderField:@"Cookie"];
         TTDPRINT(@"cookie:%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"cookies"]);
@@ -91,50 +82,44 @@
     }
 }
 
--(void)relogin:(BOOL)success{
+- (void)relogin:(BOOL)success
+{
     if (success) {
         [self load:TTURLRequestCachePolicyNetwork more:NO];
     }
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)requestDidFinishLoad:(TTURLRequest*)request {
+- (void)requestDidFinishLoad:(TTURLRequest*)request
+{
     MURLJSONResponse* response = request.response;
     TTDASSERT([response.rootObject isKindOfClass:[NSDictionary class]]);
 
     NSDictionary* feed = response.rootObject;
     if ([[feed objectForKey:@"sessionTimeout"] integerValue]) {
         //超时
-
         [[ReLoginAssisant sharedManager] reloginUser];
         [super requestDidFinishLoad:request];
         return;
     }
 
-
-    if (self.listType==ListTypeDicDept||self.listType==ListTypeDicSubject) {
+    if (self.listType == ListTypeDicDept||self.listType == ListTypeDicSubject) {
         NSDictionary* data = [feed objectForKey:@"data"];
         NSArray *entries = nil;
         if (self.listType==ListTypeDicDept) {
             entries = [data objectForKey:@"dept"];
-        }
-        else{
+        } else {
             entries = [data objectForKey:@"subject"];
         }
+        
         for (NSDictionary* entry in entries) {
             [_listData addObject:entry];
         }
-
-    }
-    else{
+    } else {
         [self setTotalPage:[[feed objectForKey:@"total_page"] integerValue]];
         NSArray* entries = [feed objectForKey:@"data"];
-
         NSMutableArray* listData = [NSMutableArray arrayWithCapacity:[entries count]];
-
-
-        if (self.listType==ListTypeQueryPersonList) {
-
+        
+        if (self.listType == ListTypeQueryPersonList) {
             for (NSDictionary* entry in entries) {
                 UserModel *userModel = [[UserModel alloc] init];
                 userModel.userId = [entry objectForKey:@"userId"];
@@ -170,8 +155,7 @@
                 [listData addObject:userModel];
                 TT_RELEASE_SAFELY(userModel);
             }
-        }
-        else{
+        } else {
             for (NSDictionary* entry in entries) {
                 MessageDataModel *dataModel = [[MessageDataModel alloc] init];
                 dataModel.author = [entry objectForKey:@"author"];
@@ -195,7 +179,6 @@
     }
     
     _finished = YES;
-    
     [super requestDidFinishLoad:request];
 }
 

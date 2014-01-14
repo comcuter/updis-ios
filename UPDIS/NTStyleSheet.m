@@ -10,22 +10,24 @@
 
 @implementation NTStyleSheet
 
-- (TTStyle*)pageDot:(UIControlState)state {
+- (TTStyle*)pageDot:(UIControlState)state
+{
     if (state == UIControlStateSelected) {
         return [self pageDotWithColor:RGBCOLOR(228, 0, 127)];
-
     } else {
         return [self pageDotWithColor:RGBCOLOR(166, 166, 166)];
     }
 }
-- (TTStyle*)tabStrip {
+- (TTStyle*)tabStrip
+{
     UIColor* border = [TTSTYLEVAR(tabTintColor) multiplyHue:0 saturation:0 value:0.4];
     return
-    [TTReflectiveFillStyle styleWithColor:TTSTYLEVAR(tabTintColor) next: //styleWithColor:RGBCOLOR( , , ) next:
+    [TTReflectiveFillStyle styleWithColor:TTSTYLEVAR(tabTintColor) next:
      [TTFourBorderStyle styleWithTop:nil right:nil bottom:border left:nil width:1 next:nil]];
 }
 
-- (TTStyle*)tabRound:(UIControlState)state {
+- (TTStyle*)tabRound:(UIControlState)state
+{
     if (state == UIControlStateSelected) {
         return
         [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:TT_ROUNDED] next:
@@ -47,37 +49,25 @@
     }
 }
 
-- (TTStyle*)tabOverflowLeft {
-
+- (TTStyle*)tabOverflowLeft
+{
     UIImage* image = TTIMAGE(@"bundle://Three20.bundle/images/overflowLeft.png");
-
-    TTImageStyle *style = [TTImageStyle styleWithImage:image next:nil]; style.contentMode = UIViewContentModeCenter; return style;
-
+    TTImageStyle *style = [TTImageStyle styleWithImage:image next:nil];
+    style.contentMode = UIViewContentModeCenter;
+    return style;
 }
 
-- (TTStyle*)tabOverflowRight {
-
+- (TTStyle*)tabOverflowRight
+{
     UIImage* image = TTIMAGE(@"bundle://Three20.bundle/images/overflowRight.png");
-
-    TTImageStyle *style = [TTImageStyle styleWithImage:image next:nil]; style.contentMode = UIViewContentModeCenter; return style;
-    
+    TTImageStyle *style = [TTImageStyle styleWithImage:image next:nil];
+    style.contentMode = UIViewContentModeCenter;
+    return style;
 }
-//-(UIColor*)textColor{
-//    return RGBCOLOR(235,40,124);
-//}
 
-
--(UIColor*)tableSubTextColor{
+- (UIColor*)tableSubTextColor
+{
     return RGBCOLOR(87,87,87);
 }
-//-(UIColor*)tablePlainCellSeparatorColor{
-//    return [UIColor clearColor];
-//}
-
-//-(UIColor*)tablePlainBackgroundColor{
-//    return [UIColor colorWithPatternImage:TTIMAGE(@"bundle://list1.png")];
-//}
-
-
 
 @end
