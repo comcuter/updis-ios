@@ -141,13 +141,8 @@
     }
 }
 
-- (void)viewDidLoad
+-(void)dealloc
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    
-}
--(void)dealloc{
     TT_RELEASE_SAFELY(_fileName);
     TT_RELEASE_SAFELY(_pageData);
     [_webView stopLoading];
@@ -178,29 +173,24 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     NSString *requestString = [[request URL] absoluteString];
-    debug_NSLog(@"requestString:%@",requestString);
+    debug_NSLog(@"requestString:%@", requestString);
 	NSArray *components = [requestString componentsSeparatedByString:@"::"]; //提交数组
-	if ([components count] > 1 && [[(NSString *)[components objectAtIndex:0] lowercaseString] isEqualToString:@"gotoapp"])
-	{
-		if([[(NSString *)[components objectAtIndex:1] lowercaseString] isEqualToString:@"back"]){
-            if (self.delegate&&[self.delegate respondsToSelector:@selector(back2ListView)]) {
-                [self.delegate back2ListView];
-            }
-		}
-
+	if ([components count] > 1 &&
+        [[(NSString *)[components objectAtIndex:0] lowercaseString] isEqualToString:@"gotoapp"] &&
+        [[(NSString *)[components objectAtIndex:1] lowercaseString] isEqualToString:@"back"]) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(back2ListView)]) {
+            [self.delegate back2ListView];
+        }
 		return NO;
 	}
 	return YES;
 }
-- (void)webViewDidStartLoad:(UIWebView *)webView{
 
-}
-- (void)webViewDidFinishLoad:(UIWebView *)webView{
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
     [mHud hide:YES];
 }
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
 
-}
 -(void)loadWebViewDataByString:(NSString *)data{
 
     NSString *path = [[[NSBundle mainBundle] bundlePath]

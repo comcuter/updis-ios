@@ -25,13 +25,13 @@ static const long HOUR_TIME = 3600000;
     return instance;
 }
 
--(void)dealloc
+- (void)dealloc
 {
     TT_RELEASE_SAFELY(_downUrl);
     [super dealloc];
 }
 
--(BOOL)checkUpdate
+- (BOOL)checkUpdate
 {
     float ctime = [[NSUserDefaults standardUserDefaults] floatForKey:@"check_update"];
     if (((([[NSDate date] timeIntervalSince1970] * 1000) - ctime) > HOUR_TIME * DEFAULT_UPDATE_HOUR)) {
@@ -40,7 +40,7 @@ static const long HOUR_TIME = 3600000;
     return NO;
 }
 
--(void)showHUD:(NSString *)text
+- (void)showHUD:(NSString *)text
 {
     if (!mHud) {
         UIWindow *window = [[UIApplication sharedApplication] keyWindow];
@@ -54,7 +54,7 @@ static const long HOUR_TIME = 3600000;
     [mHud show:YES];
 }
 
--(void)update:(BOOL)focus
+- (void)update:(BOOL)focus
 {
     [self setIsFocus:focus];
     BOOL canUpdate = [self checkUpdate];
