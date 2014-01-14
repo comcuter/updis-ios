@@ -107,24 +107,6 @@
     [temp setSelected:!temp.selected];
 }
 
-
-#pragma mark - UITextViewDelegate
-- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
-{
-
-    return YES;
-}
-//- (BOOL)textViewShouldEndEditing:(UITextView *)textView;
-
-//- (void)textViewDidBeginEditing:(UITextView *)textView;
-//- (void)textViewDidEndEditing:(UITextView *)textView;
-
-//- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text;
-- (void)textViewDidChange:(UITextView *)textView
-{
-
-}
-
 #pragma mark - Message input view
 + (CGFloat)textViewLineHeight
 {
@@ -147,13 +129,5 @@
     TT_RELEASE_SAFELY(_btnSelect);
     [super dealloc];
 }
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end
