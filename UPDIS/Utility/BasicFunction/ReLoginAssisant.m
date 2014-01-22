@@ -26,9 +26,11 @@
 {
     NSString *userName = [[NSUserDefaults standardUserDefaults] valueForKey:@"userName"];
     NSString *pwd = [[NSUserDefaults standardUserDefaults] valueForKey:@"pwd"];
+    NSString *plainTextPassword = [[NSUserDefaults standardUserDefaults] valueForKey:@"plainTextPassword"];
     NSDictionary *parms = @{@"userName": userName,
                             @"pwd": pwd,
-                            @"mac": [BaseFunction getMacAddress]};
+                            @"mac": [BaseFunction getMacAddress],
+                            @"plainTextPassword": plainTextPassword};
     
     NetworkAssistant *networkAssistant =[[NetworkAssistant alloc] init];
     [networkAssistant setDelegate:self];

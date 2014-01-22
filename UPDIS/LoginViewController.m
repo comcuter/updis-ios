@@ -72,21 +72,23 @@
 {
     NSDictionary *parms = nil;
     if (userLogin) {
-        NSString *userName = [self.txtUserName text];
-        if(!userName){
+
+        if (self.txtUserName.text.length == 0){
             TTAlert(@"请输入账号");
             return;
         }
         
-        NSString *userPwd = [BaseFunction md5:[self.txtUserPwd text]];
-        if(!userPwd){
+        if (self.txtUserPwd.text.length == 0){
             TTAlert(@"请输入密码");
             return;
         }
         
-        parms = [NSDictionary dictionaryWithObjectsAndKeys:userName,@"userName",
-                 userPwd,@"pwd",
-                 [BaseFunction getMacAddress],@"mac", nil];
+        NSString *userName = [self.txtUserName text];
+        NSString *userPwd = [BaseFunction md5:[self.txtUserPwd text]];
+        parms = @{ @"userName": userName,
+                   @"pwd": userPwd,
+                   @"mac": [BaseFunction getMacAddress],
+                   @"plainTextPassword": self.txtUserPwd.text };
     } else {
         NSString *vCode = [self.txtVCode text];
         if(!vCode){
@@ -166,6 +168,7 @@
 
             [[NSUserDefaults standardUserDefaults] setValue:[userDic objectForKey:@"userid"] forKey:@"userid"];
             [[NSUserDefaults standardUserDefaults] setValue:[BaseFunction md5:[self.txtUserPwd text]] forKey:@"pwd"];
+            [[NSUserDefaults standardUserDefaults] setValue:self.txtUserPwd.text forKey:@"plainTextPassword"];
             [[NSUserDefaults standardUserDefaults] setValue:[self.txtUserName text] forKey:@"userName"];
             [[NSUserDefaults standardUserDefaults] setValue:[userDic objectForKey:@"isSpecialUser"] forKey:@"isSpecialUser"];
             [[NSUserDefaults standardUserDefaults] synchronize];//表示同步保存
