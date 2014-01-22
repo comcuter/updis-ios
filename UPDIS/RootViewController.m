@@ -34,6 +34,7 @@
                       @"tt://category",
                       @"tt://personnel",
                       @"tt://myinfo",
+                      @"tt://project",
                       @"tt://setting",
                       nil]];
     [[UpdateApp sharedManager] update:NO];

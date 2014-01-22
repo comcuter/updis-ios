@@ -16,4 +16,5 @@
     #import "Debug.h"
     #import "ReLoginAssisant.h"
     #import "Constant.h"
+    #import "MBProgressHUD.h"
 #endif

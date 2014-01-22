@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C6EB2001890324E0058023E /* ProjectDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6EB1FF1890324E0058023E /* ProjectDetailViewController.m */; };
+		1C6EB209189037FF0058023E /* ProjectDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C6EB208189037FE0058023E /* ProjectDetailViewController.xib */; };
 		320AF8492C47A4D819F7C451 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 320AF8492C47A4D819F7C450 /* QuartzCore.framework */; };
 		843F25A6183A56B000DA6F98 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84987974183A568100DDA58A /* libThree20.a */; };
 		843F25A7183A56B000DA6F98 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 843F2583183A56A400DA6F98 /* libThree20Core.a */; };
@@ -28,6 +30,9 @@
 		84987980183A568D00DDA58A /* Three20UICommon.xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 8498797A183A568D00DDA58A /* Three20UICommon.xcodeproj */; };
 		84987981183A568D00DDA58A /* Three20UINavigator.xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 8498797B183A568D00DDA58A /* Three20UINavigator.xcodeproj */; };
 		84987982183A568D00DDA58A /* Three20UI.xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 8498797C183A568D00DDA58A /* Three20UI.xcodeproj */; };
+		84D3DCE3188BD6BF00E7AF71 /* ProjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D3DCE2188BD6BF00E7AF71 /* ProjectModel.m */; };
+		84D3DCE7188BDB7D00E7AF71 /* ProjectListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D3DCE5188BDB7D00E7AF71 /* ProjectListViewController.m */; };
+		84D3DCE8188BDB7D00E7AF71 /* ProjectListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84D3DCE6188BDB7D00E7AF71 /* ProjectListViewController.xib */; };
 		B003F87B17E6FDF600D2A5F5 /* MURLJSONResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = B003F87A17E6FDF600D2A5F5 /* MURLJSONResponse.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B008D6E51782ED6C008BFDF1 /* list1.png in Resources */ = {isa = PBXBuildFile; fileRef = B008D6E21782ED6C008BFDF1 /* list1.png */; };
 		B008D6E61782ED6C008BFDF1 /* list2.png in Resources */ = {isa = PBXBuildFile; fileRef = B008D6E31782ED6C008BFDF1 /* list2.png */; };
@@ -434,6 +439,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1C6EB1FE1890324E0058023E /* ProjectDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectDetailViewController.h; sourceTree = "<group>"; };
+		1C6EB1FF1890324E0058023E /* ProjectDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectDetailViewController.m; sourceTree = "<group>"; };
+		1C6EB208189037FE0058023E /* ProjectDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectDetailViewController.xib; sourceTree = "<group>"; };
 		320AF8492C47A4D819F7C450 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.frameworks; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		84470A54183A4886001AF68C /* Three20.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Three20.bundle; sourceTree = "<group>"; };
 		8498795E183A568000DDA58A /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = three20/src/Three20/Three20.xcodeproj; sourceTree = "<group>"; };
@@ -443,6 +451,11 @@
 		8498797A183A568D00DDA58A /* Three20UICommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UICommon.xcodeproj; path = three20/src/Three20/../Three20UICommon/Three20UICommon.xcodeproj; sourceTree = "<group>"; };
 		8498797B183A568D00DDA58A /* Three20UINavigator.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UINavigator.xcodeproj; path = three20/src/Three20/../Three20UINavigator/Three20UINavigator.xcodeproj; sourceTree = "<group>"; };
 		8498797C183A568D00DDA58A /* Three20UI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UI.xcodeproj; path = three20/src/Three20/../Three20UI/Three20UI.xcodeproj; sourceTree = "<group>"; };
+		84D3DCE1188BD6BF00E7AF71 /* ProjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectModel.h; sourceTree = "<group>"; };
+		84D3DCE2188BD6BF00E7AF71 /* ProjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectModel.m; sourceTree = "<group>"; };
+		84D3DCE4188BDB7D00E7AF71 /* ProjectListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectListViewController.h; sourceTree = "<group>"; };
+		84D3DCE5188BDB7D00E7AF71 /* ProjectListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectListViewController.m; sourceTree = "<group>"; };
+		84D3DCE6188BDB7D00E7AF71 /* ProjectListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectListViewController.xib; sourceTree = "<group>"; };
 		B003F87917E6FDF600D2A5F5 /* MURLJSONResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MURLJSONResponse.h; sourceTree = "<group>"; };
 		B003F87A17E6FDF600D2A5F5 /* MURLJSONResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MURLJSONResponse.m; sourceTree = "<group>"; };
 		B008D6E21782ED6C008BFDF1 /* list1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list1.png; sourceTree = "<group>"; };
@@ -721,8 +734,8 @@
 		B0FCE2E91726A988004F030B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B0FCE2EB1726A98D004F030B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B0FCE2ED1726A992004F030B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		B0FCE3351726AA57004F030B /* NTStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTStyleSheet.h; sourceTree = "<group>"; };
-		B0FCE3361726AA57004F030B /* NTStyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTStyleSheet.m; sourceTree = "<group>"; };
+		B0FCE3351726AA57004F030B /* NTStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NTStyleSheet.h; path = ../NTStyleSheet.h; sourceTree = "<group>"; };
+		B0FCE3361726AA57004F030B /* NTStyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NTStyleSheet.m; path = ../NTStyleSheet.m; sourceTree = "<group>"; };
 		B0FCE3881726AA57004F030B /* Cal.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Cal.bundle; sourceTree = "<group>"; };
 		B0FCE3C61726AA57004F030B /* Kal.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Kal.bundle; sourceTree = "<group>"; };
 		B0FCE3D61726AA57004F030B /* MWPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MWPhotoBrowser.bundle; sourceTree = "<group>"; };
@@ -956,6 +969,21 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		84D3DCD9188BD67400E7AF71 /* Project */ = {
+			isa = PBXGroup;
+			children = (
+				84D3DCE1188BD6BF00E7AF71 /* ProjectModel.h */,
+				84D3DCE2188BD6BF00E7AF71 /* ProjectModel.m */,
+				84D3DCE4188BDB7D00E7AF71 /* ProjectListViewController.h */,
+				84D3DCE5188BDB7D00E7AF71 /* ProjectListViewController.m */,
+				84D3DCE6188BDB7D00E7AF71 /* ProjectListViewController.xib */,
+				1C6EB1FE1890324E0058023E /* ProjectDetailViewController.h */,
+				1C6EB1FF1890324E0058023E /* ProjectDetailViewController.m */,
+				1C6EB208189037FE0058023E /* ProjectDetailViewController.xib */,
+			);
+			name = Project;
+			sourceTree = "<group>";
+		};
 		B020C560178E791000F17E41 /* PopListView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1148,15 +1176,15 @@
 		B0C3820416E874170094BEED /* UPDIS */ = {
 			isa = PBXGroup;
 			children = (
+				B0C3820D16E874170094BEED /* AppDelegate.h */,
+				B0C3820E16E874170094BEED /* AppDelegate.m */,
+				B0FCE5471726AE4D004F030B /* RootViewController.h */,
+				B0FCE5481726AE4D004F030B /* RootViewController.m */,
 				B008D70A1783C9FB008BFDF1 /* MSubListViewController.h */,
 				B008D70B1783C9FB008BFDF1 /* MSubListViewController.m */,
-				B0FCE3351726AA57004F030B /* NTStyleSheet.h */,
-				B0FCE3361726AA57004F030B /* NTStyleSheet.m */,
 				B0FCE5431726AE05004F030B /* ViewController */,
 				B0FCE3371726AA57004F030B /* Resources */,
 				B0FCE40A1726AA57004F030B /* Utility */,
-				B0C3820D16E874170094BEED /* AppDelegate.h */,
-				B0C3820E16E874170094BEED /* AppDelegate.m */,
 				B0C3820516E874170094BEED /* Supporting Files */,
 			);
 			path = UPDIS;
@@ -1415,6 +1443,8 @@
 		B0FCE40A1726AA57004F030B /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				B0FCE3351726AA57004F030B /* NTStyleSheet.h */,
+				B0FCE3361726AA57004F030B /* NTStyleSheet.m */,
 				1C1AC39418843506009C6E3C /* MHTabBarController */,
 				B020C560178E791000F17E41 /* PopListView */,
 				B0E53EE4178ABB6F001B6659 /* MessagesTableViewController */,
@@ -1566,11 +1596,10 @@
 				B0D57ADB1781BF0E00ABCBB8 /* TableView */,
 				1C1AC3C6188453C8009C6E3C /* PersonQuery */,
 				1C1AC3CE18846F2C009C6E3C /* MyMessage */,
+				84D3DCD9188BD67400E7AF71 /* Project */,
 				B021A4E717814C9B009FCBAC /* LoginViewController.h */,
 				B021A4E817814C9B009FCBAC /* LoginViewController.m */,
 				B021A4E917814C9B009FCBAC /* LoginViewController.xib */,
-				B0FCE5471726AE4D004F030B /* RootViewController.h */,
-				B0FCE5481726AE4D004F030B /* RootViewController.m */,
 				B0FCE5641726B4F5004F030B /* CategoryMessageViewController.h */,
 				B0FCE5651726B4F5004F030B /* CategoryMessageViewController.m */,
 				B008D6E81782EE6D008BFDF1 /* CommonDetailViewController.h */,
@@ -1951,6 +1980,8 @@
 				84987980183A568D00DDA58A /* Three20UICommon.xcodeproj in Resources */,
 				84987981183A568D00DDA58A /* Three20UINavigator.xcodeproj in Resources */,
 				84987982183A568D00DDA58A /* Three20UI.xcodeproj in Resources */,
+				84D3DCE8188BDB7D00E7AF71 /* ProjectListViewController.xib in Resources */,
+				1C6EB209189037FF0058023E /* ProjectDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2040,6 +2071,9 @@
 				B008ECE917BA26A900007B06 /* CommonLoadingItem.m in Sources */,
 				B008ECEC17BA26D100007B06 /* CommonLoadingItemCell.m in Sources */,
 				B03AD12B17C35E2F00D03DC0 /* UpdateApp.m in Sources */,
+				84D3DCE3188BD6BF00E7AF71 /* ProjectModel.m in Sources */,
+				84D3DCE7188BDB7D00E7AF71 /* ProjectListViewController.m in Sources */,
+				1C6EB2001890324E0058023E /* ProjectDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
