@@ -6,12 +6,12 @@
 //  Copyright (c) 2014 tianv. All rights reserved.
 //
 
-#import "ProjectListViewController.h"
+#import "PendingProjectListViewController.h"
 #import "ProjectModel.h"
 #import "ASIHTTPRequest.h"
 #import "ProjectDetailViewController.h"
 
-@interface ProjectListViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface PendingProjectListViewController ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, retain) IBOutlet UIView *loadingView;
@@ -19,18 +19,7 @@
 
 @end
 
-@implementation ProjectListViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:@"项目" image:[UIImage imageNamed:@"icon_4"] tag:4];
-        self.tabBarItem = tabBarItem;
-    }
-    
-    return self;
-}
+@implementation PendingProjectListViewController
 
 - (void)viewDidLoad
 {
@@ -38,12 +27,6 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    
-    UIImage *navigationBarBackgroundImage = [[UIImage imageNamed:@"bgtit"] resizableImageWithCapInsets:UIEdgeInsetsZero];
-    [self.navigationController.navigationBar setBackgroundImage:navigationBarBackgroundImage forBarMetrics:UIBarMetricsDefault];
-    
-    UIImageView *navigationBarTitleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo3"]];
-    self.navigationItem.titleView = navigationBarTitleView;
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }

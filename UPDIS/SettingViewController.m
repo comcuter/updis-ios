@@ -46,7 +46,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         UITabBarItem *item = [[UITabBarItem alloc] initWithTitle:@"设置"
-                                                           image:TTIMAGE(@"bundle://icon_4.png")
+                                                           image:TTIMAGE(@"bundle://icon_5.png")
                                                              tag:5];
         self.tabBarItem = item;
         [item release];

@@ -19,7 +19,7 @@
 #import "CommonDetailViewController.h"
 #import "PersonQueryViewController.h"
 #import "WebContentViewController.h"
-#import "ProjectListViewController.h"
+#import "ProjectViewController.h"
 
 @implementation AppDelegate
 
@@ -63,7 +63,7 @@
     [map from:@"tt://category" toViewController:[CategoryMessageViewController class]];
     [map from:@"tt://personnel" toViewController:[PersonnelMessageViewController class]];
     [map from:@"tt://myinfo" toViewController:[MyInformationViewController class]];
-    [map from:@"tt://project" toViewController:[ProjectListViewController class]];
+    [map from:@"tt://project" toViewController:[ProjectViewController class]];
     [map from:@"tt://setting" toViewController:[SettingViewController class]];
 
     [map from:@"tt://commonList/(initWithListType:)" toViewController:[CommonListViewController class]];

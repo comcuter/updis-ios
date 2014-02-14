@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ProjectListViewController : UIViewController
+@interface PendingProjectListViewController : UIViewController
 
 @end
