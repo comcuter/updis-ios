@@ -251,14 +251,15 @@
 {
     MURLJSONResponse* response = request.response;
     TTDASSERT([response.rootObject isKindOfClass:[NSDictionary class]]);
-    [mHud hide:YES];
     NSDictionary* feed = response.rootObject;
     if ([[feed objectForKey:@"sessionTimeout"] integerValue]) {
         return;
     }
     
-    if (![[feed objectForKey:@"success"] integerValue]) {
+    if ([[feed objectForKey:@"success"] integerValue] == 0) {
         TTAlert([feed objectForKey:@"msg"]);
+    } else {
+        [self showHUD:@"消息发布成功" isLoading:NO];
     }
 }
 
@@ -275,14 +276,10 @@
     if (!isLoading) {
         mHud.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]] autorelease];
         mHud.mode = MBProgressHUDModeCustomView;
-        [mHud showWhileExecuting:@selector(testTask) onTarget:self withObject:nil animated:YES];
+        [mHud hide:YES afterDelay:1];
     } else {
         [mHud show:YES];
     }
-}
-
-- (void)testTask {
-    sleep(1.5);
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
