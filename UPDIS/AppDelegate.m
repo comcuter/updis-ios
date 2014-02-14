@@ -143,19 +143,4 @@
     [APService handleRemoteNotification:userInfo];
 }
 
-- (void)networkDidReceiveMessage:(NSNotification *)notification
-{
-    NSDictionary * userInfo = [notification userInfo];
-    NSDictionary *aps = [userInfo valueForKey:@"aps"];
-    NSString *content = [aps valueForKey:@"alert"];
-    NSInteger badge = [[aps valueForKey:@"badge"] integerValue];
-    NSString *sound = [aps valueForKey:@"sound"];
-    
-    // 取得自定义字段内容
-    NSString *customizeField1 = [userInfo valueForKey:@"customizeField1"];
-    NSLog(@"content =[%@], badge=[%d], sound=[%@], customize field =[%@]",content,badge,sound,customizeField1);
-    NSString *title = [userInfo valueForKey:@"title"];
-    debug_NSLog(@"title:%@ content:%@",title,content);
-}
-
 @end

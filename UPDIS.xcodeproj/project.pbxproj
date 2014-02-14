@@ -36,6 +36,7 @@
 		848F1D1018ADC47300128DD0 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 848F1D0618ADC47300128DD0 /* iTunesArtwork@2x.png */; };
 		848F1D1218ADECE100128DD0 /* tab_icon_project@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 848F1D1118ADECE000128DD0 /* tab_icon_project@2x.png */; };
 		848F1D3618AE0CB700128DD0 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 848F1D3518AE0CB700128DD0 /* MBProgressHUD.m */; };
+		848F1DA018AE47C500128DD0 /* libPushSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 848F1D9F18AE47C500128DD0 /* libPushSDK.a */; };
 		8498797D183A568D00DDA58A /* Three20Core.xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 84987977183A568D00DDA58A /* Three20Core.xcodeproj */; };
 		8498797E183A568D00DDA58A /* Three20Network.xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 84987978183A568D00DDA58A /* Three20Network.xcodeproj */; };
 		8498797F183A568D00DDA58A /* Three20Style.xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 84987979183A568D00DDA58A /* Three20Style.xcodeproj */; };
@@ -156,8 +157,6 @@
 		B04497BC1785A5F000D816E6 /* ico05@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B04497B81785A5F000D816E6 /* ico05@2x.png */; };
 		B0455D15179584FC00B99CF5 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0455D14179584FC00B99CF5 /* TPKeyboardAvoidingScrollView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B0455D171795886E00B99CF5 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = B0455D161795886E00B99CF5 /* PushConfig.plist */; };
-		B0455D1C1795894C00B99CF5 /* libPushSDK-Simulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0455D1A1795894C00B99CF5 /* libPushSDK-Simulator.a */; };
-		B0455D1D1795894C00B99CF5 /* libPushSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0455D1B1795894C00B99CF5 /* libPushSDK.a */; };
 		B0455D1F1795897A00B99CF5 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0455D1E1795897A00B99CF5 /* CoreTelephony.framework */; };
 		B0455D2317958DBB00B99CF5 /* sound.caf in Resources */ = {isa = PBXBuildFile; fileRef = B0455D2217958DBB00B99CF5 /* sound.caf */; };
 		B0455D2E1796729700B99CF5 /* PostMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0455D2C1796729500B99CF5 /* PostMessageViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -460,6 +459,8 @@
 		848F1D1118ADECE000128DD0 /* tab_icon_project@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_icon_project@2x.png"; sourceTree = "<group>"; };
 		848F1D3418AE0CB700128DD0 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		848F1D3518AE0CB700128DD0 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		848F1D9E18AE47C500128DD0 /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
+		848F1D9F18AE47C500128DD0 /* libPushSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPushSDK.a; sourceTree = "<group>"; };
 		8498795E183A568000DDA58A /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = three20/src/Three20/Three20.xcodeproj; sourceTree = "<group>"; };
 		84987977183A568D00DDA58A /* Three20Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Core.xcodeproj; path = three20/src/Three20Core/Three20Core.xcodeproj; sourceTree = "<group>"; };
 		84987978183A568D00DDA58A /* Three20Network.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Network.xcodeproj; path = three20/src/Three20Network/Three20Network.xcodeproj; sourceTree = "<group>"; };
@@ -621,9 +622,6 @@
 		B0455D13179584FC00B99CF5 /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPKeyboardAvoidingScrollView.h; path = UPDIS/TPKeyboardAvoidingScrollView.h; sourceTree = SOURCE_ROOT; };
 		B0455D14179584FC00B99CF5 /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TPKeyboardAvoidingScrollView.m; path = UPDIS/TPKeyboardAvoidingScrollView.m; sourceTree = SOURCE_ROOT; };
 		B0455D161795886E00B99CF5 /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
-		B0455D191795894C00B99CF5 /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
-		B0455D1A1795894C00B99CF5 /* libPushSDK-Simulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPushSDK-Simulator.a"; sourceTree = "<group>"; };
-		B0455D1B1795894C00B99CF5 /* libPushSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPushSDK.a; sourceTree = "<group>"; };
 		B0455D1E1795897A00B99CF5 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		B0455D2217958DBB00B99CF5 /* sound.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sound.caf; sourceTree = "<group>"; };
 		B0455D2B1796729400B99CF5 /* PostMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostMessageViewController.h; sourceTree = "<group>"; };
@@ -841,8 +839,7 @@
 				B0C3820116E874170094BEED /* Foundation.framework in Frameworks */,
 				B0C3820316E874170094BEED /* CoreGraphics.framework in Frameworks */,
 				B0FCE5361726AA57004F030B /* PlausibleDatabase.framework in Frameworks */,
-				B0455D1C1795894C00B99CF5 /* libPushSDK-Simulator.a in Frameworks */,
-				B0455D1D1795894C00B99CF5 /* libPushSDK.a in Frameworks */,
+				848F1DA018AE47C500128DD0 /* libPushSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1152,9 +1149,8 @@
 			isa = PBXGroup;
 			children = (
 				B0455D2217958DBB00B99CF5 /* sound.caf */,
-				B0455D191795894C00B99CF5 /* APService.h */,
-				B0455D1A1795894C00B99CF5 /* libPushSDK-Simulator.a */,
-				B0455D1B1795894C00B99CF5 /* libPushSDK.a */,
+				848F1D9E18AE47C500128DD0 /* APService.h */,
+				848F1D9F18AE47C500128DD0 /* libPushSDK.a */,
 			);
 			name = Push;
 			path = lib;
@@ -2255,7 +2251,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/UPDIS/Utility/lib\"",
-					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/UPDIS-gmpgrsspkmuwcjcukibgpwxxojeu/Build/Products/Debug-iphoneos\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -2289,7 +2284,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/UPDIS/Utility/lib\"",
-					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/UPDIS-gmpgrsspkmuwcjcukibgpwxxojeu/Build/Products/Debug-iphoneos\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
