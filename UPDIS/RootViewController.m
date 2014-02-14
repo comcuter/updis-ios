@@ -8,7 +8,6 @@
 
 #import "RootViewController.h"
 #import "MTabBarItem.h"
-#import "CommonDetailViewController.h"
 #import "UpdateApp.h"
 
 @interface RootViewController ()

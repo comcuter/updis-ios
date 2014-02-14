@@ -967,6 +967,28 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		848F1D1318ADF69D00128DD0 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				B0FCE5671726B507004F030B /* SettingViewController.h */,
+				B0FCE5681726B507004F030B /* SettingViewController.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		848F1D1418ADF7DA00128DD0 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				B0FCE5641726B4F5004F030B /* CategoryMessageViewController.h */,
+				B0FCE5651726B4F5004F030B /* CategoryMessageViewController.m */,
+				B008D6E81782EE6D008BFDF1 /* CommonDetailViewController.h */,
+				B008D6E91782EE6D008BFDF1 /* CommonDetailViewController.m */,
+				B0BFFBF3178C28BD00676A56 /* CommentListViewController.h */,
+				B0BFFBF4178C28BE00676A56 /* CommentListViewController.m */,
+			);
+			name = Message;
+			sourceTree = "<group>";
+		};
 		8498795F183A568000DDA58A /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1605,20 +1627,14 @@
 				1C1AC393188430C9009C6E3C /* NoUse */,
 				B0D57AFA1781C9A800ABCBB8 /* Model */,
 				B0D57ADB1781BF0E00ABCBB8 /* TableView */,
+				848F1D1418ADF7DA00128DD0 /* Message */,
 				1C1AC3C6188453C8009C6E3C /* PersonQuery */,
 				1C1AC3CE18846F2C009C6E3C /* MyMessage */,
 				84D3DCD9188BD67400E7AF71 /* Project */,
+				848F1D1318ADF69D00128DD0 /* Settings */,
 				B021A4E717814C9B009FCBAC /* LoginViewController.h */,
 				B021A4E817814C9B009FCBAC /* LoginViewController.m */,
 				B021A4E917814C9B009FCBAC /* LoginViewController.xib */,
-				B0FCE5641726B4F5004F030B /* CategoryMessageViewController.h */,
-				B0FCE5651726B4F5004F030B /* CategoryMessageViewController.m */,
-				B008D6E81782EE6D008BFDF1 /* CommonDetailViewController.h */,
-				B008D6E91782EE6D008BFDF1 /* CommonDetailViewController.m */,
-				B0BFFBF3178C28BD00676A56 /* CommentListViewController.h */,
-				B0BFFBF4178C28BE00676A56 /* CommentListViewController.m */,
-				B0FCE5671726B507004F030B /* SettingViewController.h */,
-				B0FCE5681726B507004F030B /* SettingViewController.m */,
 				B0E2F1FD1793E1B100CFB876 /* WebContentViewController.h */,
 				B0E2F1FE1793E1B100CFB876 /* WebContentViewController.m */,
 			);
