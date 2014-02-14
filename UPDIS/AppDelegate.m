@@ -81,11 +81,9 @@
     }
 	[_window makeKeyAndVisible];
 
-//    [APService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
-//                                                   UIRemoteNotificationTypeSound |
-//                                                   UIRemoteNotificationTypeAlert)];
-//    [APService setupWithOption:launchOptions];
-//    [APService setTags:[NSSet setWithObjects:@"default", nil] alias:@"default"];
+    [APService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    [APService setupWithOption:launchOptions];
+    [APService setTags:[NSSet setWithObjects:@"default", nil] alias:nil callbackSelector:nil target:nil];
     return YES;
 }
 
