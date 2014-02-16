@@ -260,6 +260,10 @@
         TTAlert([feed objectForKey:@"msg"]);
     } else {
         [self showHUD:@"消息发布成功" isLoading:NO];
+        [self.btnCategory setTitle:nil forState:UIControlStateNormal];
+        self.txtDept.text = nil;
+        self.txtTitle.text = nil;
+        self.txtContent.text = nil;
     }
 }
 
@@ -276,7 +280,7 @@
     if (!isLoading) {
         mHud.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]] autorelease];
         mHud.mode = MBProgressHUDModeCustomView;
-        [mHud hide:YES afterDelay:1];
+        [mHud hide:YES afterDelay:2];
     } else {
         [mHud show:YES];
     }
