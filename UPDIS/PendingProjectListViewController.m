@@ -86,6 +86,7 @@
         
         cell.textLabel.backgroundColor = [UIColor clearColor];
         cell.textLabel.font = [UIFont boldSystemFontOfSize:17];
+        cell.textLabel.numberOfLines = 0;
         
         cell.detailTextLabel.backgroundColor = [UIColor clearColor];
         cell.detailTextLabel.font = [UIFont systemFontOfSize:13];

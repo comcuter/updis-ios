@@ -53,7 +53,8 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:titleIdentifier];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:titleIdentifier];
-            cell.textLabel.font = [UIFont boldSystemFontOfSize:20];
+            cell.textLabel.font = [UIFont boldSystemFontOfSize:17];
+            cell.textLabel.numberOfLines = 0;
         }
         
         cell.textLabel.text = self.project.projectName;
@@ -74,12 +75,14 @@
     if (indexPath.row == 2) {
         cell.textLabel.text = @"甲方";
         cell.detailTextLabel.text = [self convertBlankStringToDashIfPossible:self.project.partyAName];
+        cell.detailTextLabel.numberOfLines = 0;
         return cell;
     }
     
     if (indexPath.row == 3) {
         cell.textLabel.text = @"设计部门";
         cell.detailTextLabel.text = [self convertBlankStringToDashIfPossible:self.project.designDepartment];
+        cell.detailTextLabel.numberOfLines = 0;
         return cell;
     }
     
@@ -87,12 +90,14 @@
         cell.textLabel.text = @"项目负责人";
         NSString *projectLeaders = [self.project.projectLeaders componentsJoinedByString:@", "];
         cell.detailTextLabel.text = [self convertBlankStringToDashIfPossible:projectLeaders];
+        cell.detailTextLabel.numberOfLines = 0;
         return cell;
     }
     
     if (indexPath.row == 5) {
         cell.textLabel.text = @"规模";
         cell.detailTextLabel.text = [self convertBlankStringToDashIfPossible:self.project.projectScale];
+        cell.detailTextLabel.numberOfLines = 0;
         return cell;
     }
     
