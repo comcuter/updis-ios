@@ -17,6 +17,8 @@
 @property (nonatomic, retain) NSString *designDepartment;
 @property (nonatomic, retain) NSArray *projectLeaders;
 @property (nonatomic, retain) NSString *projectScale;
+@property (nonatomic, assign) BOOL isImportedProject;
+@property (nonatomic, assign) int activeTaskId;
 
 + (NSArray *)parseProjectsFromRawArray:(NSArray *)rawArray;
 

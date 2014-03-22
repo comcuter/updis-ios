@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		1C6EB2001890324E0058023E /* ProjectDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6EB1FF1890324E0058023E /* ProjectDetailViewController.m */; };
 		1C6EB209189037FF0058023E /* ProjectDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C6EB208189037FE0058023E /* ProjectDetailViewController.xib */; };
+		1CEB455A18D5B57800EAF6CB /* ActiveTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEB455818D5B57800EAF6CB /* ActiveTaskViewController.m */; };
+		1CEB455B18D5B57800EAF6CB /* ActiveTaskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CEB455918D5B57800EAF6CB /* ActiveTaskViewController.xib */; };
+		1CEB456518D5C28D00EAF6CB /* ActiveTaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEB456418D5C28D00EAF6CB /* ActiveTaskModel.m */; };
+		1CEB456918D5C48F00EAF6CB /* NSDictionaryAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEB456818D5C48F00EAF6CB /* NSDictionaryAdditions.m */; };
 		320AF8492C47A4D819F7C451 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 320AF8492C47A4D819F7C450 /* QuartzCore.framework */; };
 		843F25A6183A56B000DA6F98 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84987974183A568100DDA58A /* libThree20.a */; };
 		843F25A7183A56B000DA6F98 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 843F2583183A56A400DA6F98 /* libThree20Core.a */; };
@@ -444,6 +448,13 @@
 		1C6EB1FE1890324E0058023E /* ProjectDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectDetailViewController.h; sourceTree = "<group>"; };
 		1C6EB1FF1890324E0058023E /* ProjectDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectDetailViewController.m; sourceTree = "<group>"; };
 		1C6EB208189037FE0058023E /* ProjectDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectDetailViewController.xib; sourceTree = "<group>"; };
+		1CEB455718D5B57700EAF6CB /* ActiveTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveTaskViewController.h; sourceTree = "<group>"; };
+		1CEB455818D5B57800EAF6CB /* ActiveTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveTaskViewController.m; sourceTree = "<group>"; };
+		1CEB455918D5B57800EAF6CB /* ActiveTaskViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActiveTaskViewController.xib; sourceTree = "<group>"; };
+		1CEB456318D5C28D00EAF6CB /* ActiveTaskModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveTaskModel.h; sourceTree = "<group>"; };
+		1CEB456418D5C28D00EAF6CB /* ActiveTaskModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveTaskModel.m; sourceTree = "<group>"; };
+		1CEB456718D5C48F00EAF6CB /* NSDictionaryAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionaryAdditions.h; sourceTree = "<group>"; };
+		1CEB456818D5C48F00EAF6CB /* NSDictionaryAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionaryAdditions.m; sourceTree = "<group>"; };
 		320AF8492C47A4D819F7C450 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.frameworks; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		84470A54183A4886001AF68C /* Three20.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Three20.bundle; sourceTree = "<group>"; };
 		848F1CFD18ADC47300128DD0 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
@@ -910,6 +921,15 @@
 			name = MyMessage;
 			sourceTree = "<group>";
 		};
+		1CEB456618D5C48F00EAF6CB /* NSDictionaryAdditions */ = {
+			isa = PBXGroup;
+			children = (
+				1CEB456718D5C48F00EAF6CB /* NSDictionaryAdditions.h */,
+				1CEB456818D5C48F00EAF6CB /* NSDictionaryAdditions.m */,
+			);
+			path = NSDictionaryAdditions;
+			sourceTree = "<group>";
+		};
 		843F2574183A56A400DA6F98 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1009,6 +1029,11 @@
 				1C6EB1FE1890324E0058023E /* ProjectDetailViewController.h */,
 				1C6EB1FF1890324E0058023E /* ProjectDetailViewController.m */,
 				1C6EB208189037FE0058023E /* ProjectDetailViewController.xib */,
+				1CEB456318D5C28D00EAF6CB /* ActiveTaskModel.h */,
+				1CEB456418D5C28D00EAF6CB /* ActiveTaskModel.m */,
+				1CEB455718D5B57700EAF6CB /* ActiveTaskViewController.h */,
+				1CEB455818D5B57800EAF6CB /* ActiveTaskViewController.m */,
+				1CEB455918D5B57800EAF6CB /* ActiveTaskViewController.xib */,
 			);
 			name = Project;
 			sourceTree = "<group>";
@@ -1474,6 +1499,7 @@
 			children = (
 				B0FCE3351726AA57004F030B /* NTStyleSheet.h */,
 				B0FCE3361726AA57004F030B /* NTStyleSheet.m */,
+				1CEB456618D5C48F00EAF6CB /* NSDictionaryAdditions */,
 				1C1AC39418843506009C6E3C /* MHTabBarController */,
 				B020C560178E791000F17E41 /* PopListView */,
 				B0E53EE4178ABB6F001B6659 /* MessagesTableViewController */,
@@ -1671,7 +1697,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0460;
-				ORGANIZATIONNAME = tianv;
+				ORGANIZATIONNAME = UPDIS;
 				TargetAttributes = {
 					B0C381FA16E874170094BEED = {
 						DevelopmentTeam = G59AJ94VH2;
@@ -2007,6 +2033,7 @@
 				848F1D0F18ADC47300128DD0 /* iTunesArtwork.png in Resources */,
 				848F1D1018ADC47300128DD0 /* iTunesArtwork@2x.png in Resources */,
 				848F1D1218ADECE100128DD0 /* tab_icon_project@2x.png in Resources */,
+				1CEB455B18D5B57800EAF6CB /* ActiveTaskViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2100,6 +2127,9 @@
 				1C6EB2001890324E0058023E /* ProjectDetailViewController.m in Sources */,
 				84F6182818ADBE4A00D7761E /* ProjectViewController.m in Sources */,
 				848F1D3618AE0CB700128DD0 /* MBProgressHUD.m in Sources */,
+				1CEB455A18D5B57800EAF6CB /* ActiveTaskViewController.m in Sources */,
+				1CEB456518D5C28D00EAF6CB /* ActiveTaskModel.m in Sources */,
+				1CEB456918D5C48F00EAF6CB /* NSDictionaryAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2257,8 +2287,8 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "F75C3396-5C0C-4D74-B5C7-F1E11D1D455B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F75C3396-5C0C-4D74-B5C7-F1E11D1D455B";
+				PROVISIONING_PROFILE = "9B64DCF1-4DCF-47B9-B907-2D59D50B86AB";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9B64DCF1-4DCF-47B9-B907-2D59D50B86AB";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2290,8 +2320,8 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2D1F3D8A-D1BB-42CB-986F-1E8F5FBA2670";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2D1F3D8A-D1BB-42CB-986F-1E8F5FBA2670";
+				PROVISIONING_PROFILE = "6C9F7A66-EC7F-401A-8488-533C95F0CC2F";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6C9F7A66-EC7F-401A-8488-533C95F0CC2F";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

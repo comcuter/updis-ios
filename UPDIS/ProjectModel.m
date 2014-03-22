@@ -22,6 +22,8 @@
         p.designDepartment = [projectDic valueForKey:@"designDepartment"];
         p.projectLeaders = [projectDic valueForKey:@"projectLeaders"];
         p.projectScale = [projectDic valueForKey:@"projectScale"];
+        p.isImportedProject = [projectDic boolValueForKey:@"imported"];
+        p.activeTaskId = [projectDic intValueForKey:@"activeTaskId"];
         
         [result addObject:p];
     }

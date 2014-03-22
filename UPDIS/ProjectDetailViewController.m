@@ -7,6 +7,7 @@
 //
 
 #import "ProjectDetailViewController.h"
+#import "ActiveTaskViewController.h"
 
 @interface ProjectDetailViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -30,8 +31,6 @@
     
     UIImageView *titleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo3"]];
     self.navigationItem.titleView = titleImageView;
-    
-    self.tableView.allowsSelection = NO;
 }
 
 - (void)navigationBack
@@ -41,13 +40,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 6;
+    return 7;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *titleIdentifier = @"titleIdentifier";
     NSString *otherIdentifier = @"otherIdentifier";
+    NSString *activeTaskIdentifier = @"activeTaskIdentifier";
     
     if (indexPath.row == 0) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:titleIdentifier];
@@ -58,12 +58,36 @@
         }
         
         cell.textLabel.text = self.project.projectName;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }
+    
+    if (indexPath.row == 6) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:activeTaskIdentifier];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:activeTaskIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        if (self.project.isImportedProject) {
+            cell.textLabel.text = @"导入项目,不存在下达记录";
+        } else {
+            if (self.project.activeTaskId != 0) {
+                cell.textLabel.text = @"产品要求评审及任务下达记录";
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+            } else {
+                cell.textLabel.text = @"";
+            }
+        }
+        
         return cell;
     }
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:otherIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:otherIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     if (indexPath.row == 1) {
@@ -102,6 +126,18 @@
     }
     
     return nil;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.row == 6) {
+        if (!self.project.isImportedProject && self.project.activeTaskId != 0) {
+            ActiveTaskViewController *activeTaskVC = [[ActiveTaskViewController alloc] init];
+            activeTaskVC.activeTaskId = self.project.activeTaskId;
+            [self.navigationController pushViewController:activeTaskVC animated:YES];
+        }
+    }
 }
 
 - (NSString *)convertBlankStringToDashIfPossible:(NSString *)originalString

@@ -17,4 +17,5 @@
     #import "ReLoginAssisant.h"
     #import "Constant.h"
     #import "MBProgressHUD.h"
+    #import "NSDictionaryAdditions.h"
 #endif
