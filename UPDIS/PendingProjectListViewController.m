@@ -15,6 +15,7 @@
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, retain) IBOutlet UIView *loadingView;
+@property (nonatomic, retain) IBOutlet UIView *noPendingProjectsView;
 @property (nonatomic, retain) NSArray *pendingProjects;
 
 @end
@@ -34,6 +35,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     self.loadingView.hidden = NO;
+    self.noPendingProjectsView.hidden = YES;
     
     NSURL *pendingProjectsURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", MAIN_DOMAIN, PENDING_PROJECTS]];
     ASIHTTPRequest *strongRequest = [[ASIHTTPRequest alloc] initWithURL:pendingProjectsURL];
@@ -53,11 +55,22 @@
         } else {
             // TODO: 提示出错.
         }
+        
+        if (self.pendingProjects.count == 0) {
+            self.noPendingProjectsView.hidden = NO;
+        } else {
+            self.noPendingProjectsView.hidden = YES;
+        }
     };
 
     request.failedBlock = ^{
         self.loadingView.hidden = YES;
         // TODO: 提示出错.
+        if (self.pendingProjects.count == 0) {
+            self.noPendingProjectsView.hidden = NO;
+        } else {
+            self.noPendingProjectsView.hidden = YES;
+        }
     };
     
     [request startAsynchronous];
