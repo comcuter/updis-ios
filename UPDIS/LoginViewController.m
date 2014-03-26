@@ -171,7 +171,8 @@
             [[NSUserDefaults standardUserDefaults] setValue:self.txtUserPwd.text forKey:@"plainTextPassword"];
             [[NSUserDefaults standardUserDefaults] setValue:[self.txtUserName text] forKey:@"userName"];
             [[NSUserDefaults standardUserDefaults] setValue:[userDic objectForKey:@"isSpecialUser"] forKey:@"isSpecialUser"];
-            [[NSUserDefaults standardUserDefaults] synchronize];//表示同步保存
+            [[NSUserDefaults standardUserDefaults] setValue:[userDic objectForKey:@"canViewTender"] forKey:@"canViewTender"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
         } else {
             TTAlert([userDic objectForKey:@"msg"]);
         }

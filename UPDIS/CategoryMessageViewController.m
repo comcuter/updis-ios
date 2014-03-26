@@ -40,6 +40,7 @@
 - (void)viewDidLoad
 {
     BOOL isSpecailUser = [[[NSUserDefaults standardUserDefaults] valueForKey:@"isSpecialUser"] integerValue];
+    BOOL canViewTender = [[[NSUserDefaults standardUserDefaults] valueForKey:@"canViewTender"] integerValue];
 
     //通知
     CommonListViewController *listView1 = [[CommonListViewController alloc] initWithListType:ListTypeNotice];
@@ -57,12 +58,15 @@
     CommonListViewController *listView5 = [[CommonListViewController alloc] initWithListType:ListTypeProject];
     listView5.title = @"在谈项目";
 
-    NSArray *viewControllers = nil;
+    NSMutableArray *viewControllers = [@[ listView1, listView3, listView4 ] mutableCopy];
     if (isSpecailUser) {
-        viewControllers = [NSArray arrayWithObjects:listView1,listView2,listView3,listView4,listView5, nil];
-    } else {
-        viewControllers = [NSArray arrayWithObjects:listView1,listView2,listView3,listView4, nil];
+        [viewControllers addObject:listView5];
     }
+    
+    if (canViewTender) {
+        [viewControllers insertObject:listView2 atIndex:1];
+    }
+
     self.viewControllers = viewControllers;
 
     TT_RELEASE_SAFELY(listView1);
