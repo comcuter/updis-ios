@@ -43,6 +43,16 @@
     return 7;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 2) {
+        CGSize contentSize = [self.project.partyAName sizeWithFont:[UIFont systemFontOfSize:17] constrainedToSize:CGSizeMake(290, 2000) lineBreakMode:UILineBreakModeCharacterWrap];
+        return MAX(contentSize.height, 44);
+    } else {
+        return 44;
+    }
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *titleIdentifier = @"titleIdentifier";
@@ -92,20 +102,20 @@
     
     if (indexPath.row == 1) {
         cell.textLabel.text = @"项目编号";
-        cell.detailTextLabel.text = [self convertBlankStringToDashIfPossible:self.project.projectNumber];
+        cell.detailTextLabel.text = convertBlankStringToDashIfPossible(self.project.projectNumber);
         return cell;
     }
     
     if (indexPath.row == 2) {
         cell.textLabel.text = @"甲方";
-        cell.detailTextLabel.text = [self convertBlankStringToDashIfPossible:self.project.partyAName];
+        cell.detailTextLabel.text = convertBlankStringToDashIfPossible(self.project.partyAName);
         cell.detailTextLabel.numberOfLines = 0;
         return cell;
     }
     
     if (indexPath.row == 3) {
         cell.textLabel.text = @"设计部门";
-        cell.detailTextLabel.text = [self convertBlankStringToDashIfPossible:self.project.designDepartment];
+        cell.detailTextLabel.text = convertBlankStringToDashIfPossible(self.project.designDepartment);
         cell.detailTextLabel.numberOfLines = 0;
         return cell;
     }
@@ -113,14 +123,14 @@
     if (indexPath.row == 4) {
         cell.textLabel.text = @"项目负责人";
         NSString *projectLeaders = [self.project.projectLeaders componentsJoinedByString:@", "];
-        cell.detailTextLabel.text = [self convertBlankStringToDashIfPossible:projectLeaders];
+        cell.detailTextLabel.text = convertBlankStringToDashIfPossible(projectLeaders);
         cell.detailTextLabel.numberOfLines = 0;
         return cell;
     }
     
     if (indexPath.row == 5) {
         cell.textLabel.text = @"规模";
-        cell.detailTextLabel.text = [self convertBlankStringToDashIfPossible:self.project.projectScale];
+        cell.detailTextLabel.text = convertBlankStringToDashIfPossible(self.project.projectScale);
         cell.detailTextLabel.numberOfLines = 0;
         return cell;
     }
@@ -137,15 +147,6 @@
             activeTaskVC.activeTaskId = self.project.activeTaskId;
             [self.navigationController pushViewController:activeTaskVC animated:YES];
         }
-    }
-}
-
-- (NSString *)convertBlankStringToDashIfPossible:(NSString *)originalString
-{
-    if (originalString.length == 0) {
-        return @"-";
-    } else {
-        return originalString;
     }
 }
 
