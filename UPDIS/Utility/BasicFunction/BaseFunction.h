@@ -18,6 +18,10 @@
 #import "Reachability.h"
 #import "DataBase.h"
 #import "CoreAnimationEffect.h"
+#import "MBProgressHUD.h"
+
+NSString *convertBlankStringToDashIfPossible(NSString *originalString);
+NSString *convertBoolToChinese(BOOL boolValue);
 
 @interface BaseFunction : NSObject
 
@@ -29,4 +33,5 @@
 
 +(BOOL)checkIsNull:(id)object;
 + (NSString *)flattenHTML:(NSString *)html;
+
 @end

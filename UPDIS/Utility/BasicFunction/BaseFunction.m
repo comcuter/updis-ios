@@ -23,6 +23,24 @@
 
 #define CHUNK_SIZE 1024
 
+NSString *convertBlankStringToDashIfPossible(NSString *originalString)
+{
+    if (originalString.length == 0) {
+        return @"-";
+    } else {
+        return originalString;
+    }
+}
+
+NSString *convertBoolToChinese(BOOL boolValue)
+{
+    if (boolValue) {
+        return @"是";
+    } else {
+        return @"否";
+    }
+}
+
 @implementation BaseFunction
 
 + (NSString *)getMacAddress2

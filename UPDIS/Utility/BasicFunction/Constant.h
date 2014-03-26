@@ -38,6 +38,10 @@
 
 // 待处理项目列表
 #define PENDING_PROJECTS            @"/project/getPendingProjects"
+// 任务下达单
+#define URL_GET_ACTVIE_TASK         @"%@/project/getActiveTask?id=%d"
+// 所长审批
+#define URL_REVIEW_ACTIVE_TASK      @"%@/project/reviewActiveTask?id=%d"
 
 //获取关于
 #define INTERFACE_FETCH_ABOUT       @"%@/settings/about"
@@ -50,11 +54,7 @@
 
 #define UPDATE_URL                  @"itms-services://?action=download-manifest&url=%@"
 
-//指针安全释放
 //==============================目录函数宏定义==========================
-
-
-
 #define APP_DOC_DIR     NSTemporaryDirectory()
 
 #define APP_DIR         [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]
@@ -68,5 +68,5 @@
 #define USER_REG_PHONE_CACHE_FILE   [NSString stringWithFormat:@"%@/%@",APP_DOC_DIR,@"USER_REG_PHONE_CACHE_FILE"]
 
 
-#define iPhone5         ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+#define iPhone5  ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
 

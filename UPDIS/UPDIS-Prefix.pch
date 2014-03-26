@@ -18,4 +18,5 @@
     #import "Constant.h"
     #import "MBProgressHUD.h"
     #import "NSDictionaryAdditions.h"
+    #import "BaseFunction.h"
 #endif
