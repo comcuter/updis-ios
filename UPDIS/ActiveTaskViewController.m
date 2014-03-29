@@ -17,7 +17,7 @@ typedef enum : NSUInteger {
     HUDTypeMessage = 2,
 } HUDType;
 
-@interface ActiveTaskViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface ActiveTaskViewController ()<UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
 
 @property (nonatomic, retain) ActiveTaskModel *activeTask;
 @property (nonatomic, retain) IBOutlet UI7TableView *tableView;
@@ -176,6 +176,7 @@ typedef enum : NSUInteger {
         commonCell.detailTextLabel.numberOfLines = 0;
         commonCell.detailTextLabel.adjustsFontSizeToFitWidth = YES;
     }
+    commonCell.detailTextLabel.textColor = [UIColor colorWithRed:0.22 green:0.33 blue:0.55 alpha:1.0];
     
     switch (indexPath.section) {
         case 0:
@@ -338,12 +339,18 @@ typedef enum : NSUInteger {
             if (indexPath.row == 0) {
                 commonCell.textLabel.text = @"评审人";
                 commonCell.detailTextLabel.text = convertBlankStringToDashIfPossible(self.activeTask.directorReviewer);
+                if (self.activeTask.directorReviewer.length > 0) {
+                    commonCell.detailTextLabel.textColor = [UIColor redColor];
+                }
                 return commonCell;
             }
             
             if (indexPath.row == 1) {
                 commonCell.textLabel.text = @"评审时间";
                 commonCell.detailTextLabel.text = convertBlankStringToDashIfPossible(self.activeTask.directorReviewerApplyTime);
+                if (self.activeTask.directorReviewerApplyTime.length > 0) {
+                    commonCell.detailTextLabel.textColor = [UIColor redColor];
+                }
                 return commonCell;
             }
             
@@ -361,7 +368,7 @@ typedef enum : NSUInteger {
                 }
                 
                 reviewCell.textLabel.textColor = [UIColor redColor];
-                reviewCell.textLabel.text = @"所长审批";
+                reviewCell.textLabel.text = @"所长审批通过";
                 return reviewCell;
             }
             return nil;
@@ -379,37 +386,58 @@ typedef enum : NSUInteger {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.section == 6 && indexPath.row == 0) {
-        [self showHUDWithText:@"数据提交中..." type:HUDTypeLoading];
-        
-        NSURL *requestURL = [NSURL URLWithString:[NSString stringWithFormat:URL_REVIEW_ACTIVE_TASK, MAIN_DOMAIN, self.activeTaskId]];
-        ASIHTTPRequest *strongRequest = [[ASIHTTPRequest alloc] initWithURL:requestURL];
-        __weak ASIHTTPRequest *weakRequest = strongRequest;
-        
-        NSString *cookie = [NSString stringWithFormat:@"JSESSIONID=%@; Path=/rest/; HttpOnly", [[NSUserDefaults standardUserDefaults] valueForKey:@"cookies"]];
-        [weakRequest addRequestHeader:@"Cookie" value:cookie];
-        
-        weakRequest.completionBlock = ^{
-            [self.HUD hide:NO];
-            
-            NSError *error = nil;
-            NSDictionary *responseDic = [NSJSONSerialization JSONObjectWithData:weakRequest.responseData options:0 error:&error];
-            if (error == nil && [responseDic intValueForKey:@"success"] == 1) {
-                [self showHUDWithText:@"审批成功" type:HUDTypeMessage];
-                self.activeTask.showButton = NO;
-                [self.tableView reloadData];
-                [self loadActiveTaskWithHUD:NO];
-            } else {
-                TTAlert(@"审批失败!");
-            }
-        };
-        
-        weakRequest.failedBlock = ^{
-            [self.HUD hide:YES];
-            TTAlert(@"审批失败!");
-        };
-        
-        [weakRequest startAsynchronous];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                            message:@"确定审批通过?"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"取消"
+                                                  otherButtonTitles:@"确定", nil];
+        [alertView show];
     }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == alertView.cancelButtonIndex) {
+        return;
+    }
+    
+    if (buttonIndex == 1) {
+        [self directorReview];
+    }
+}
+
+- (void)directorReview
+{
+    [self showHUDWithText:@"数据提交中..." type:HUDTypeLoading];
+    
+    NSURL *requestURL = [NSURL URLWithString:[NSString stringWithFormat:URL_REVIEW_ACTIVE_TASK, MAIN_DOMAIN, self.activeTaskId]];
+    ASIHTTPRequest *strongRequest = [[ASIHTTPRequest alloc] initWithURL:requestURL];
+    __weak ASIHTTPRequest *weakRequest = strongRequest;
+    
+    NSString *cookie = [NSString stringWithFormat:@"JSESSIONID=%@; Path=/rest/; HttpOnly", [[NSUserDefaults standardUserDefaults] valueForKey:@"cookies"]];
+    [weakRequest addRequestHeader:@"Cookie" value:cookie];
+    
+    weakRequest.completionBlock = ^{
+        [self.HUD hide:NO];
+        
+        NSError *error = nil;
+        NSDictionary *responseDic = [NSJSONSerialization JSONObjectWithData:weakRequest.responseData options:0 error:&error];
+        if (error == nil && [responseDic intValueForKey:@"success"] == 1) {
+            [self showHUDWithText:@"审批成功" type:HUDTypeMessage];
+            self.activeTask.showButton = NO;
+            [self.tableView reloadData];
+            [self loadActiveTaskWithHUD:NO];
+        } else {
+            TTAlert(@"审批失败!");
+        }
+    };
+    
+    weakRequest.failedBlock = ^{
+        [self.HUD hide:YES];
+        TTAlert(@"审批失败!");
+    };
+    
+    [weakRequest startAsynchronous];
 }
 
 - (void)showHUDWithText:(NSString *)text type:(HUDType)type
