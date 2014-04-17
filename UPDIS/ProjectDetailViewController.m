@@ -48,6 +48,10 @@
     if (indexPath.row == 2) {
         CGSize contentSize = [self.project.partyAName sizeWithFont:[UIFont systemFontOfSize:17] constrainedToSize:CGSizeMake(290, 2000) lineBreakMode:UILineBreakModeCharacterWrap];
         return MAX(contentSize.height, 44);
+    } else if (indexPath.row == 4) {
+        NSString *projectLeads = [self.project.projectLeaders componentsJoinedByString:@", "];
+        CGSize contentSize = [projectLeads sizeWithFont:[UIFont systemFontOfSize:17] constrainedToSize:CGSizeMake(200, 2000) lineBreakMode:UILineBreakModeCharacterWrap];
+        return MAX(contentSize.height, 44);
     } else {
         return 44;
     }

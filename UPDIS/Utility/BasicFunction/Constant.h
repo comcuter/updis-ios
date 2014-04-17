@@ -42,6 +42,8 @@
 #define URL_GET_ACTVIE_TASK         @"%@/project/getActiveTask?id=%d"
 // 所长审批
 #define URL_REVIEW_ACTIVE_TASK      @"%@/project/reviewActiveTask?id=%d"
+#define URL_PROJECT_LEAD_REVIEW_ACTIVE_TASK @"%@/project/projectLeadReviewActiveTask?id=%d"
+#define URL_PROJECT_LEAD_REJECT_ACTIVE_TASK @"%@/project/projectLeadRejectActiveTask"
 
 //获取关于
 #define INTERFACE_FETCH_ABOUT       @"%@/settings/about"

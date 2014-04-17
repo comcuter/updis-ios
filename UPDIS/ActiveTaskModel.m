@@ -13,6 +13,7 @@
 + (ActiveTaskModel *)parseActiveTaskFromRawDic:(NSDictionary *)rawDic
 {
     ActiveTaskModel *activeTask = [[ActiveTaskModel alloc] init];
+    activeTask.stateId = [rawDic intValueForKey:@"stateId"];
     activeTask.state = [rawDic stringValueForKey:@"state"];
     activeTask.partner = [rawDic stringValueForKey:@"partner"];
     activeTask.partnerType = [rawDic stringValueForKey:@"partnerType"];
@@ -41,7 +42,25 @@
     activeTask.directorReviewer = [rawDic stringValueForKey:@"directorReviewer"];
     activeTask.directorReviewerApplyTime = [rawDic stringValueForKey:@"directorReviewerApplyTime"];
     
-    activeTask.showButton = [rawDic boolValueForKey:@"showButton"];
+    activeTask.showDirectorReviewButton = [rawDic boolValueForKey:@"showDirectorReviewButton"];
+    
+    activeTask.pingShenFangShi = [rawDic stringValueForKey:@"pingShenFangShi"];
+    activeTask.yinFaCuoShi = [rawDic stringValueForKey:@"yinFaCuoShi"];
+    activeTask.renWuYaoQiu = [rawDic stringValueForKey:@"renWuYaoQiu"];
+    activeTask.chengJieBuMen = [rawDic stringValueForKey:@"chengJieBuMen"];
+    activeTask.jingYingShiReviewer = [rawDic stringValueForKey:@"jingYingShiReviewer"];
+    activeTask.jingYingShiReviewApplyTime = [rawDic stringValueForKey:@"jingYingShiReviewApplyTime"];
+    
+    activeTask.projectCategory = [rawDic stringValueForKey:@"projectCategory"];
+    activeTask.guanLiJiBie = [rawDic stringValueForKey:@"guanLiJiBie"];
+    activeTask.projectLead = [rawDic stringValueForKey:@"projectLead"];
+    activeTask.zhuGuanZongShi = [rawDic stringValueForKey:@"zhuGuanZongShi"];
+    activeTask.zongShiShiReviewer = [rawDic stringValueForKey:@"zongShiShiReviewer"];
+    activeTask.zongShiShiReviewApplyTime = [rawDic stringValueForKey:@"zongShiShiReviewApplyTime"];
+    
+    activeTask.showProjectLeadReviewAndRejectButton = [rawDic boolValueForKey:@"showProjectLeadReviewAndRejectButton"];
+    activeTask.projectLeadReviewer = [rawDic stringValueForKey:@"projectLeadReviewer"];
+    activeTask.projectLeadReviewApplyTime = [rawDic stringValueForKey:@"projectLeadReviewApplyTime"];
     
     return activeTask;
 }

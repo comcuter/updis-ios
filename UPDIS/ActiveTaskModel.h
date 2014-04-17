@@ -10,6 +10,7 @@
 
 @interface ActiveTaskModel : NSObject
 
+@property (nonatomic, assign) int stateId;
 @property (nonatomic, retain) NSString *state;
 @property (nonatomic, retain) NSString *partner;
 @property (nonatomic, retain) NSString *partnerType;
@@ -38,7 +39,28 @@
 @property (nonatomic, retain) NSString *directorReviewer;
 @property (nonatomic, retain) NSString *directorReviewerApplyTime;
 
-@property (nonatomic, assign) BOOL showButton;
+@property (nonatomic, assign) BOOL showDirectorReviewButton;
+
+// 经营室相关字段.
+@property (nonatomic, retain) NSString *pingShenFangShi;
+@property (nonatomic, retain) NSString *yinFaCuoShi;
+@property (nonatomic, retain) NSString *renWuYaoQiu;
+@property (nonatomic, retain) NSString *chengJieBuMen;
+@property (nonatomic, retain) NSString *jingYingShiReviewer;
+@property (nonatomic, retain) NSString *jingYingShiReviewApplyTime;
+
+// 总师室相关字段
+@property (nonatomic, retain) NSString *projectCategory;
+@property (nonatomic, retain) NSString *guanLiJiBie;
+@property (nonatomic, retain) NSString *projectLead;
+@property (nonatomic, retain) NSString *zhuGuanZongShi;
+@property (nonatomic, retain) NSString *zongShiShiReviewer;
+@property (nonatomic, retain) NSString *zongShiShiReviewApplyTime;
+
+// 负责人签字相关字段
+@property (nonatomic, assign) BOOL showProjectLeadReviewAndRejectButton;
+@property (nonatomic, retain) NSString *projectLeadReviewer;
+@property (nonatomic, retain) NSString *projectLeadReviewApplyTime;
 
 + (ActiveTaskModel *)parseActiveTaskFromRawDic:(NSDictionary *)rawDic;
 
