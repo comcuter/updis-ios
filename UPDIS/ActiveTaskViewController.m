@@ -123,12 +123,12 @@ typedef enum : NSUInteger {
     
     // 经营室相关数据
     if (self.activeTask.stateId >= 4) {
-        sectionNumber += 2;
+        sectionNumber += 1;
     }
     
     // 总师室相关字段.
     if (self.activeTask.stateId >= 5) {
-        sectionNumber += 2;
+        sectionNumber += 1;
     }
     
     if (self.activeTask.showProjectLeadReviewAndRejectButton) {
@@ -145,10 +145,10 @@ typedef enum : NSUInteger {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     switch (section) {
-        case 0:
+        case 0: // 基本信息
             return 5;
             break;
-        case 1:
+        case 1: 
             return 3;
             break;
         case 2:
@@ -160,31 +160,21 @@ typedef enum : NSUInteger {
         case 4:
             return 3;
             break;
-        case 5:
+        case 5: // 所长签字或签字时间
             if (self.activeTask.showDirectorReviewButton) {
                 return 1;
             } else {
                 return 2;
             }
             break;
-        case 6:
-            return 4;
+        case 6: // 经营室相关
+            return 6;
             break;
-        case 7:
+        case 7: // 总师室相关
+            return 6;
+            break;
+        case 8: // 启动打回按钮 或者 负责人签字和签字时间
             return 2;
-            break;
-        case 8:
-            return 4;
-            break;
-        case 9:
-            return 2;
-            break;
-        case 10:
-            if (self.activeTask.showProjectLeadReviewAndRejectButton) {
-                return 2;
-            } else {
-                return 2;
-            }
             break;
         default:
             return 0;
@@ -209,7 +199,7 @@ typedef enum : NSUInteger {
         } else {
             return 44;
         }
-    } else if (indexPath.section == 8) {
+    } else if (indexPath.section == 7) {
         if (indexPath.row == 2) {
             CGSize contentSize = [self.activeTask.projectLead sizeWithFont:[UIFont systemFontOfSize:17] constrainedToSize:CGSizeMake(250, 2000) lineBreakMode:UILineBreakModeCharacterWrap];
             return MAX(contentSize.height, 44);
@@ -234,6 +224,7 @@ typedef enum : NSUInteger {
         commonCell.detailTextLabel.numberOfLines = 0;
         commonCell.detailTextLabel.adjustsFontSizeToFitWidth = YES;
     }
+    commonCell.backgroundColor = [UIColor whiteColor];
     commonCell.detailTextLabel.textColor = [UIColor colorWithRed:0.22 green:0.33 blue:0.55 alpha:1.0];
     
     switch (indexPath.section) {
@@ -414,6 +405,7 @@ typedef enum : NSUInteger {
                     commonCell.detailTextLabel.text = convertBlankStringToDashIfPossible(self.activeTask.directorReviewer);
                     if (self.activeTask.directorReviewer.length > 0) {
                         commonCell.detailTextLabel.textColor = [UIColor redColor];
+                        commonCell.backgroundColor = RGBCOLOR(226, 237, 240);
                     }
                     return commonCell;
                 }
@@ -423,6 +415,7 @@ typedef enum : NSUInteger {
                     commonCell.detailTextLabel.text = convertBlankStringToDashIfPossible(self.activeTask.directorReviewerApplyTime);
                     if (self.activeTask.directorReviewerApplyTime.length > 0) {
                         commonCell.detailTextLabel.textColor = [UIColor redColor];
+                        commonCell.backgroundColor = RGBCOLOR(226, 237, 240);
                     }
                     return commonCell;
                 }
@@ -457,35 +450,31 @@ typedef enum : NSUInteger {
                 commonCell.detailTextLabel.text = convertBlankStringToDashIfPossible(self.activeTask.chengJieBuMen);
                 return commonCell;
             }
+            
+            if (indexPath.row == 4) {
+                commonCell.textLabel.text = @"经营室签字";
+                commonCell.detailTextLabel.text = convertBlankStringToDashIfPossible(self.activeTask.jingYingShiReviewer);
+                if (self.activeTask.jingYingShiReviewer.length > 0) {
+                    commonCell.detailTextLabel.textColor = [UIColor redColor];
+                    commonCell.backgroundColor = RGBCOLOR(226, 237, 240);
+                }
+                return commonCell;
+            }
+            
+            if (indexPath.row == 5) {
+                commonCell.textLabel.text = @"签字时间";
+                commonCell.detailTextLabel.text = convertBlankStringToDashIfPossible(self.activeTask.jingYingShiReviewApplyTime);
+                if (self.activeTask.jingYingShiReviewApplyTime.length > 0) {
+                    commonCell.detailTextLabel.textColor = [UIColor redColor];
+                    commonCell.backgroundColor =RGBCOLOR(226, 237, 240);
+                }
+                return commonCell;
+            }
             return nil;
             break;
         }
         
         case 7:
-        {
-            if (indexPath.row == 0) {
-                commonCell.textLabel.text = @"经营室签字";
-                commonCell.detailTextLabel.text = convertBlankStringToDashIfPossible(self.activeTask.jingYingShiReviewer);
-                if (self.activeTask.jingYingShiReviewer.length > 0) {
-                    commonCell.detailTextLabel.textColor = [UIColor redColor];
-                }
-                return commonCell;
-            }
-            
-            if (indexPath.row == 1) {
-                commonCell.textLabel.text = @"签字时间";
-                commonCell.detailTextLabel.text = convertBlankStringToDashIfPossible(self.activeTask.jingYingShiReviewApplyTime);
-                if (self.activeTask.jingYingShiReviewApplyTime.length > 0) {
-                    commonCell.detailTextLabel.textColor = [UIColor redColor];
-                }
-                return commonCell;
-            }
-            
-            return nil;
-            break;
-        }
-        
-        case 8:
         {
             if (indexPath.row == 0) {
                 commonCell.textLabel.text = @"类别";
@@ -511,27 +500,23 @@ typedef enum : NSUInteger {
                 return commonCell;
             }
             
-            return nil;
-            break;
-        }
-            
-        case 9:
-        {
-            if (indexPath.row == 0) {
+            if (indexPath.row == 4) {
                 commonCell.textLabel.text = @"总师室签字";
                 commonCell.detailTextLabel.text = convertBlankStringToDashIfPossible(self.activeTask.zongShiShiReviewer);
                 if (self.activeTask.zongShiShiReviewer.length > 0) {
                     commonCell.detailTextLabel.textColor = [UIColor redColor];
+                    commonCell.backgroundColor = RGBCOLOR(226, 237, 240);
                 }
                 
                 return commonCell;
             }
             
-            if (indexPath.row == 1) {
+            if (indexPath.row == 5) {
                 commonCell.textLabel.text = @"签字时间";
                 commonCell.detailTextLabel.text = convertBlankStringToDashIfPossible(self.activeTask.zongShiShiReviewApplyTime);
                 if (self.activeTask.zongShiShiReviewApplyTime.length > 0) {
                     commonCell.detailTextLabel.textColor = [UIColor redColor];
+                    commonCell.backgroundColor = RGBCOLOR(226, 237, 240);
                 }
                 
                 return commonCell;
@@ -541,7 +526,7 @@ typedef enum : NSUInteger {
             break;
         }
             
-        case 10:
+        case 8:
         {
             if (self.activeTask.showProjectLeadReviewAndRejectButton) {
                 if (indexPath.row == 0) {
@@ -574,6 +559,7 @@ typedef enum : NSUInteger {
                     commonCell.detailTextLabel.text = convertBlankStringToDashIfPossible(self.activeTask.projectLeadReviewer);
                     if (self.activeTask.projectLeadReviewer.length > 0) {
                         commonCell.detailTextLabel.textColor = [UIColor redColor];
+                        commonCell.backgroundColor = RGBCOLOR(226, 237, 240);
                     }
                     
                     return commonCell;
@@ -584,6 +570,7 @@ typedef enum : NSUInteger {
                     commonCell.detailTextLabel.text = convertBlankStringToDashIfPossible(self.activeTask.projectLeadReviewApplyTime);
                     if (self.activeTask.projectLeadReviewApplyTime.length > 0) {
                         commonCell.detailTextLabel.textColor = [UIColor redColor];
+                        commonCell.backgroundColor = RGBCOLOR(226, 237, 240);
                     }
                     
                     return commonCell;
@@ -613,7 +600,7 @@ typedef enum : NSUInteger {
     }
     
     if (self.activeTask.showProjectLeadReviewAndRejectButton) {
-        if (indexPath.section == 10 && indexPath.row == 0) {
+        if (indexPath.section == 8 && indexPath.row == 0) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
                                                                 message:@"确定启动项目?"
                                                                delegate:self
@@ -621,7 +608,7 @@ typedef enum : NSUInteger {
                                                       otherButtonTitles:@"确定", nil];
             alertView.tag = AlertTagConfirmProjectLeadReview;
             [alertView show];
-        } else if (indexPath.section == 10 && indexPath.row == 1) {
+        } else if (indexPath.section == 8 && indexPath.row == 1) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"打回申请单"
                                                                 message:@""
                                                                delegate:self
