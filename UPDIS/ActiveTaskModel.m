@@ -51,6 +51,7 @@
     activeTask.jingYingShiReviewer = [rawDic stringValueForKey:@"jingYingShiReviewer"];
     activeTask.jingYingShiReviewApplyTime = [rawDic stringValueForKey:@"jingYingShiReviewApplyTime"];
     
+    activeTask.showZongShiReviewButton = [rawDic boolValueForKey:@"showZongShiReviewButton"];
     activeTask.projectCategory = [rawDic stringValueForKey:@"projectCategory"];
     activeTask.guanLiJiBie = [rawDic stringValueForKey:@"guanLiJiBie"];
     activeTask.projectLead = [rawDic stringValueForKey:@"projectLead"];

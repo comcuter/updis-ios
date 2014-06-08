@@ -11,11 +11,16 @@
 #import <UI7Kit/UI7TableView.h>
 #import <UI7Kit/UI7TableViewCell.h>
 #import <UI7Kit/UI7Font.h>
+#import "ZongShiReviewViewController.h"
 
 typedef enum : NSUInteger {
     AlertTagConfirmDirectorReview = 1,
+    
     AlertTagConfirmProjectLeadReview = 2,
     AlertTagConfirmProjectLeadReject = 3,
+    
+    AlertTagConfirmZongShiReview = 4,
+    AlertTagCongirmZongShiReject = 5,
 } AlertTag;
 
 typedef enum : NSUInteger {
@@ -52,10 +57,6 @@ typedef enum : NSUInteger {
     self.tableView.delegate = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.separatorColor = [UIColor colorWithRed:229./255 green:229./255 blue:229./255 alpha:1.0];
-    
-    UIView *tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
-    tableFooterView.backgroundColor = [UIColor clearColor];
-    self.tableView.tableFooterView = tableFooterView;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -126,6 +127,10 @@ typedef enum : NSUInteger {
         sectionNumber += 1;
     }
     
+    if (self.activeTask.showZongShiReviewButton) {
+        sectionNumber += 1;
+    }
+    
     // 总师室相关字段.
     if (self.activeTask.stateId >= 5) {
         sectionNumber += 1;
@@ -167,11 +172,15 @@ typedef enum : NSUInteger {
                 return 2;
             }
             break;
-        case 6: // 经营室相关
+        case 6: // 经营室相关字段.
             return 6;
             break;
-        case 7: // 总师室相关
-            return 6;
+        case 7: // 总师室相关 或者 总师审批通过和打回按钮.
+            if (self.activeTask.showZongShiReviewButton) {
+                return 2;
+            } else {
+                return 6;
+            }
             break;
         case 8: // 启动打回按钮 或者 负责人签字和签字时间
             return 2;
@@ -476,50 +485,76 @@ typedef enum : NSUInteger {
         
         case 7:
         {
-            if (indexPath.row == 0) {
-                commonCell.textLabel.text = @"类别";
-                commonCell.detailTextLabel.text = convertBlankStringToDashIfPossible(self.activeTask.projectCategory);
-                return commonCell;
-            }
-            
-            if (indexPath.row == 1) {
-                commonCell.textLabel.text = @"项目管理级别";
-                commonCell.detailTextLabel.text = convertBlankStringToDashIfPossible(self.activeTask.guanLiJiBie);
-                return commonCell;
-            }
-            
-            if (indexPath.row == 2) {
-                commonCell.textLabel.text = @"项目负责人";
-                commonCell.detailTextLabel.text = convertBlankStringToDashIfPossible(self.activeTask.projectLead);
-                return commonCell;
-            }
-            
-            if (indexPath.row == 3) {
-                commonCell.textLabel.text = @"主管总师";
-                commonCell.detailTextLabel.text = convertBlankStringToDashIfPossible(self.activeTask.zhuGuanZongShi);
-                return commonCell;
-            }
-            
-            if (indexPath.row == 4) {
-                commonCell.textLabel.text = @"总师室签字";
-                commonCell.detailTextLabel.text = convertBlankStringToDashIfPossible(self.activeTask.zongShiShiReviewer);
-                if (self.activeTask.zongShiShiReviewer.length > 0) {
-                    commonCell.detailTextLabel.textColor = [UIColor redColor];
-                    commonCell.backgroundColor = RGBCOLOR(226, 237, 240);
+            if (self.activeTask.showZongShiReviewButton) {
+                if (indexPath.row == 0) {
+                    UI7TableViewCell *reviewCell = [tableView dequeueReusableCellWithIdentifier:reviewButtonCellIdentifier];
+                    if (reviewCell == nil) {
+                        reviewCell = [[UI7TableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reviewButtonCellIdentifier];
+                        reviewCell.textLabel.textAlignment = UITextAlignmentCenter;
+                    }
+                    
+                    reviewCell.textLabel.textColor = [UIColor redColor];
+                    reviewCell.textLabel.text = @"审批通过";
+                    return reviewCell;
                 }
                 
-                return commonCell;
-            }
-            
-            if (indexPath.row == 5) {
-                commonCell.textLabel.text = @"签字时间";
-                commonCell.detailTextLabel.text = convertBlankStringToDashIfPossible(self.activeTask.zongShiShiReviewApplyTime);
-                if (self.activeTask.zongShiShiReviewApplyTime.length > 0) {
-                    commonCell.detailTextLabel.textColor = [UIColor redColor];
-                    commonCell.backgroundColor = RGBCOLOR(226, 237, 240);
+                if (indexPath.row == 1) {
+                    UI7TableViewCell *rejectCell = [tableView dequeueReusableCellWithIdentifier:reviewButtonCellIdentifier];
+                    if (rejectCell == nil) {
+                        rejectCell = [[UI7TableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reviewButtonCellIdentifier];
+                        rejectCell.textLabel.textAlignment = UITextAlignmentCenter;
+                    }
+                    
+                    rejectCell.textLabel.textColor = [UIColor blackColor];
+                    rejectCell.textLabel.text = @"打回";
+                    return rejectCell;
+                }
+            } else {
+                if (indexPath.row == 0) {
+                    commonCell.textLabel.text = @"类别";
+                    commonCell.detailTextLabel.text = convertBlankStringToDashIfPossible(self.activeTask.projectCategory);
+                    return commonCell;
                 }
                 
-                return commonCell;
+                if (indexPath.row == 1) {
+                    commonCell.textLabel.text = @"项目管理级别";
+                    commonCell.detailTextLabel.text = convertBlankStringToDashIfPossible(self.activeTask.guanLiJiBie);
+                    return commonCell;
+                }
+                
+                if (indexPath.row == 2) {
+                    commonCell.textLabel.text = @"项目负责人";
+                    commonCell.detailTextLabel.text = convertBlankStringToDashIfPossible(self.activeTask.projectLead);
+                    return commonCell;
+                }
+                
+                if (indexPath.row == 3) {
+                    commonCell.textLabel.text = @"主管总师";
+                    commonCell.detailTextLabel.text = convertBlankStringToDashIfPossible(self.activeTask.zhuGuanZongShi);
+                    return commonCell;
+                }
+                
+                if (indexPath.row == 4) {
+                    commonCell.textLabel.text = @"总师室签字";
+                    commonCell.detailTextLabel.text = convertBlankStringToDashIfPossible(self.activeTask.zongShiShiReviewer);
+                    if (self.activeTask.zongShiShiReviewer.length > 0) {
+                        commonCell.detailTextLabel.textColor = [UIColor redColor];
+                        commonCell.backgroundColor = RGBCOLOR(226, 237, 240);
+                    }
+                    
+                    return commonCell;
+                }
+                
+                if (indexPath.row == 5) {
+                    commonCell.textLabel.text = @"签字时间";
+                    commonCell.detailTextLabel.text = convertBlankStringToDashIfPossible(self.activeTask.zongShiShiReviewApplyTime);
+                    if (self.activeTask.zongShiShiReviewApplyTime.length > 0) {
+                        commonCell.detailTextLabel.textColor = [UIColor redColor];
+                        commonCell.backgroundColor = RGBCOLOR(226, 237, 240);
+                    }
+                    
+                    return commonCell;
+                }
             }
             
             return nil;
@@ -576,6 +611,9 @@ typedef enum : NSUInteger {
                     return commonCell;
                 }
             }
+            
+            return nil;
+            break;
         }
         
         default:
@@ -623,6 +661,26 @@ typedef enum : NSUInteger {
             [alertView show];
         }
     }
+    
+    if (self.activeTask.showZongShiReviewButton) {
+        if (indexPath.section == 7 && indexPath.row == 0) {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                                message:@"确定审批通过?"
+                                                               delegate:self
+                                                      cancelButtonTitle:@"取消"
+                                                      otherButtonTitles:@"确定", nil];
+            alertView.tag = AlertTagConfirmZongShiReview;
+            [alertView show];
+        } else if (indexPath.section == 7 && indexPath.row == 1) {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                                message:@"确定打回?"
+                                                               delegate:self
+                                                      cancelButtonTitle:@"取消"
+                                                      otherButtonTitles:@"确定", nil];
+            alertView.tag = AlertTagCongirmZongShiReject;
+            [alertView show];
+        }
+    }
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -650,6 +708,18 @@ typedef enum : NSUInteger {
         if (buttonIndex == 1) {
             UITextField *commentTextField = [alertView textFieldAtIndex:0];
             [self projectLeadRejectWithComment:commentTextField.text];
+        }
+    }
+    
+    if (alertView.tag == AlertTagConfirmZongShiReview) {
+        if (buttonIndex == 1) {
+            [self zongShiReview];
+        }
+    }
+    
+    if (alertView.tag == AlertTagCongirmZongShiReject) {
+        if (buttonIndex == 1) {
+            [self zongShiReject];
         }
     }
 
@@ -762,6 +832,51 @@ typedef enum : NSUInteger {
     };
     
     [weakRequest startAsynchronous];
+}
+
+- (void)zongShiReview
+{
+    ZongShiReviewViewController *zongShiReviewVC = [[ZongShiReviewViewController alloc] init];
+    zongShiReviewVC.activeTask = self.activeTask;
+    [self.navigationController pushViewController:zongShiReviewVC animated:YES];
+}
+
+- (void)zongShiReject
+{
+    [self showHUDWithText:@"数据提交中..." type:HUDTypeLoading];
+    
+    NSURL *requestURL = [NSURL URLWithString:[NSString stringWithFormat:URL_ZONG_SHI_REJECT_ACTIVE_TASK, MAIN_DOMAIN, self.activeTaskId]];
+    ASIHTTPRequest *strongRequest = [[ASIHTTPRequest alloc] initWithURL:requestURL];
+    __weak ASIHTTPRequest *weakRequest = strongRequest;
+    
+    NSString *cookie = [NSString stringWithFormat:@"JSESSIONID=%@; Path=/rest/; HttpOnly", [[NSUserDefaults standardUserDefaults] valueForKey:@"cookies"]];
+    [weakRequest addRequestHeader:@"Cookie" value:cookie];
+    
+    weakRequest.completionBlock = ^{
+        [self.HUD hide:NO];
+        
+        NSError *error = nil;
+        NSDictionary *responseDic = [NSJSONSerialization JSONObjectWithData:weakRequest.responseData options:0 error:&error];
+        NSLog(@"%@", responseDic);
+        
+        if (error == nil && [responseDic intValueForKey:@"success"] == 1) {
+            [self showHUDWithText:@"打回成功" type:HUDTypeMessage];
+            self.activeTask.showZongShiReviewButton = NO;
+            [self.tableView reloadData];
+            [self loadActiveTaskWithHUD:NO];
+        } else {
+            TTAlert(@"提交数据失败!");
+        }
+    };
+    
+    weakRequest.failedBlock = ^{
+        NSLog(@"%@", weakRequest.error);
+        [self.HUD hide:YES];
+        TTAlert(@"提交数据失败");
+    };
+    
+    [weakRequest startAsynchronous];
+    
 }
 
 - (void)showHUDWithText:(NSString *)text type:(HUDType)type

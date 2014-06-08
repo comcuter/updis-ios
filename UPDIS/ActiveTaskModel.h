@@ -50,6 +50,7 @@
 @property (nonatomic, retain) NSString *jingYingShiReviewApplyTime;
 
 // 总师室相关字段
+@property (nonatomic, assign) BOOL showZongShiReviewButton;
 @property (nonatomic, retain) NSString *projectCategory;
 @property (nonatomic, retain) NSString *guanLiJiBie;
 @property (nonatomic, retain) NSString *projectLead;
