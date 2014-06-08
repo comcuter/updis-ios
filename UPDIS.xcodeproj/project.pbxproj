@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		1C6EB2001890324E0058023E /* ProjectDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6EB1FF1890324E0058023E /* ProjectDetailViewController.m */; };
 		1C6EB209189037FF0058023E /* ProjectDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C6EB208189037FE0058023E /* ProjectDetailViewController.xib */; };
+		1C87302319446A1B003C8538 /* ZongShiReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C87302119446A1B003C8538 /* ZongShiReviewViewController.m */; };
+		1C87302419446A1B003C8538 /* ZongShiReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C87302219446A1B003C8538 /* ZongShiReviewViewController.xib */; };
+		1C87302F194476A5003C8538 /* ProjectTypeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C87302D194476A5003C8538 /* ProjectTypeListViewController.m */; };
+		1C873030194476A5003C8538 /* ProjectTypeListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C87302E194476A5003C8538 /* ProjectTypeListViewController.xib */; };
+		1C873034194476BF003C8538 /* CategoryTypeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C873032194476BF003C8538 /* CategoryTypeListViewController.m */; };
+		1C873035194476BF003C8538 /* CategoryTypeListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C873033194476BF003C8538 /* CategoryTypeListViewController.xib */; };
+		1C87303E19447727003C8538 /* ChiefEngineerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C87303C19447726003C8538 /* ChiefEngineerListViewController.m */; };
+		1C87303F19447727003C8538 /* ChiefEngineerListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C87303D19447726003C8538 /* ChiefEngineerListViewController.xib */; };
 		1CEB455A18D5B57800EAF6CB /* ActiveTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEB455818D5B57800EAF6CB /* ActiveTaskViewController.m */; };
 		1CEB455B18D5B57800EAF6CB /* ActiveTaskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CEB455918D5B57800EAF6CB /* ActiveTaskViewController.xib */; };
 		1CEB456518D5C28D00EAF6CB /* ActiveTaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEB456418D5C28D00EAF6CB /* ActiveTaskModel.m */; };
@@ -449,6 +457,18 @@
 		1C6EB1FE1890324E0058023E /* ProjectDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectDetailViewController.h; sourceTree = "<group>"; };
 		1C6EB1FF1890324E0058023E /* ProjectDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectDetailViewController.m; sourceTree = "<group>"; };
 		1C6EB208189037FE0058023E /* ProjectDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectDetailViewController.xib; sourceTree = "<group>"; };
+		1C87302019446A1B003C8538 /* ZongShiReviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZongShiReviewViewController.h; sourceTree = "<group>"; };
+		1C87302119446A1B003C8538 /* ZongShiReviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZongShiReviewViewController.m; sourceTree = "<group>"; };
+		1C87302219446A1B003C8538 /* ZongShiReviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZongShiReviewViewController.xib; sourceTree = "<group>"; };
+		1C87302C194476A5003C8538 /* ProjectTypeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectTypeListViewController.h; sourceTree = "<group>"; };
+		1C87302D194476A5003C8538 /* ProjectTypeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectTypeListViewController.m; sourceTree = "<group>"; };
+		1C87302E194476A5003C8538 /* ProjectTypeListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectTypeListViewController.xib; sourceTree = "<group>"; };
+		1C873031194476BF003C8538 /* CategoryTypeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryTypeListViewController.h; sourceTree = "<group>"; };
+		1C873032194476BF003C8538 /* CategoryTypeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryTypeListViewController.m; sourceTree = "<group>"; };
+		1C873033194476BF003C8538 /* CategoryTypeListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryTypeListViewController.xib; sourceTree = "<group>"; };
+		1C87303B19447726003C8538 /* ChiefEngineerListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChiefEngineerListViewController.h; sourceTree = "<group>"; };
+		1C87303C19447726003C8538 /* ChiefEngineerListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChiefEngineerListViewController.m; sourceTree = "<group>"; };
+		1C87303D19447726003C8538 /* ChiefEngineerListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChiefEngineerListViewController.xib; sourceTree = "<group>"; };
 		1CEB455718D5B57700EAF6CB /* ActiveTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveTaskViewController.h; sourceTree = "<group>"; };
 		1CEB455818D5B57800EAF6CB /* ActiveTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveTaskViewController.m; sourceTree = "<group>"; };
 		1CEB455918D5B57800EAF6CB /* ActiveTaskViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActiveTaskViewController.xib; sourceTree = "<group>"; };
@@ -1038,6 +1058,18 @@
 				1CEB455718D5B57700EAF6CB /* ActiveTaskViewController.h */,
 				1CEB455818D5B57800EAF6CB /* ActiveTaskViewController.m */,
 				1CEB455918D5B57800EAF6CB /* ActiveTaskViewController.xib */,
+				1C87302019446A1B003C8538 /* ZongShiReviewViewController.h */,
+				1C87302119446A1B003C8538 /* ZongShiReviewViewController.m */,
+				1C87302219446A1B003C8538 /* ZongShiReviewViewController.xib */,
+				1C87302C194476A5003C8538 /* ProjectTypeListViewController.h */,
+				1C87302D194476A5003C8538 /* ProjectTypeListViewController.m */,
+				1C87302E194476A5003C8538 /* ProjectTypeListViewController.xib */,
+				1C873031194476BF003C8538 /* CategoryTypeListViewController.h */,
+				1C873032194476BF003C8538 /* CategoryTypeListViewController.m */,
+				1C873033194476BF003C8538 /* CategoryTypeListViewController.xib */,
+				1C87303B19447726003C8538 /* ChiefEngineerListViewController.h */,
+				1C87303C19447726003C8538 /* ChiefEngineerListViewController.m */,
+				1C87303D19447726003C8538 /* ChiefEngineerListViewController.xib */,
 			);
 			name = Project;
 			sourceTree = "<group>";
@@ -2042,6 +2074,10 @@
 				848F1D1018ADC47300128DD0 /* iTunesArtwork@2x.png in Resources */,
 				848F1D1218ADECE100128DD0 /* tab_icon_project@2x.png in Resources */,
 				1CEB455B18D5B57800EAF6CB /* ActiveTaskViewController.xib in Resources */,
+				1C87302419446A1B003C8538 /* ZongShiReviewViewController.xib in Resources */,
+				1C873030194476A5003C8538 /* ProjectTypeListViewController.xib in Resources */,
+				1C873035194476BF003C8538 /* CategoryTypeListViewController.xib in Resources */,
+				1C87303F19447727003C8538 /* ChiefEngineerListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2171,6 +2207,10 @@
 				1CEB455A18D5B57800EAF6CB /* ActiveTaskViewController.m in Sources */,
 				1CEB456518D5C28D00EAF6CB /* ActiveTaskModel.m in Sources */,
 				1CEB456918D5C48F00EAF6CB /* NSDictionaryAdditions.m in Sources */,
+				1C87302319446A1B003C8538 /* ZongShiReviewViewController.m in Sources */,
+				1C87302F194476A5003C8538 /* ProjectTypeListViewController.m in Sources */,
+				1C873034194476BF003C8538 /* CategoryTypeListViewController.m in Sources */,
+				1C87303E19447727003C8538 /* ChiefEngineerListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
