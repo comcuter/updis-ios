@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+@class ActiveTaskModel;
 @interface ZongShiReviewViewController : UIViewController
+
+@property (nonatomic, retain) ActiveTaskModel *activeTask;
 
 @end

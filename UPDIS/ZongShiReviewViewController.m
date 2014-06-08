@@ -7,32 +7,63 @@
 //
 
 #import "ZongShiReviewViewController.h"
+#import "ActiveTaskModel.h"
+#import <UI7Kit/UI7TableView.h>
+#import <UI7Kit/UI7TableViewCell.h>
 
-@interface ZongShiReviewViewController ()
+typedef enum : NSInteger {
+    TaskManageLevelNone = 1,
+    TaskManageLevelYuanJi = 2,
+    TaskManageLevelSuoJi = 3,
+} TaskManageLevel;
+
+@interface ZongShiReviewViewController ()<UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, retain) IBOutlet UI7TableView *tableView;
+@property (nonatomic, retain) MBProgressHUD *HUD;
 
 @end
 
 @implementation ZongShiReviewViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    UIImage *backImage = [UIImage imageNamed:@"ico_arr"];
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [backButton setImage:backImage forState:UIControlStateNormal];
+    backButton.bounds = CGRectMake(0, 0, backImage.size.width, backImage.size.height);
+    [backButton addTarget:self action:@selector(navigationBack) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    self.navigationItem.leftBarButtonItem = backButtonItem;
+    
+    UIImageView *titleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo3"]];
+    self.navigationItem.titleView = titleImageView;
+    
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    self.tableView.separatorColor = [UIColor colorWithRed:229./255 green:229./255 blue:229./255 alpha:1.0];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)navigationBack
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self.navigationController popViewControllerAnimated:YES];
 }
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (section == 0) {
+        
+    }
+}
+
+
 
 @end
