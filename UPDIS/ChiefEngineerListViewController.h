@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^ChiefEngineerDidSelectBlock)(NSArray *chiefEngineers);
+
 @interface ChiefEngineerListViewController : UIViewController
+
+@property (nonatomic, copy) ChiefEngineerDidSelectBlock chiefEngineerDidSelectBlock;
 
 @end

@@ -67,3 +67,20 @@
 }
 
 @end
+
+@implementation CommonCellModel
+
++ (NSArray *)parseDataFromRawArray:(NSArray *)rawArray
+{
+    NSMutableArray *resultArray = [NSMutableArray array];
+    for (NSDictionary *rawModel in rawArray) {
+        CommonCellModel *model = [[CommonCellModel alloc] init];
+        model.modelId = [rawModel intValueForKey:@"id"];
+        model.name = [rawModel stringValueForKey:@"name"];
+        [resultArray addObject:model];
+    }
+    
+    return resultArray;
+}
+
+@end

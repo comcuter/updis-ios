@@ -11,6 +11,7 @@
 @class ActiveTaskModel;
 @interface ZongShiReviewViewController : UIViewController
 
+@property (nonatomic, assign) int activeTaskId;
 @property (nonatomic, retain) ActiveTaskModel *activeTask;
 
 @end

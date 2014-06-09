@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ActiveTaskModel.h"
+
+typedef void(^CategoryTypeDidSelectBlock)(int projectTypeId, CommonCellModel *categoryModel, NSString *categoryElse);
 
 @interface ProjectTypeListViewController : UIViewController
+
+@property (nonatomic, copy) CategoryTypeDidSelectBlock categoryTypeDidSelectBlock;
 
 @end

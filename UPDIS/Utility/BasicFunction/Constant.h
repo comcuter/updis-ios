@@ -48,6 +48,12 @@
 // 总师审批
 #define URL_ZONG_SHI_REVIEW_ACTIVE_TASK @"%@/project/zongShiReviewActiveTask"
 #define URL_ZONG_SHI_REJECT_ACTIVE_TASK @"%@/project/zongShiRejectActiveTask?id=%d"
+// projectTypeList
+#define URL_ZONG_SHI_REVIEW_PROJECT_TYPE_LIST @"%@/project/projectTypeList"
+// categoryTypeList
+#define URL_ZONG_SHI_REVIEW_CATEGORY_TYPE_LIST @"%@/project/categoryList?projectTypeId=%d"
+// chiefEngineerList
+#define URL_ZONG_SHI_REVIEW_CHIEF_ENGINEER_LIST @"%@/project/chiefEngineerList"
 
 //获取关于
 #define INTERFACE_FETCH_ABOUT       @"%@/settings/about"
@@ -75,4 +81,7 @@
 
 
 #define iPhone5  ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+
+//==============================服务器端一些接口的通用参数====================================
+#define SUCCESS_KEY @"success"
 

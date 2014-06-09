@@ -66,3 +66,12 @@
 + (ActiveTaskModel *)parseActiveTaskFromRawDic:(NSDictionary *)rawDic;
 
 @end
+
+@interface CommonCellModel : NSObject
+
+@property (nonatomic, assign) int modelId;
+@property (nonatomic, retain) NSString *name;
+
++ (NSArray *)parseDataFromRawArray:(NSArray *)rawArray;
+
+@end

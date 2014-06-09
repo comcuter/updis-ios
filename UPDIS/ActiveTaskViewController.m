@@ -19,7 +19,6 @@ typedef enum : NSUInteger {
     AlertTagConfirmProjectLeadReview = 2,
     AlertTagConfirmProjectLeadReject = 3,
     
-    AlertTagConfirmZongShiReview = 4,
     AlertTagCongirmZongShiReject = 5,
 } AlertTag;
 
@@ -210,7 +209,10 @@ typedef enum : NSUInteger {
         }
     } else if (indexPath.section == 7) {
         if (indexPath.row == 2) {
-            CGSize contentSize = [self.activeTask.projectLead sizeWithFont:[UIFont systemFontOfSize:17] constrainedToSize:CGSizeMake(250, 2000) lineBreakMode:UILineBreakModeCharacterWrap];
+            CGSize contentSize = [self.activeTask.projectLead sizeWithFont:[UIFont systemFontOfSize:17] constrainedToSize:CGSizeMake(170, 2000) lineBreakMode:UILineBreakModeCharacterWrap];
+            return MAX(contentSize.height, 44);
+        } else if (indexPath.row == 3) {
+            CGSize contentSize = [self.activeTask.zhuGuanZongShi sizeWithFont:[UIFont systemFontOfSize:17] constrainedToSize:CGSizeMake(170, 2000) lineBreakMode:UILineBreakModeCharacterWrap];
             return MAX(contentSize.height, 44);
         } else {
             return 44;
@@ -664,13 +666,7 @@ typedef enum : NSUInteger {
     
     if (self.activeTask.showZongShiReviewButton) {
         if (indexPath.section == 7 && indexPath.row == 0) {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                                message:@"确定审批通过?"
-                                                               delegate:self
-                                                      cancelButtonTitle:@"取消"
-                                                      otherButtonTitles:@"确定", nil];
-            alertView.tag = AlertTagConfirmZongShiReview;
-            [alertView show];
+            [self zongShiReview];
         } else if (indexPath.section == 7 && indexPath.row == 1) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
                                                                 message:@"确定打回?"
@@ -708,12 +704,6 @@ typedef enum : NSUInteger {
         if (buttonIndex == 1) {
             UITextField *commentTextField = [alertView textFieldAtIndex:0];
             [self projectLeadRejectWithComment:commentTextField.text];
-        }
-    }
-    
-    if (alertView.tag == AlertTagConfirmZongShiReview) {
-        if (buttonIndex == 1) {
-            [self zongShiReview];
         }
     }
     
@@ -838,6 +828,7 @@ typedef enum : NSUInteger {
 {
     ZongShiReviewViewController *zongShiReviewVC = [[ZongShiReviewViewController alloc] init];
     zongShiReviewVC.activeTask = self.activeTask;
+    zongShiReviewVC.activeTaskId = self.activeTaskId;
     [self.navigationController pushViewController:zongShiReviewVC animated:YES];
 }
 
