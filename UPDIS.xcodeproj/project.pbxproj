@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C5DF7A81972891000BFF5CA /* SearchProjectLeadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C5DF7A61972891000BFF5CA /* SearchProjectLeadViewController.m */; };
+		1C5DF7A91972891000BFF5CA /* SearchProjectLeadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C5DF7A71972891000BFF5CA /* SearchProjectLeadViewController.xib */; };
 		1C6EB2001890324E0058023E /* ProjectDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6EB1FF1890324E0058023E /* ProjectDetailViewController.m */; };
 		1C6EB209189037FF0058023E /* ProjectDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C6EB208189037FE0058023E /* ProjectDetailViewController.xib */; };
 		1C87302319446A1B003C8538 /* ZongShiReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C87302119446A1B003C8538 /* ZongShiReviewViewController.m */; };
@@ -454,6 +456,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1C5DF7A51972891000BFF5CA /* SearchProjectLeadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchProjectLeadViewController.h; sourceTree = "<group>"; };
+		1C5DF7A61972891000BFF5CA /* SearchProjectLeadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchProjectLeadViewController.m; sourceTree = "<group>"; };
+		1C5DF7A71972891000BFF5CA /* SearchProjectLeadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchProjectLeadViewController.xib; sourceTree = "<group>"; };
 		1C6EB1FE1890324E0058023E /* ProjectDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectDetailViewController.h; sourceTree = "<group>"; };
 		1C6EB1FF1890324E0058023E /* ProjectDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectDetailViewController.m; sourceTree = "<group>"; };
 		1C6EB208189037FE0058023E /* ProjectDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectDetailViewController.xib; sourceTree = "<group>"; };
@@ -1070,6 +1075,9 @@
 				1C87303B19447726003C8538 /* ChiefEngineerListViewController.h */,
 				1C87303C19447726003C8538 /* ChiefEngineerListViewController.m */,
 				1C87303D19447726003C8538 /* ChiefEngineerListViewController.xib */,
+				1C5DF7A51972891000BFF5CA /* SearchProjectLeadViewController.h */,
+				1C5DF7A61972891000BFF5CA /* SearchProjectLeadViewController.m */,
+				1C5DF7A71972891000BFF5CA /* SearchProjectLeadViewController.xib */,
 			);
 			name = Project;
 			sourceTree = "<group>";
@@ -2078,6 +2086,7 @@
 				1C873030194476A5003C8538 /* ProjectTypeListViewController.xib in Resources */,
 				1C873035194476BF003C8538 /* CategoryTypeListViewController.xib in Resources */,
 				1C87303F19447727003C8538 /* ChiefEngineerListViewController.xib in Resources */,
+				1C5DF7A91972891000BFF5CA /* SearchProjectLeadViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2211,6 +2220,7 @@
 				1C87302F194476A5003C8538 /* ProjectTypeListViewController.m in Sources */,
 				1C873034194476BF003C8538 /* CategoryTypeListViewController.m in Sources */,
 				1C87303E19447727003C8538 /* ChiefEngineerListViewController.m in Sources */,
+				1C5DF7A81972891000BFF5CA /* SearchProjectLeadViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
