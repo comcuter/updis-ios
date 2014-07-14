@@ -54,6 +54,8 @@
 #define URL_ZONG_SHI_REVIEW_CATEGORY_TYPE_LIST @"%@/project/categoryList?projectTypeId=%d"
 // chiefEngineerList
 #define URL_ZONG_SHI_REVIEW_CHIEF_ENGINEER_LIST @"%@/project/chiefEngineerList"
+// 搜索负责人列表
+#define URL_SEARCH_PROJECT_LEADER @"%@/project/searchProjectLeader"
 
 //获取关于
 #define INTERFACE_FETCH_ABOUT       @"%@/settings/about"

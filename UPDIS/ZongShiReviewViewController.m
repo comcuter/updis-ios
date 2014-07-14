@@ -12,6 +12,7 @@
 #import <UI7Kit/UI7TableViewCell.h>
 #import "ProjectTypeListViewController.h"
 #import "ChiefEngineerListViewController.h"
+#import "SearchProjectLeadViewController.h"
 
 typedef enum : NSInteger {
     TaskManageLevelNone = 1,
@@ -39,6 +40,8 @@ typedef enum : NSInteger {
 @property (nonatomic, retain) CommonCellModel *currentCategory;
 // 当项目类别选择为其它时,手工填的类别名
 @property (nonatomic, retain) NSString *currentCategoryElse;
+// 当前选择的项目负责人.
+@property (nonatomic, retain) NSArray *currentSelectProjectLeaders;
 // 管理级别
 @property (nonatomic, assign) TaskManageLevel currentManageLevel;
 // 当前选中的主管总师
@@ -80,8 +83,18 @@ typedef enum : NSInteger {
 {
     if (indexPath.section == 0) {
         if (indexPath.row == 1) {
-            CGSize contentSize = [self.activeTask.projectLead sizeWithFont:[UIFont systemFontOfSize:17] constrainedToSize:CGSizeMake(180, 2000) lineBreakMode:UILineBreakModeCharacterWrap];
-            return MAX(contentSize.height, 44);
+            if (self.currentSelectProjectLeaders.count != 0) {
+                NSMutableArray *projectLeadNames = [NSMutableArray array];
+                for (CommonCellModel *model in self.currentSelectProjectLeaders) {
+                    [projectLeadNames addObject:model.name];
+                }
+                NSString *projectLeadNameString = [projectLeadNames componentsJoinedByString:@", "];
+                CGSize contentSize = [projectLeadNameString sizeWithFont:[UIFont systemFontOfSize:17] constrainedToSize:CGSizeMake(180, 2000) lineBreakMode:UILineBreakModeCharacterWrap];
+                return MAX(contentSize.height, 44);
+            } else {
+                CGSize contentSize = [self.activeTask.projectLead sizeWithFont:[UIFont systemFontOfSize:17] constrainedToSize:CGSizeMake(180, 2000) lineBreakMode:UILineBreakModeCharacterWrap];
+                return MAX(contentSize.height, 44);
+            }
         } else if (indexPath.row == 3) {
             NSMutableArray *chiefEngineerNames = [NSMutableArray array];
             for (CommonCellModel *model in self.currentChiefEngineers) {
@@ -93,9 +106,9 @@ typedef enum : NSInteger {
         } else {
             return 44;
         }
-    } else {
-        return 44;
     }
+    
+    return 44;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -147,9 +160,17 @@ typedef enum : NSInteger {
             
             return commonCell;
         } else if (indexPath.row == 1) {
-            commonCell.accessoryType = UITableViewCellAccessoryNone;
+            commonCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             commonCell.textLabel.text = @"项目负责人";
-            commonCell.detailTextLabel.text = self.activeTask.projectLead;
+            if (self.currentSelectProjectLeaders.count == 0) {
+                commonCell.detailTextLabel.text = self.activeTask.projectLead;
+            } else {
+                NSMutableArray *projectLeaderNames = [NSMutableArray array];
+                for (CommonCellModel *model in self.currentSelectProjectLeaders) {
+                    [projectLeaderNames addObject:model.name];
+                }
+                commonCell.detailTextLabel.text = [projectLeaderNames componentsJoinedByString:@", "];
+            }
             
             return commonCell;
         } else if (indexPath.row == 2) {
@@ -210,8 +231,12 @@ typedef enum : NSInteger {
             };
             [self.navigationController pushViewController:projectTypeVC animated:YES];
         } else if (indexPath.row == 1) {
-            // 项目负责人
-            // do nothing.
+            SearchProjectLeadViewController *searchProjectLeadVC = [[SearchProjectLeadViewController alloc] init];
+            searchProjectLeadVC.projectLeadDidSelectBlock = ^(NSArray *projectLeads) {
+                self.currentSelectProjectLeaders = projectLeads;
+                [self.tableView reloadData];
+            };
+            [self.navigationController pushViewController:searchProjectLeadVC animated:YES];
         } else if (indexPath.row == 2) {
             // 管理级别
             UIActionSheet *manageLevelAction = [[UIActionSheet alloc] initWithTitle:@"选择管理级别"
@@ -300,6 +325,13 @@ typedef enum : NSInteger {
     if (self.currentCategoryElse != nil) {
         [strongRequest addPostValue:self.currentCategoryElse forKey:@"projectCategoryElse"];
     }
+    
+    if (self.currentSelectProjectLeaders.count > 0) {
+        for (CommonCellModel *projectLead in self.currentSelectProjectLeaders) {
+            [strongRequest addPostValue:@(projectLead.modelId) forKey:@"projectLeadIds"];
+        }
+    }
+    
     NSString *manageLevelId = @"LH200307240002";
     if (self.currentManageLevel == TaskManageLevelYuanJi) {
         manageLevelId = @"LH200307240001";

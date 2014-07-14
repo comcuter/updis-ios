@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+typedef void(^ProjectLeadDidSelectBlock) (NSArray *projectLeads);
 @interface SearchProjectLeadViewController : UIViewController
+
+@property (nonatomic, copy) ProjectLeadDidSelectBlock projectLeadDidSelectBlock;
 
 @end
