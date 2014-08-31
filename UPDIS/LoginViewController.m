@@ -51,7 +51,7 @@
     [[self userNameBg] setUrlPath:@"bundle://input1.png"];
     [[self userPwdBg] setUrlPath:@"bundle://input1.png"];
 
-    [self.txtUserName resignFirstResponder];
+    [self.txtUserName becomeFirstResponder];
     [self.txtUserPwd resignFirstResponder];
 }
 
