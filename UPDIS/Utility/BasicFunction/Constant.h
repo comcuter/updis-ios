@@ -2,12 +2,14 @@
 
 
 
-#define IN_TEST_ENVIRONMENT 1
+#define IN_TEST_ENVIRONMENT 0
 
-#if IN_TEST_ENVIRONMENT == 1
+#if IN_TEST_ENVIRONMENT == 0
+    #define MAIN_DOMAIN             @"http://phone.updis.cn:8010/rest" 
+#elif IN_TEST_ENVIRONMENT == 1
     #define MAIN_DOMAIN             @"http://phone.updis.cn:8081/rest"
 #else
-    #define MAIN_DOMAIN             @"http://phone.updis.cn:8010/rest"
+    #define MAIN_DOMAIN             @"http://172.30.6.59:8080"
 #endif
 
 //用户登录
